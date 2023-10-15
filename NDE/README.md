@@ -254,4 +254,440 @@ Requires **separate authorization** for each requested resource, it maintains au
 
 ---
 
+## Administrator controls
+
+### Regulatory frameworks compliance
+
+It is often required for the organization to comply with some type of *security regulation*, it is a collaborative effort between governments and privates.
+
+IT security regulatory frameworks contain a set of **guidelines** and **best practices**.
+
+**Why organizations need compliance?**
+
+* **improves security**
+  
+  IT security *regulation* and *standards* improve overall security by meeting regulatory requirements
+
+* **Minimize losses**
+  
+  Improved security, in turn, *prevents* security breaches
+
+* **Maintain trust**
+  
+  Customer trusts the organization in belief that their information is *safe*
+
+---
+
+![](frameworks.png)
+
+Based on those regulatory requirements (interpreted from the regulatory framework), an organization needs to establish *policies*, *procedures* and *security controls* to manage and maintain compliance.
+
+---
+
+## Payment Card Industry Data Security standard [PCI-DSS]
+
+Is a proprietary **information security standard for organizations** that handle cardholder information. **PCI-DSS** applies to *all entities involved in payment card processing*.
+
+* **Build and Maintain a Secure Network**
+
+* **Maintain a Vulnerability Management Program**
+
+* **Regulatory Monitor and test networks**
+
+* **Protect Cardholder Data**
+
+* **Implement Strong Access Control Measures**
+
+* **Maintain an information Security Policy**
+
+-
+
+## Health Insurance Portability and Accountability Act [HIPAA]
+
+* **Electronic transaction and code set standards**
+  
+  Every provider must use *the same health care transactions, code sets and identifiers*
+
+* **Privacy rule**
+  
+  *Federal protections for the personal health information*
+
+* **Security role**
+  
+  Safeguards to ensure the *confidentiality, integrity and availability of electronically protected health information*
+
+* **National identifier requirements**
+  
+  Every employee must have *national numbers that identify them attached to standard transactions*
+
+* **Enforcement rule**
+  
+  Standards for enforcing all the *Administration Simplification Rules*
+
+---
+
+## [!!!] SARBANES OXLEY ACT [SOX]
+
+It is designed to **protect investors and the public** by increasing the accuracy and reliability of the corporate disclosure
+
+* **TITLE 1**
+  
+  **Public Company Accounting oversight board [PCAOB]** provides independent oversight of public accounting firms providing *audit services* **(auditors)**
+
+* **TITLE 2**
+  
+  **Auditor independence**
+
+* **TITLE 3**
+  
+  **Corporate responsibility** mandates that every senior executives take individual responsibility for the accuracy and completeness of corporate financial reports
+
+* **TITLE 4**
+  
+  **Enhanced financial disclosures** describe enhanced reporting requirements for financial transactions, including off-balance-sheet transactions ...
+
+* **TITLE 5**
+  
+  **Analyst conflicts of interest**, more confidence in the reporting of securities analysts
+
+* **TITLE 6**
+  
+  **Commission resources and authority**
+
+* **TITLE 7**
+  
+  **Studies and Reports**, credit rating agencies ...
+
+* **TITLE 8**
+  
+  **Corporate and Criminal fraud accountability**, description of specific criminal penalties for fraud ...
+
+* **TITLE 9**
+  
+  **Corporate tax return**
+
+* **TITLE 10**
+  
+  **White collar crime penalty enhancement**
+
+* **TITLE 11**
+  
+  **Corporate fraud accountability**
+
+* **... 10 titles left ...**
+
+---
+
+## GRAMM-LEACH-BLILEY ACT [GLBA]
+
+It has the objective to ease the transfer of *financial information* between institutions and banks
+
+---
+
+## GENERAL DATA PROTECTION REGULATION [GDPR]
+
+It is used against those who violates its privacy and security standards
+
+---
+
+## DATA PROTECTION ACT [DPA]
+
+It is an act to make provision for the regulation of the processing of information relating to *individuals*.
+
+Individuals have the right:
+
+* data submitted must be processed lawfullly
+
+* get information about how the data are processed
+
+* give the holder of that office responsibilities
+
+---
+
+## Information Security Standards [ISO]
+
+![](ISO.png)
+
+---
+
+## Digital Millennium Copyright Act [DMCA]
+
+It defines the *legal prohibitions* against the circumvention of technological protection measures employed by copyright owners to protect their works
+
+---
+
+## Federal Information Security Management Act [FISMA]
+
+It provides a comprehensive framework for ensuring the *effectiveness of information security controls* over information resources that supports Federal operations and assets
+
+* **standards for categorizing information**
+
+* **standards for minimum security requirements**
+
+* **guidance for selecting appropriate security controls**
+
+* **guidance for assessing security controls**
+
+* **guidance for security authorization of information systems**
+
+---
+
+---
+
+# Security Policy
+
+It is a **well documented set of plans, processes, procedures, standards and guidelines** to establish an ideal information security status of an organization.
+
+Security policies are used to inform people on how to work in a safe and secure manner.
+
+* **Enhanced Data and Network security**
+
+* **Risk mitigation**
+
+* **Better network performance**
+
+* **Quick Response to issues**
+
+* **Monitored and Controlled device usage and data transfers**
+
+## Contents of security policy
+
+### High-level security requirements
+
+The requirements of a system when implementing security policies that include discipline security, safeguard security, procedural security and assurance security
+
+### Policy description based on requirements
+
+### Security concept of operation
+
+Defines the **roles**, **responsibilities** and **functions** of a security policy
+
+### Allocation of security enforcement
+
+Provides a computer system **architecture allocation** to each system in the program
+
+## Types of Information Security Policies
+
+### Enterprise information security policies [EISP]
+
+It drives an organization's scope and provides direction to their security policies
+
+* Application policy
+
+* Network and network devices security policies
+
+* Back up and restore policy
+
+* System security policy
+
+### Issue specific security policies [ISSP]
+
+It directs the audience on the usage of technology-based systems with the help of *guidelines*
+
+* Remote access and wireless policies
+
+* Incident response plan
+
+* Password policies
+
+* Policies for personal devices
+
+### System specific security policies [SSSP]
+
+It directs users while *configuring or maintaining* a system
+
+* DMZ policy
+
+* Encryption policy
+
+* Policies for intrusion detection and prevention
+
+* Access control policy
+
+# Internet Access Policies
+
+## Promiscuous Policy
+
+No restrictions on internet/remote access **(NOTHING IS BLOCKED)**
+
+## Permissive Policy
+
+Known dangerous services/attacks blocked **(KNOWN THREATS BLOCKED)**
+
+## Paranoid Policy
+
+Everything is blocked, no internet connection or severely limited internet usage **(EVERYTHING IS BLOCKED)**
+
+## Prudent Policy
+
+Provides maximum security while allowing known, but necessary, dangers. All services are blocked, except for the *safe or necessary* ones **(EVERYTHING BLOCKED EXCEPT FOR)**
+
+---
+
+## Password Policy
+
+It provides guidelines for using strong passwords for an organization's resources
+
+1. Password length and formation
+
+2. Complexity of password
+
+3. Password blacklists
+
+4. Password duration
+
+5. Common password practice
+
+---
+
+---
+
+# Physical controls
+
+A successful unauthorized physical access may lead to *theft*, *damage* or *modification* of the information system. Physical security is the basis of any *information system program*   in an organization. It allows to restrict unauthorized physical access to the organization or directly to the network.
+
+### Common attack vectors
+
+* **Natural/Environmental Threats**
+
+* **Man-made Threats**
+
+## Types of physical security controls
+
+### Preventive controls
+
+Prevent *security violation* and enforce various access control mechanisms.
+
+[door locks, security guards ...]
+
+### Detective controls
+
+Detect security violations and *record any intrusion attempts*.
+
+[motion detectors, cameras, sensors ...]
+
+### Deterrent controls
+
+Used to discourage attackers and *send warning messages* to the attackers to discourage intrusion attempts.
+
+[warning signs, ... "I will add also in-software detection routines" ...]
+
+### Recovery controls
+
+Used to recover from security violations and *restore information and systems* to a persistent state.
+
+[disaster recovery, backups ...]
+
+### Compensating controls
+
+Used as an alternative control when the *intended controls failed* or *cannot be used*.
+
+[hot sites, backup power systems ...]
+
+---
+
+## Location considerations
+
+* **Visibility of the assets**
+  
+  *"No servers must be visible from outside"*
+
+* **Neighboring buildings**
+  
+  *"Better not to have bad actors nearby"*
+
+* **Local considerations**
+
+* **Impact of catastrophic events**
+  
+  *"Don't stay on active volcano"*
+
+* **Joint tenancy risks**
+  
+  *"In the 3° floor there is a strange organization; What kind of customers they bring in?"*
+
+---
+
+## Site architecture considerations
+
+You need to consider what kind of rooms do you need in order to keep data and services up and secure, but also people must be secure.
+
+[emergency exits, separate locations for critical systems, plans for environment hazards, sanitation systems ...]
+
+---
+
+## Physical Security policy
+
+Allows to *define guidelines* to ensure that adequate physical security measures are in place. Can be everything relate with physical part of an organization, for example the lighting system.
+
+-
+
+In the context of environmental threats, we can also think about **heat** and **electromagnetic interference**, which are two of the most important things to consider for proper infrastructure defense.
+
+-
+
+![](phyChecklist.png)
+
+---
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
