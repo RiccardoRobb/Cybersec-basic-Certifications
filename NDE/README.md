@@ -44,7 +44,7 @@ Is an **authentication protocol** which provides centralized *authentication*, *
 
 4. Server sends *accounting-response message* which states the successful establishment of the network.
 
--
+
 
 ### TACACS+  (Terminal access controller access control system)
 
@@ -60,7 +60,7 @@ Is a **network security protocol** used for *AAA* of the **network devices**, TA
 
 4. The client will be *granted* or *denied*
 
--
+
 
 ### KERBEROS
 
@@ -82,7 +82,7 @@ Is an **authenticating method** for accessing the network.
 
 6. The server uses its key to *decrypt* the information from the *TGS* and the client is authenticated to the server
 
--
+
 
 ### PGP (Pretty good privacy)
 
@@ -90,7 +90,7 @@ Is an **application layer protocol** which provides **cryptographic privacy** an
 
 It *encrypts* and *decrypts* email communications as well as authenticates messages with **digital signatures** and *encrypts* stored files.
 
--
+
 
 ### S/MIME (Secure/Multipurpose internet mail extensions)
 
@@ -98,7 +98,7 @@ Is an application layer protocol which is used for *sending* **digitally signed*
 
 It uses **RSA** system to email encryption and network defenders needs to enable S/MIME-based security for mailboxes in their organization.encrypted email messages
 
--
+
 
 ### S-HTTP [deprecated]
 
@@ -106,13 +106,13 @@ Is an application layer protocol that is used to **encrypt web communications** 
 
 Problem is that we have some not encrypted communications.
 
--
+
 
 ### HTTP (Hypertext transfer protocol secure)
 
 Ensures **secure communication** between two computers over HTTP. The connection is *encrypted* using a **transport layer security (TLS)** or rarely **SSL**. Protects against *man-in-the-middle attack* because of the encrypted channel.
 
--
+
 
 ### TLS (Transport layer security)
 
@@ -122,13 +122,13 @@ Ensures a *secure communication* between client-server applications, it prevents
 
 * **TLS Handshake Protocol** ensures client and server *authentication*
 
--
+
 
 ### SSL (Secure socket layer)
 
 *Manages the security* of a message transmission on the internet, it uses **RSA asymmetric (public key) encryption** to encrypt data transferred over *SSL* connections.
 
--
+
 
 ### IPsec (Internet protocol security)
 
@@ -166,13 +166,13 @@ The authorization process is divided in steps, different privileges are assigned
 
 Ensures that no single individual has the authorization rights to perform all functions and simultaneously denies access of all the objects to a single individual.
 
--
+
 
 ### Need-to-know
 
 Access is provided only to the information that is required for performing a specific task.
 
--
+
 
 ### Principle of Least Privilege [POLP]
 
@@ -184,25 +184,25 @@ Extends the *need-to-know* principle providing only needed rights for each user.
 
 Are the standards which provide a predefined framework for implementing the necessary level of access control.
 
--
+
 
 ### Mandatory Access Control [MAC]
 
 Only the **Admin/Sys owner** has the rights to *assign privileges*, the end user cannot decide who can access the information.
 
--
+
 
 ### Discretionary Access Control [DAC]
 
 End user has complete access to the information they **own**
 
--
+
 
 ### Role-based Access Control [RBAC]
 
 Permission are assigned based on **user roles**
 
--
+
 
 ### Rule-based Access Control [RB-RBAC]
 
@@ -300,7 +300,7 @@ Is a proprietary **information security standard for organizations** that handle
 
 * **Maintain an information Security Policy**
 
--
+
 
 ## Health Insurance Portability and Accountability Act [HIPAA]
 
@@ -620,11 +620,11 @@ You need to consider what kind of rooms do you need in order to keep data and se
 
 Allows to *define guidelines* to ensure that adequate physical security measures are in place. Can be everything relate with physical part of an organization, for example the lighting system.
 
--
+
 
 In the context of environmental threats, we can also think about **heat** and **electromagnetic interference**, which are two of the most important things to consider for proper infrastructure defense.
 
--
+
 
 ![](phyChecklist.png)
 
@@ -897,5 +897,17 @@ It is a built-in firewall utility for *Linux OS*.
 * **Block specific IP**
   
   `iptables -A INPUT -s <IP-ADDR> -j DROP`
-  
-  
+
+---
+
+---
+
+# Intrusion Detection and Prevention System [IDS / IPS]
+
+It is a *network security appliance* that **inspects all inbound and outbound traffic** for suspicious patterns that might indicate a network or system security breach.
+
+If any pattern is recognized, the IDS will **alert** the administrator.
+
+IDS checks the network traffic for **signatures** that match *known intrusion patterns* and triggers an alarm.
+
+![](IDs.png)
