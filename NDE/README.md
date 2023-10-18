@@ -632,62 +632,270 @@ In the context of environmental threats, we can also think about **heat** and **
 
 ---
 
+# Network segmentation
 
+it is the practice of **splitting** a network in smaller network segments and separating groups of systems or applications from each other.
 
+Groups of systems or applications that have no interaction with each other will be placed in different network segments.
 
++Improved security
 
++Better access control
 
++Improved monitoring
 
++better containment
 
+*It is the inverse of a Flat network (no segmentation)*
 
+## Physical segmentation
 
+![](phy_seg.png)
 
+Splitting a large network into smaller physical components, each segment can communicate via *intermediary devices* such as switches, hubs or routers.
 
+It is expensive, it requires a good configuration (each segment requires components and dedicated router network interfaces)
 
+## Logical segmentation
 
+![](log_seg.png)
 
+Based on **VLANs**, which are *isolated logically* without considering the physical locations of devices. Each VLAN is an independent logical unit and devices of the VLAN communicate as though they are in their own isolated network.
 
+Firewalls are shared and switches handle the VLAN infrastructure.
 
+It is flexible to implement and to operate.
 
+## Network virtualization
 
+![](virt_seg.png)
 
+It is a process of *combining* all the available network resources and enabling security professionals to share these resources among the network users using a **single administrative unit**. 
 
+Network virtualization enables each user to access available network resources from their system.
 
+# Firewalls
 
+![](firewall.png)
 
+A **Bastion host** is a computer system designed and configured to *protect network resources* from attacks; it is the only host computer on the internet that can be **addressed directly from the public network**.
 
+It provides a limited range of services such as website hosting and mail to ensure security. 
 
+*The bastion host has one interface for the internet and one for the network, basically we can think Windows Defender as a bastion host*
 
+The Bastion must:
 
++ Minimize the chances of penetration by intruders
 
++ Create **logs** in order to identify attack or attempts of attack
 
++ In case of attack, bastion host must act as **scapegoat**
 
++ Provide an additional level of security
 
+### Positioning of the Bastion Host
 
+* **Physical location**
+  
+  Must be placed in a specially selected server room with *suitable environmental controls*, in a locked server cabinet with proper ventilation, cooling and backup power.
 
+* **Network location**
+  
+  Set on a special network also known as **Demilitarized Zone [DMZ]** that **does not carry sensitive data**. Cannot be placed on internal networks, should be located on an addition layer know as **perimeter network**.
+  
+  *We can attach a* `packet filtering routing` *in order to track packets*
 
+## DMZ Network
 
+It is a computer sub-network that is placed between the organization's private network such as a **LAN** and an outside public network such as the **internet**.
 
+Contains the servers that need to be accessed from an outside network.
 
+Both **internal** and **external** networks can connect to the DMZ, hosts in the DMZ **cannot connect to internal networks** but can connect to external networks.
 
+### Single Firewall DMZ
 
+The network architecture consists of **three network interfaces**.
 
+The *First* interface connects the ISP to the firewall (external network), the *Second* interface forms the internal network, and the *Third* interface forms the DMZ.
 
+### Dual Firewall DMZ
 
+There are *2* firewalls, the *First firewall* allows only **sanitized traffic** to enter the DMZ (packets for exposed services), and the *Second firewall* conducts a double check on it.
 
+*It is the most secure approach*
 
+## Types of Firewalls
 
+### Hardware firewall
 
+It is a dedicated **stand-alone hardware device or part of the router** that *filters* the network traffic using some *packet filtering technique*. It is used to filter out the network traffic for large business networks.
 
+* **Network-based firewall**
+  
+  It is used to *filter inbound / outbound traffic* from **internal LAN**
 
+### Software firewall
 
+It is a **software program** installed on a computer; It filters traffic for individual home users.
 
+* **Host-based firewall**
+  
+  It is used to *filter inbound / outbound traffic* of an **individual computer** in which it is *installed*
 
+## Firewall technologies
 
+![](firewall_tech.png)
 
+### Packet Filtering firewalls
 
+Work at the **network level (OSI) / IP level (TCP/IP)**, they are usually part of a router.
 
+Each packet is compared with a *set of criteria* before it is forwarded; traffic is filtered base on **specific rules**, for example source, destination IP addresses.
 
+### Circuit level Gateways
 
+Work at the **session level (OSI) / TCP layer (TCP/IP)**, they *monitor TCP handshakes* between packets to determine whether a *request session is legitimate or not*.
 
+Information passed to a remote computer appears to have originated from the gateway.
 
+Traffic is filtered on **specific session rules**.
+
+### Application level Gateways
+
+Can filter packets at the **application level**, they can filter *application-specific command* such as *http:post* and *get* or *specific protocols*. We can decide to filter the traffic based on rules about protocols or commands.
+
+### Stateful Multilayer inspection firewalls
+
+**Combines the aspects of the previously described technologies.**
+
+They are expensive, because they require competent personnel that have to administrate the device used for filter the traffic at *three levels*; Filter based on a wide range of specified applications, sessions and / or filtering rules.
+
+### Application Proxy
+
+Works as a proxy server and **filters connections** for specific services; It filters connections based on **services** and **protocols**.
+
+*A DNS proxy will only allow DNS traffic to pass through.*
+
+---
+
+# Next Generation Firewall
+
+It is a **third-generation firewall technology** that moves beyond *port / protocol inspection*, can inspect traffic based on **packet content**.
+
+## Technologies
+
+### Network Address translation [NAT]
+
+It separates IP addresses into *two sets* and enables the LAN to use these addresses for *internal* and *external traffic*. NAT will modify the packets the router sends.
+
+Distinction between **private IP address** and **public IP address**, the *first* refers to the actual IP used from a host in the network; the *second* refers to the external IP address from which communications start;
+
+- private IP are mapped to public IP
+
+*It limits the number of public IP addresses* **(increase security = less hosts visible)**
+
+### Virtual Private Network [VPN]
+
+It is a **private network** constructed using public networks; It is used for the *secure transmission* of sensitive information over an untrusted network.
+
+It is based on **encapsulation** and **encryption**, in order to create *dedicated connections* using a VPN tunnel in which communication is encrypted.
+
+---
+
+### Firewalls don't
+
+* prevent the network from **backdoor attacks**
+
+* protect the network from **insider attacks**
+
+* do anything if the network design and configuration is faulty
+
+* be an alternative to **antivirus** or **antimalware**
+
+* prevent **new viruses**
+
+* prevent **social engineering threats**
+
+* prevent **passwords misuse**
+
+* block attacks from higher level of protocol stack
+
+### Secure Firewall implementation
+
+* filter **unused** and common **vulnerable** ports
+
+* create a **unique user ID** to run the firewall service (not root or admin)
+
+* **deny all** and allow only the services required
+
+* change all default passwords
+
+* **limit running applications** in order to enhance the performances
+
+* configure a **remote syslog server**
+
+* monitor **firewall logs**
+
+* investigate **suspicious log**
+
+---
+
+## Firewall implementation and deployment
+
+* **PLANNING**
+  
+  Organizations must *plan* their **positioning** in advance
+
+* **CONFIGURING**
+  
+  Hardware, software, **policy configuration**, implementing **logging** and **alerting** mechanisms
+
+* **TESTING**
+  
+  Check if the **firewall rules** are set according to the actions performed by the firewall
+
+* **DEPLOYING**
+  
+  A phased approach to deploy multiple firewalls on a network helps detect and *resolve issues* regarding **conflicting policies**
+
+* **MANAGING AND MAINTAINING**
+  
+  Firewall **architecture**, **policies**, software and other components deployed on the network must be maintaining
+
+---
+
+# Host-based Firewall protection
+
+## Iptables
+
+It is a built-in firewall utility for *Linux OS*.
+
+* **Filter non TCP packets**
+  
+  `iptables -A INPUT -p tcp ! --syn m state --state NEW -j DROP`
+
+* **Blocking XMAS scan attack**
+  
+  *"Send XMAS packets during port scanning, in order to detect open ports"*
+  
+  `iptables -A INPUT -p tcp --tcp-flags ALL -j DROP`
+
+* **Drop any NULL packets**
+  
+  `iptables -A INPUT -f -j DROP`
+
+* **Drop any fragmented packets**
+  
+  `iptables -A INPUT -f -j DROP`
+
+* **List existing rules**
+  
+  `iptables -L -n -v`
+
+* **Block specific IP**
+  
+  `iptables -A INPUT -s <IP-ADDR> -j DROP`
+  
+  
