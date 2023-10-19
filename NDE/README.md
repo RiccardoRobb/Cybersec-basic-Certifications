@@ -638,13 +638,13 @@ it is the practice of **splitting** a network in smaller network segments and se
 
 Groups of systems or applications that have no interaction with each other will be placed in different network segments.
 
-+Improved security
+**+** Improved security
 
-+Better access control
+**+** Better access control
 
-+Improved monitoring
+**+** Improved monitoring
 
-+better containment
+**+** better containment
 
 *It is the inverse of a Flat network (no segmentation)*
 
@@ -911,3 +911,107 @@ If any pattern is recognized, the IDS will **alert** the administrator.
 IDS checks the network traffic for **signatures** that match *known intrusion patterns* and triggers an alarm.
 
 ![](IDs.png)
+
+**IDS** works from *inside the network* (behind the firewall) != firewall that looks outside the network.
+
+## Signature recognition
+
+Also known as misuse detection, tries to *identify events* that indicate an abuse of a system or network resource.
+
+This method uses *string comparison* operations to compare **ongoing activity** and looks for matches with the known signatures.
+
+**+** Less false alarms
+
+**+** Fast
+
+**-** Detects only known threats
+
+**-** Cannot detect variants of known threats
+
+---
+
+## Anomaly detection
+
+It detects the intrusion based on *fixed behavioral characteristics* of the users and components in a computer system
+
+This method monitors the typical activity for a particular time interval and then builds the **statistics fro the network traffic** (bandwidth usage, failed logon attempts, processor utilization ...)
+
+**+** Identifies abnormal behavior
+
+**+** Information acquired are used to *define the signatures for Signature detection*
+
+**-** More false alarms
+
+**-** Build up an extensive set of system events in order to characterize normal behavior patterns
+
+---
+
+## Approach-based / Stateful protocol detection
+
+*Compares observed events* with predetermined profiles based on accepted definition of **benign activity for each protocol** to identify any **deviations** of the protocol state.
+
+Variances in command length, min max values for attributes and other anomalies; for any protocol performing authentication, IDS/IPS will keep track of the *authenticator* being used for each session.
+
+**+** Can identify strange sequence of commands
+
+---
+
+---
+
+## Protection-based IDS
+
+![](protection_IDS.png)
+
+* **Network intrusion detection system [NIDS]**
+  
+  It  protects the network **+ low false-positive rate**
+
+* **Host intrusion detection system [HIDS]**
+  
+  It protects the host **+ anomaly-based detection**
+
+* **Hybrid intrusion detection system [Hybrid IDS]**
+  
+  It protects the network and the host
+
+---
+
+## Structure-based IDS
+
+* **Centralized IDS**
+  
+  Data are shipped to a *central location* for analysis
+
+* **Decentralized IDS**
+  
+  Several IDS are *deployed* over a large network and each IDS communicates with each other for traffic analysis
+
+---
+
+---
+
+## Intrusion indicators
+
+### File System intrusions
+
+The presence of *new* or *unfamiliar* files or programs; Unexplained *changes* in a file's size or permissions. Missing files or *rogue* files that do not correspond to the master list of signed files.
+
+### Network intrusions
+
+Connections from *unusual locations* and repeated *login attempts*; Repeated probes of available services on the machine and a sudden *influx of log data*.
+
+### System intrusion
+
+*Incomplete*, *Missing* or with *incorrect permissions* or *ownership* logs; Unfamiliar processes or slow system performance; Strange modifications to system software and configuration files.
+
+---
+
+### Active IDS
+
+**DETECTS**  and **RESPONDS** to detected intrusions
+
+### Passive IDS
+
+**DETECTS** intrusions
+
+:1.34
