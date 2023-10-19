@@ -44,8 +44,6 @@ Is an **authentication protocol** which provides centralized *authentication*, *
 
 4. Server sends *accounting-response message* which states the successful establishment of the network.
 
-
-
 ### TACACS+  (Terminal access controller access control system)
 
 Is a **network security protocol** used for *AAA* of the **network devices**, TACACS+ **encrypts** the entire communication between client and server in order to protect from *sniffing attacks*.
@@ -59,8 +57,6 @@ Is a **network security protocol** used for *AAA* of the **network devices**, TA
 3. *RESPONSE* is sent to the client including *pass* of *fail*
 
 4. The client will be *granted* or *denied*
-
-
 
 ### KERBEROS
 
@@ -82,15 +78,11 @@ Is an **authenticating method** for accessing the network.
 
 6. The server uses its key to *decrypt* the information from the *TGS* and the client is authenticated to the server
 
-
-
 ### PGP (Pretty good privacy)
 
 Is an **application layer protocol** which provides **cryptographic privacy** and authentication for network communications.
 
 It *encrypts* and *decrypts* email communications as well as authenticates messages with **digital signatures** and *encrypts* stored files.
-
-
 
 ### S/MIME (Secure/Multipurpose internet mail extensions)
 
@@ -98,21 +90,15 @@ Is an application layer protocol which is used for *sending* **digitally signed*
 
 It uses **RSA** system to email encryption and network defenders needs to enable S/MIME-based security for mailboxes in their organization.encrypted email messages
 
-
-
 ### S-HTTP [deprecated]
 
 Is an application layer protocol that is used to **encrypt web communications** carried over HTTP.  
 
 Problem is that we have some not encrypted communications.
 
-
-
 ### HTTP (Hypertext transfer protocol secure)
 
 Ensures **secure communication** between two computers over HTTP. The connection is *encrypted* using a **transport layer security (TLS)** or rarely **SSL**. Protects against *man-in-the-middle attack* because of the encrypted channel.
-
-
 
 ### TLS (Transport layer security)
 
@@ -122,13 +108,9 @@ Ensures a *secure communication* between client-server applications, it prevents
 
 * **TLS Handshake Protocol** ensures client and server *authentication*
 
-
-
 ### SSL (Secure socket layer)
 
 *Manages the security* of a message transmission on the internet, it uses **RSA asymmetric (public key) encryption** to encrypt data transferred over *SSL* connections.
-
-
 
 ### IPsec (Internet protocol security)
 
@@ -166,13 +148,9 @@ The authorization process is divided in steps, different privileges are assigned
 
 Ensures that no single individual has the authorization rights to perform all functions and simultaneously denies access of all the objects to a single individual.
 
-
-
 ### Need-to-know
 
 Access is provided only to the information that is required for performing a specific task.
-
-
 
 ### Principle of Least Privilege [POLP]
 
@@ -184,25 +162,17 @@ Extends the *need-to-know* principle providing only needed rights for each user.
 
 Are the standards which provide a predefined framework for implementing the necessary level of access control.
 
-
-
 ### Mandatory Access Control [MAC]
 
 Only the **Admin/Sys owner** has the rights to *assign privileges*, the end user cannot decide who can access the information.
-
-
 
 ### Discretionary Access Control [DAC]
 
 End user has complete access to the information they **own**
 
-
-
 ### Role-based Access Control [RBAC]
 
 Permission are assigned based on **user roles**
-
-
 
 ### Rule-based Access Control [RB-RBAC]
 
@@ -299,8 +269,6 @@ Is a proprietary **information security standard for organizations** that handle
 * **Implement Strong Access Control Measures**
 
 * **Maintain an information Security Policy**
-
-
 
 ## Health Insurance Portability and Accountability Act [HIPAA]
 
@@ -620,11 +588,7 @@ You need to consider what kind of rooms do you need in order to keep data and se
 
 Allows to *define guidelines* to ensure that adequate physical security measures are in place. Can be everything relate with physical part of an organization, for example the lighting system.
 
-
-
 In the context of environmental threats, we can also think about **heat** and **electromagnetic interference**, which are two of the most important things to consider for proper infrastructure defense.
-
-
 
 ![](phyChecklist.png)
 
@@ -964,7 +928,7 @@ Variances in command length, min max values for attributes and other anomalies; 
 
 * **Network intrusion detection system [NIDS]**
   
-  It  protects the network **+ low false-positive rate**
+  It protects the network **+ low false-positive rate**
 
 * **Host intrusion detection system [HIDS]**
   
@@ -985,6 +949,34 @@ Variances in command length, min max values for attributes and other anomalies; 
 * **Decentralized IDS**
   
   Several IDS are *deployed* over a large network and each IDS communicates with each other for traffic analysis
+
+---
+
+## Analysis Timing-based IDS
+
+Analysis time is a **span of time elapsed** between the events occurring and the analysis of those events
+
+* **Interval-based IDS**
+  
+  The *information about an intrusion* is **stored and forwarded**, it performs analysis on the detected intrusion *offline*
+
+* **Real-Time-based IDS**
+  
+  The *information about an intrusion* **flows continuously** from monitoring points to analysis engines. The analysis on the detected intrusion is performed *on the fly*
+
+---
+
+## Source Data analysis-based IDS
+
+An IDS uses data and sources such as **audit trail** and network packets to detect intrusions
+
+* **Intrusion detection using Audit Trails**
+  
+  Audit trails help the IDS detect *performance problems, security violations and flaws in applications*
+
+* **Intrusion detection using Network Packets**
+  
+  Capturing and Analyzing network packets help an IDS detect *well-known attacks*
 
 ---
 
@@ -1014,4 +1006,64 @@ Connections from *unusual locations* and repeated *login attempts*; Repeated pro
 
 **DETECTS** intrusions
 
-:1.34
+---
+
+---
+
+## IDS Components
+
+![](IDS_components.png)
+
+### Network sensors
+
+Are **HW** or **SW** components that **monitor traffic** and **trigger alarms** if any abnormal activity is detected. Network sensors should be placed and located at *common entry points*.
+
+*"Gateways, between LANs, VPNs, sides of firewall and remote access servers"*
+
+### Alert systems
+
+Sends an **alert message** when an anomaly or misuse is detected.
+
+### Command console (Sguil)
+
+It runs on a *separate system* that is dedicated to the IDS.
+
+It provides a user interface to an administrator for the purpose of *receiving* and *analyzing* security events, alert messages and log files. It **evaluates security events** from different security devices.
+
+*"Must be installed on a **dedicated** computer system!"*
+
+### Response system
+
+Issues countermeasures against any intrusion that is detected.
+
+You also need to be involved in the decision during incident response and should have the ability to respond on your own. You have to make decisions on how to deal with *false positives* and when a response needs escalation.
+
+### Attack signatures database
+
+**IDS does not make decisions** but maintain a database of attack signatures and patterns. Network traffic is compared against these known attack signatures.
+
+**IDS will raise alert and block the traffic** if there is a match.
+
+---
+
+---
+
+# Intrusion detection Tools
+
+## Snort
+
+It is a *network intrusion detection system*, capable of performing real-time **traffic analysis and packet logging on IP networks**.
+
+`snort`
+
+It is used to detect various attacks and probes such as buffer overflows, stealth port scans and OS fingerprinting attempts.
+
+## Suricata
+
+It is a robust *network threat detection engine* capable of **real-time IDS**, **inline IPS**, **network security monitoring** and **offline pcap processing** (*we can pass wireshark files to be processed*).
+
+---
+
+---
+
+1:57
