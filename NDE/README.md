@@ -1066,4 +1066,221 @@ It is a robust *network threat detection engine* capable of **real-time IDS**, *
 
 ---
 
+# Honeypot
 
+It is an information system resource that is expressly *set up to attract and trap people* who attempt to penetrate. It has no authorized activity, does not have any production value, and any traffic to it is likely to be a probe, attack or compromise.
+
+It can log port access attempts or monitor an attacker's keystrokes.
+
+### Low-interaction honeypots
+
+These honeypots simulate only a **limited number of services** and applications of a target system or network
+
+### Medium-interaction honeypots
+
+These honeypots simulate a **real operating system**, applications, and services of a target network
+
+### High-interaction honeypots
+
+These honeypots simulate **all services** and applications of a target network
+
+### Pure honeypots
+
+These honeypots emulate the **real production network** of a target organization
+
+* **Production honeypots**
+  
+  Are deployed inside the production network of the organization along with other production servers; They also help to find out *internal flaws* and *attackers within an organization*
+
+* **Research honeypots**
+  
+  Are *high-interaction* honeypots primarily deployed by research institutes, governments, or military organizations to gain detailed knowledge about the actions of intruder
+
+---
+
+## Honeypot classification
+
+### Malware honeypots
+
+Are used to trap malware campaigns or malware attempts over the network infrastructure
+
+### Database honeypots
+
+Employ fake databases that are vulnerable to perform database-related attacks such as SQL injection and database enumeration
+
+### Spam honeypots
+
+Specifically target spammers who abuse vulnerable resources such as *open mail relays* and *open proxies*
+
+### Email honeypots
+
+Fake email addresses that are specifically used to *attract fake and malicious emails* from adversaries
+
+### Spider honeypots
+
+Specifically designed to **trap web crawlers** and spiders
+
+### Honeynets
+
+Networks of honeypots which are very effective in determining the entire capabilities of the adversaries
+
+---
+
+### Common Honeypot tools
+
+* `HoneyBOT`
+
+* `KFSensor`
+
+* `MongoDB-HoneyProxy`
+
+* `Modern Honey Network`
+
+* `ESPort`
+
+* `HoneyPy`
+
+---
+
+---
+
+# Proxy server
+
+A proxy server is a **dedicated computer**, or a software system *virtually* located between a client and the actual server; It is a **sentinel** between an internal network and the open internet.
+
+It serves client requests on **behalf of actual servers**, thereby preventing actual servers from *exposing themselves* to the outside world; it provides an additional layer of defense to the network and can protect against certain operating system and web server specific attacks.
+
+**+** privacy of client devices
+
+**+** advanced logging capabilities
+
+**+** hides internal IPs
+
+### How it works?
+
+1. *Internal host requests* to access a web site
+
+2. The request enters the *proxy server which examines the header and packet content* based on the rule base
+
+3. *Server reconstructs the data packet with different source IP*
+
+4. *Proxy server transmits the packet* to target address
+
+5. If the data packet is returned, it is again sent to the proxy server to check the rule base
+
+6. The returned *packet is reconstructed* by the proxy server and is sent to the source computer
+
+## Proxy servers vs Packet filters
+
+| Proxy                                                    | Filter                                                    |
+| -------------------------------------------------------- | --------------------------------------------------------- |
+| *examines* the **data payload**                          | *examines* the **routing information**                    |
+| creates detailed *log file*                              | logs only the *header information*                        |
+| *restructures* the packet with new **IP**                | **allows** or **blocks** the data                         |
+| if it *fails* all the network communications would cease | if it *fails* call packets may be allowed to pass through |
+
+## Types of proxies
+
+### Transparent proxy
+
+It is a proxy through which a **client system connects** to a server without its knowledge; It is configured to be entirely *invisible* to an end user.
+
+All the web clients must be *configured manually*.
+
+### Non-Transparent proxy
+
+Require **client software to be configured** to use the proxy server; The client is made aware of the proxy's existence.
+
+### SOCKS proxy
+
+It is an **Internet Engineering Task Force [IETF]** standard.
+
+It is a proxy server that *does not have* special caching abilities of a caching HTTP proxy server; ***Does not allow*** external network components to **collect information** on the client that generated request.
+
+![](SOCKS.png)
+
+### Anonymous proxy
+
+It is a proxy that **does not transfer information** about IP address of its user, thereby hiding information about user and their surfing interests.
+
+**+** Users can surf the internet privately
+
+**+** Users can access censored websites
+
+**-** Speed of loading web pages can be slower
+
+**-** In some places are illegal  
+
+### Reverse proxy
+
+It is usually **situated closer to the servers** and will only return a configured set of resources; It can optimize content by compressing it to speed up loading, the client is unaware of the presence.
+
+It is an *intermediate server* that is located between a client and the actual web server.
+
+*"The authentication process can be done by the proxy and presented to the actual server"*
+
+---
+
+## Limitations of proxy servers
+
+* A proxy *not properly secured* can become a **point of failure**
+
+* Every proxy needs to be configured for the service it provides
+
+* Changing the default settings can result in bad function
+
+* Proxies have the **reroute information**, thus web pages can sometimes load slowly
+
+* When **bypassing suspicious software** some elements of a page may not load
+
+---
+
+---
+
+# Virtual Private Network [VPN]
+
+VPNs are used to securely communicate with different computers over insecure channels; It uses the internet and ensures secure communication to distant offices or users within the enterprise's network.
+
+1. A client willing to connect to a company's network initially connects to the internet
+
+2. The client *initiates* a **VPN connection** with the company's server
+
+3. Before establishing a connection, end points must be **authenticated** through passwords, biometrics, personal data, or any combination of these
+
+4. Once the connection is established, the client ca *securely access* the company network
+
+## Components
+
+* **VPN client**, sends requests encrypted
+
+* **Network Access Server [NAS]**, forwards the requests
+
+* **VPN server**, decrypt the requests and encrypts requests from the network
+
+* **VPN protocol**, protocol used to tunnel requests
+
+### VPN Concentrators
+
+![](Concentrators.png)
+
+It is a network device that sits at the edge of the network, it acts as a VPN router which is generally used to create a *remote access* or *site-to-site* VPN.
+
+It uses **tunnelling protocols** to *negotiate security parameters*, **create and manage tunnels**, encapsulate, transmit, or receive packets through the tunnel, and de-encapsulate them.
+
+It is a **bi-directional tunnel endpoint**
+
+*"It is the master mind of VPN connections"*
+
+----
+
+## Types
+
+### Client-to-Site (Remote-access) VPN
+
+It allows individual hosts or client to establish *secure connections* to a company's network over the internet. Each host uses a VPN client SW of a web-based client.
+
+The VPN **encrypts** the data-packets that are forwarded over the internet to the *VPN gateway* at the edge of the target network, using the software installed on the client's machine.
+
+A **VPN gateway** receives the packets and then closes the connection to the VPN after the transfer is complete.
+
+2:28
