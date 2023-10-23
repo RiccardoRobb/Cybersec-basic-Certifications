@@ -1461,8 +1461,274 @@ It provides security by **tracking suspicious end-user behavior** activities wit
 
 It provides security management services combining:
 
-* **Security Information Management [SIM]**, supports permanent storage, analysis and reporting of log data
+* **Security Information Management [SIM]**, supports permanent storage, analysis and reporting of log data + file integrity monitoring
 
 * **Security Event Management [SEM]**, deal with real-time monitoring, correlation of events, notifications and console views
 
 ![](SIEM.png)
+
+---
+
+# User Behavior Analytics [UBA]
+
+UBa is the process of **tracking user behavior** to detect malicious attacks, potential threats, and financial fraud; it provides *advanced threat detection* in an organization to monitor specific behavioral characteristics of employees.
+
+***"Identifies variations in traffic patterns, caused by user behavior"***
+
+---
+
+---
+
+# Virtualization
+
+![](virtual_normal.png)
+
+The virtualization framework divides the *physical resources* from which are traditionally bound to hardware, into **multiple individual simulated environments**.
+
+*"We can run multiple isolated services on a single server"*
+
+## Components
+
+![](virt_comp.png)
+
+### Hypervisor / Virtual Machine MONITOR [VMM]
+
+An *application* or *firmware* that enables multiple guest operating systems to share a host's hardware resources
+
+### Guest machine / Virtual Machine
+
+*Independent* instance of an operating system **created by virtual machine monitor**
+
+### Host machine / Physical Machine
+
+*Real physical machine* that provides computing resources to support virtual machines
+
+### Management Server
+
+*Virtualization platform* components are used to directly **manage** the virtual machines
+
+### Management Console
+
+*Interface* used to access, configure, and manage the virtualization product
+
+---
+
+# Containers
+
+Virtualization based on an operating system, in which the **kernel's operating system functionality is replicated on multiple instances** of isolated user space, called containers, software containers or virtualization engines.
+
+**Containers as a service [CaaS]** includes the *virtualization of containers and container management* through **orchestrators**.
+
+* **Container Engine**
+  
+  Managed environment for deploying containerized applications
+
+* **Container Orchestration**
+  
+  An automated process of managing the lifecycles of software containers and their dynamic environment
+
+*"Known orchestrator software, Docker Swarm, OpenShift and Kubernetes"*
+
+## Containers Architecture
+
+![](container_arch.png)
+
+## Types of containers
+
+### OS containers
+
+Containers used as an operating system and run **multiple services**
+
+*"LXC, OpenVZ, Linux Vserver ..."*
+
+### Application containers
+
+Containers used to run a **single application**; contains the application, its dependencies, and hardware requirement file
+
+*"Docker, Rocket"*
+
+## Container Vs Virtual Machine
+
+| Container                            | Virtual Machine                             |
+| ------------------------------------ | ------------------------------------------- |
+| Provides *OS-level virtualization*   | Provides *hardware-level virtualization*    |
+| Lightweight                          | Heavyweight                                 |
+| All containers **share the host OS** | Each virtual machine runs in **its own OS** |
+| Requires less memory space           | Allocates required memory                   |
+| Process-level isolation              | Fully isolated                              |
+
+---
+
+## Docker
+
+It is an open source technology used for developing, packaging, and running applications and all its dependencies in the form of containers, to ensure that the application works in a seamless environment.
+
+Docker provides a **Platform-as-a-Service [PaaS]** through **OS-level virtualization** and delivers containerized software packages.
+
+![](docker.png)
+
+### Docker networking
+
+Docker **connects multiple containers** and services or other non-Docker workloads together.
+
+The docker networking architecture is developed on a set of interfaces known as the **Container Network Model [CNM]**, allowing application portability across heterogeneous infrastructures.
+
+---
+
+## Kubernetes
+
+It is an open-source, portable, extensible, orchestration platform developed by Google for **managing containerized applications** and microservices.
+
+Kubernetes provides a resilient framework for managing distributed containers, generating deployment patterns, and performing failover and redundancy.
+
+---
+
+## Containers Threats
+
+### Image threats
+
+An image can be faulty (configuration defects) or vulnerable; Can be embedded with malware or can have *clear text secrets*
+
+### Registry threats
+
+Old images in registries can be a problem. We must check for *insecure connections* to registries, and *insufficient authentication and authorization*
+
+### Container threats
+
+There can be vulnerabilities within the runtime software or bounded with insecure container runtime configurations
+
+### Host OS threats
+
+Large surface attacks and has a shared kernel; Host file system and components have vulnerabilities
+
+### Orchestrator threats
+
+Can be accessed in an unauthorized way and the inter-container network traffic is poorly separated; The administrative access can be unbounded and there is a mixing of workload sensitivity levels.
+
+Each node must be trustworthy.
+
+---
+
+## OS Virtualization Security Best Practices
+
+1. Regularly **monitor the CVEs** of the container runtime and remediate, if any vulnerabilities are detected
+
+2. Employ **app-aware tools to monitor container network** interfaces, network traffic, and network anomalies
+
+3. Configure applications to **run as normal users** to prevent privilege escalation
+
+4. Configure the **host's root file system in READ ONLY mode**
+
+5. Employ **application security scanning tools** to protect containers from malicious software
+
+6. Perform regular **scanning of the images** in the repository to *identify vulnerabilities or misconfigurations*
+
+## Docker Security Best Practices
+
+1. Avoid exposing the Docker daemon socket
+
+2. Always use **trusted Docker images** only
+
+3. regularly patch the host OS and Docker with the latest security updates
+
+4. Limit the capabilities by allowing access only to the features required by the container
+
+5. Use Linux security models such as *seccomp, AppArmor and SELinux* to gain fine-grained control over processes
+
+6. Enable **read-only mode on file systems and volumes** by setting the `--read-only` mode
+
+## Kubernetes Security Best Practices
+
+1. Ensure proper validation of file contents and their path at every stage of processing
+
+2. Implement the configuration method for the credential paths
+
+3. Raise errors explicitly after each step of a compound operation
+
+4. Use the well-tested JSON library an type structures for constructing JSON objects
+
+5. Never use compound shell commands without proper validations
+
+6. Use common parsing functions such ad ParsePort across the codebase to increase code readability
+
+---
+
+---
+
+# Cloud Security
+
+*"The cloud section is already covered in the [AWS repository](https://github.com/RiccardoRobb/AWS-Academy-Cloud-Foundations)"*
+
+1. Cloud security and compliance are the **shared responsibility** of the cloud provider and consumer
+
+2. According to the selected cloud module, security responsibilities are divided based on the shared responsibility model
+
+3. If the **consumer does not secure their functions**, the entire cloud security model will **fail**
+
+![](cloud_resp.png)
+
+## Customer
+
+Cloud service customers are responsible for:
+
+* User security and monitoring **Identity and Access Management [IAM]**
+
+* Information security-data **encryption and key management**
+
+* Application-level security
+
+* Data storage security
+
+* **Monitoring, logging, and compliance**
+
+*"Read the End-User License Agreement [EULA]"*
+
+## Providers
+
+Cloud service providers are responsible for **securing the shared infrastructure**, including routers, switches, load balancers, firewalls, hypervisors, storage networks, management consoles, DNS, directory services, and cloud API
+
+---
+
+## Elements of Cloud Security
+
+### Identity and Access Management [IAM]
+
+IAM is the management of *digital identities of users and their rights* to access cloud resources; includes creating, managing, and removing digital identities, as well as the authorization of users
+
+### Compliance
+
+A clear idea about the **regulation standards** that an organization wants to comply with along with its associated requirements allows organizations benefits from the business agility and growth.
+
+* Know the jurisdictions of an organization, industry, or activities employed by the organization to conduct business
+
+* Conduct regular compliance risk assessments
+
+* Monitor and Auditing the organization compliance program
+
+### Data Storage
+
+techniques used are: local data encryption, key management, strong password management, periodic security assessment of data security controls, cloud data backup, etc ...
+
+### Monitoring
+
+It is required to manage cloud-based services, applications, and infrastructure.
+
+Activity monitoring should observe the activities like data replication, data file name changes, data file classification changes, data ownership changes to monitor unauthorized data access, etc ...
+
+---
+
+## NIST recommendations
+
+1. **Assess the risk** posed to the client's data, software and infrastructure
+
+2. Select an appropriate deployment model
+
+3. Ensure **audit procedures** are in place for data protection and software isolation
+
+4. **Renew Service level agreement [SLA] in case of security gaps**
+
+5. Establish appropriate **incident detection** and **reporting mechanisms**
+
+6. Analyze what are the *security objectives* of the organization
+
+7. Enquire about **who is responsible for data privacy and security issues** in the cloud
