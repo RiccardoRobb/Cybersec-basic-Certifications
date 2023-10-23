@@ -1265,7 +1265,7 @@ VPNs are used to securely communicate with different computers over insecure cha
 
 It is a network device that sits at the edge of the network, it acts as a VPN router which is generally used to create a *remote access* or *site-to-site* VPN.
 
-It uses **tunnelling protocols** to *negotiate security parameters*, **create and manage tunnels**, encapsulate, transmit, or receive packets through the tunnel, and de-encapsulate them.
+It uses **tunneling protocols** to *negotiate security parameters*, **create and manage tunnels**, encapsulate, transmit, or receive packets through the tunnel, and de-encapsulate them.
 
 It is a **bi-directional tunnel endpoint**
 
@@ -1283,4 +1283,186 @@ The VPN **encrypts** the data-packets that are forwarded over the internet to th
 
 A **VPN gateway** receives the packets and then closes the connection to the VPN after the transfer is complete.
 
-2:28
+### Site-to-Site VPN
+
+It extends the company's network, allows access of an organization's network resources from different locations; It connects a branch of remote office network to the company's headquarters network.
+
+It is called **LAN-to-LAN** or **L2L VPNs**
+
+Can be classified in:
+
+* **intranet-based**, VPN connectivity is between sites of a *single organization*
+
+* **extranet-based**, VPN connectivity is between *different organizations*
+
+### Hardware VPN
+
+A dedicated VPN appliance is used to connect *routers* and *gateways* to ensure communication over an insecure channel; It is designated to serve as a VPN endpoint and can connect *multiple LANs*.
+
+### Software VPN
+
+VPN software is installed and configured on routers, servers, and firewalls or as a gateway that functions as a VPN
+
+**+** No extra devices needed
+
+**+** Easy and low-cost way to deploy a VPN
+
+**-** Extra processing
+
+**-** Less secure
+
+---
+
+## Authentication
+
+User must be authenticated in order to use VPN and its resources; It uses **digital certificates** to authenticate users.
+
+Common authentication techniques:
+
+* IPSec
+
+* MS-CHAP *"not really good"*
+
+* Kerberos
+
+## Encryption
+
+Packet sent over a VPN are *encrypted* to maintain the *confidentially of the information*; Packets are read by decrypting with the encryption key from the sender.
+
+Common VPN encryption technologies:
+
+* Triple Data encryption standard [3DES] *"useless, vulnerable"*
+
+* Secure Socket Layer [SSL]
+
+* Open VPN
+
+*"Using Diffie Helman (or others) the organization provides the encryption key to the client (asymmetric key); all of this is certified from a Certificate Authority and certificates are managed by certificate server in the organization. In this way user can send encrypted messages and can decrypt organization's messages"*
+
+## Encapsulation
+
+Packets over a VPN are ***enclosed* within another packet** which has a *different IP source and destination*; Concealing the source and destination of the packets protects the integrity of the data sent.
+
+Most common protocols:
+
+* Point-to-Point Tunneling protocol [PPTP]
+
+* Layer 2 Tunneling protocol [L2TP]
+
+* Secure Shell [SSH]
+
+* Socket Secure [SOCKS]
+
+---
+
+## VPN technologies
+
+### Trusted VPN
+
+**Were used** before the internet became universal.
+
+Organization's knows and control the pathway for their transmission, they leased circuits from a communications provider and used them the same way as *physical cables in a private LAN*.
+
+*"ATM circuits, frame-relay circuits, Multiprotocol Label Switching [MPLS] are used to implement trusted VPNs"*
+
+### Secure VPN
+
+Vendors created a protocol which encrypts the traffic at the originating computer and decrypts at the receiving computer; the *encrypted* traffic acts as a *tunnel* between two networks.
+
+### Hybrid VPN
+
+***"A secure VPN is part of a trusted VPN"***
+
+The secure part of the hybrid VPN is administrated by the customer or the provider, who has provided trusted part of the hybrid VPN.
+
+---
+
+## VPN Topologies
+
+A VPN topology specifies **how the peers and networks within a VPN are connected.**
+
+### Hub-and-Spoke VPN topology
+
+**Each individual spoke** connected to the remote office **is communicated** securely with the *central device (hub)*; a separate and secure tunnel is established between the hub and each individual spoke.
+
+### Point-to-Point VPN topology
+
+Offices at different locations can directly communicate with each other **without any IPsec failover** ; this topology treats two **end points == two peer devices** participating in communication.
+
+Only regular IPsec or IPsec/GRE is assigned for the tunnel, as any of the peer devices can initiate the communication.
+
+### Full Mesh VPN topology
+
+This topology is suitable for *complicated networks* where all peers communicate with one another; Device to Device communication in a network takes place with a unique IPsec-tunnel.
+
+A **peer-to-peer connection is established between each device**, preventing a bottleneck at the VPN gateway and saving encryption/decryption overhead.
+
+**+** Redundancy
+
+### Star VPN topology
+
+This topology allows remote branches to *securely communicate* with corporate headquarters.
+
+**Branches are not connected, they are connected to the central site.**
+
+**+** Fault isolation, a compromised branch is not a problem
+
+**-** If the central site fails, everything fails
+
+---
+
+# VPN Security
+
+## Firewalls
+
+Firewalls are the barrier VPN and the internet.
+
+Before implementing a VPN, ensure that a good firewall is in place; should be configured to **restrict open ports**, and the types of **packets** and **protocols** allowed to pass.
+
+## IPSec server
+
+The IPSec server enhances VPN security through the use of **strong encryption algorithms** and **authentication**.
+
+IPSec server contains 2 encryption modes:
+
+* **Tunnel mode**
+  
+  Both **header** and **payload** of each packet is encrypted
+
+* **Transport mode**
+  
+  Only **payload** of each packet is encrypted
+
+## AAA server
+
+It is used to establish secure access in a remote-access VPN environment.
+
+* **Authentication**, "Who are you?"
+
+* **Authorization**, "What are you allowed to do?"
+
+* **Accounting**, "What do you actually do?"
+
+## Remote Access Dial-In User Service [RADIUS]
+
+Remote access dial-in user service is the simplest way to use *centralized authentication in VPNs*; It is a **software application** that runs on a server and has access to all users in the domain.
+
+RADIUS manages both the **user authentication** and **authorization**, this *reduces the total cost of ownership* by **managing credentials** from a central location.
+
+When a user wants to connect to the VPN server contacts the RADIUS server who then authenticates the user through a **Windows domain** using both a username and a password, if correct, they have ***"dial-in access granted"***.
+
+---
+
+# Security Incident and Event Management [SIEM]
+
+SIEM performs **real-time Security Operations Center [SOC]** functions like identifying, monitoring, recording, auditing, and analyzing security incidents.
+
+It provides security by **tracking suspicious end-user behavior** activities within real-time IT environment.
+
+It provides security management services combining:
+
+* **Security Information Management [SIM]**, supports permanent storage, analysis and reporting of log data
+
+* **Security Event Management [SEM]**, deal with real-time monitoring, correlation of events, notifications and console views
+
+![](SIEM.png)
