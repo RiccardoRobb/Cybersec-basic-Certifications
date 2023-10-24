@@ -1783,11 +1783,13 @@ Devices exchange information with each other similar to that in a peer-to-peer c
 
 ### Infrastructure Network topology (Centrally Coordinated Architecture/Basic Service Set [BSS])
 
-Devices in the wireless network are connected **through an AP**; an AP connects to the internet via a modem
+Devices in the wireless network are connected **through an AP**; an AP connects to the internet via a modem *"every modem can have multiple APs"*
 
-:18
+![](wire_con.png)
 
+![](/home/robb/Scrivania/CERT/NDE/wire_geo.png)
 
+:20
 
 
 
