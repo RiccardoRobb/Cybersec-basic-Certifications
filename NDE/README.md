@@ -1732,3 +1732,119 @@ Activity monitoring should observe the activities like data replication, data fi
 6. Analyze what are the *security objectives* of the organization
 
 7. Enquire about **who is responsible for data privacy and security issues** in the cloud
+
+---
+
+---
+
+# Wireless Network Security
+
+## Basic terminology:
+
+* **GSM**, universal system used for mobile transportation for wireless networks *"SIM cards"*
+
+* **Bandwidth**, the amount of information that may be broadcast over a connection
+
+* **Access Point [AP]**, used to connect wireless devices to a wireless/wired network
+  
+  * **Association**, the process of connecting a wireless device to an AP
+  
+  * **BSSID**, MAC address of an AP that has set up a *Basic Service Set [BSS]*
+
+* **IMS band**, a set of frequencies for the international industrial, scientific, and medical communities
+
+* **Hotspot**, a place where a wireless network is available for public use
+
+* **Service Set Identifier [SSID]**, a unique identifier *32 alphanumeric characters* given ti a wireless local area network [LAN] *"wi-fi name"*
+
+* **Orthogonal Frequency-division Multiplexing [OFDM]**, method of encoding digital data on multiple carrier frequencies *"transporting wi-fi name"*
+  
+  * **Multiple input, Multiple output OFDM [MIMO-OFDM]**, an air interface for *4G* and *5G* broadband wireless communications
+
+* **Direct-sequence Spread Spectrum [DSSS]**, an original data signal multiplied with a pseudo-random noise spreading the code
+
+* **Frequency-hopping Spread Spectrum [FHSS]**, a method of transmitting radio signals by rapidly switching a carrier among many frequency channels
+
+## Types:
+
+* **Wi-Fi**, it uses radio waves or microwaves to allow electronic devices to exchange data or connect to the internet
+
+* **Bluetooth**, data is transmitted between cell phones, computers, and other networking devices over short distances
+
+* **RFID**, it uses radio frequency to transfer data for automatic identification and for tracking tags attached to objects
+
+* **WiMAX**, it uses long distance wireless networking and high-speed internet and belongs to the IEEE 802.16 family of wireless networking standards
+
+## Topologies:
+
+### Ad-hoc Standalone Network architecture (Independent Basic Service Set [IBSS])
+
+Devices exchange information with each other similar to that in a peer-to-peer communication mode **without the need of an AP for communication**. Devices must be configured with *same channel name* and *SSID* in order to activate the connections
+
+### Infrastructure Network topology (Centrally Coordinated Architecture/Basic Service Set [BSS])
+
+Devices in the wireless network are connected **through an AP**; an AP connects to the internet via a modem
+
+:18
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
