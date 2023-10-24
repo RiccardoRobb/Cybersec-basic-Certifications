@@ -1789,64 +1789,86 @@ Devices in the wireless network are connected **through an AP**; an AP connects 
 
 ![](/home/robb/Scrivania/CERT/NDE/wire_geo.png)
 
-:20
+## Components
 
+### Access point [AP]
 
+It is an hardware device that allows wireless communication devices to connect to a wireless network via wireless standards such as Bluetooth, Wi-Fi, etc ...
 
+### Wireless Card [NIC]
 
+Systems connected to the wireless network require a network interface cards to establish a standard **ethernet connection**
 
+### Wireless Modem
 
+It is a device that receives and transmits *network signals* to other units without requiring physical cabling
 
+### Wireless Bridge
 
+It **connects multiple LANs** at the *Medium Access Control [MAC]* layer and is separated either logically or physically. It is used for increasing the coverage area of the wireless network
 
+### Wireless Repeater
 
+**Retransmits** the existing signal captured from a wireless router or AP to create a new network
 
+### Wireless Router
 
+Performs the functions of a router as well as a wireless AP and provides internet access to various devices
 
+### Wireless Gateways
 
+**Routes data packets** and functions as a wireless AP. An internet connection can be shared between multiple stations
 
+---
 
+## Types of Wireless Encryption
 
+* **802.11i**, an IEEE amendment that specifies security mechanisms for 802.11 wireless networks
 
+* **WEP**, an encryption algorithm for IEEE 802.11 wireless networks
 
+* **EAP**, supports multiple authentication methods, such as *token cards, Kerberos, and certificates*
 
+* **LEAP**, a proprietary version of EAP developed by Cisco
 
+* **WPA**, an advanced wireless connection encryption protocol using **TKIP** and **MIC** to provide stronger encryption and authentication
 
+* **WPA2**, an upgrade to WPA using *AES* and *CCMP* for wireless data encryption
 
+* **AES**, a *symmetric key* encryption, used in WPA2 as *replacement for TKIP*
 
+* **CCMP**, an encryption protocol used in WAP2 for stronger encryption and authentication
 
+* **WPA2 Enterprise**, integrates *EAP* standards with WPA2 encryption
 
+* **RADIUS**, a **centralized authentication and authorization** management system
 
+* **PEAP**, a protocol that encapsulates the EAP within an encrypted and authenticated *transport layer security [TLS]* tunnel
 
+* **WPA3**, a third-generation Wi-Fi security protocol that uses GCMP-256 for ecnryption and HMAC-SHA-384 for authentication
 
+---
 
+## Encryptions comparison
 
+![](W_encrys.png)
 
+---
 
+## Wi-Fi Authentication methods
 
+### Open System auth
 
+Any wireless device can be authenticated with the AP, thus allowing the device to transmit data only *when its WEP key matches to that of the AP*
 
+### Shared Key auth
 
+The station and AP use the **same WEP key** to provide authentication, which means that this key should be enabled and configures manually on both the AP and client
 
+### Centralized auth Server
 
+Using RADIUS or other types of systems, you need to be authorized by the server in order to be authenticated by the AP
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+---
