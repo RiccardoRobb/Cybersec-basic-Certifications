@@ -1871,4 +1871,8 @@ Using RADIUS or other types of systems, you need to be authorized by the server 
 
 ---
 
+*"Don't use default passwords or crackable ones, configure only HTTPS communication only, disable remote access, enable logging and disable UPnP for a good wireless router configuration"*
+
+---
+
 ---
