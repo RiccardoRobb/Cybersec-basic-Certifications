@@ -1876,3 +1876,117 @@ Using RADIUS or other types of systems, you need to be authorized by the server 
 ---
 
 ---
+
+# Mobile Devices Security
+
+## Connection methods
+
+### Near-field communication [NFC]
+
+It employs *electromagnetic induction* to enable communication between the devices connected within 10cm
+
+### Setellite communication [SatCom]
+
+It is an *artificial geostationary satellite* that provides services across the globe, but it is much slower and more expensive than other technologies
+
+### Cellular communication
+
+It is based on a *single network tower* that serves devices located within a specific radius
+
+### ANT
+
+It is a **wireless sensor protocol** that enables communication between sensors and their controllers
+
+### Universal Serial Bus [USB]
+
+It enables wired communication for devices. It can be used for power supply and serial data transmission between devices
+
+### Global Positioning System [GPS]
+
+It is a radio navigation and positioning system based on satellite communication. It provides information related to geolocation and timing irrespective of weather conditions on the Earth
+
+### Infrared [IR]
+
+It is a wireless technology for transferring data between two devices in the digital form within a short range of up to 5m
+
+### Wi-Fi
+
+It is a common wireless technology used in homes and office buildings to connect local devices
+
+### Bluetooth
+
+It is a short-range, high-speed and low-power wireless technology that enables communication between devices connected within the Bluetooth range
+
+### 5G Cellular (Mobile) communication
+
+It is a **broadband cellular network** that operates at high bandwidth with low latency and provides high-speed data downloads
+
+---
+
+## Connection methods
+
+### Point-to-Point [P2P] connection
+
+It enables secure communication between two mobile devices without data encryption because they are connected through fixed paths without the interference of other devices
+
+### Point-to-Multipoint connection
+
+It allows one-to-many connections by providing multiple paths from a single location to several other locations
+
+### Radio-frequency Identification [RFID]
+
+It works on radio-frequency technology, which identifies a person or object using their tags (unique labels)
+
+---
+
+## Mobile Device Management [MDM]
+
+It provides platforms for **over-the-air** or **wired distribution of applications, data and configuration settings** for all types of mobile devices, including mobile phones, smartphones, tablet computers, etc ...
+
+* **Mobile Application management**
+  
+  A software that is mostly used by IT **admins to *control* and *secure* organizational data**. It offers features such as the remote activation or deactivation of devices, remote wiping in case of theft or loss, etc ...
+
+* **Mobile Content management**
+  
+  A software that offers solutions to safeguard the content or data on the mobile devices. It provides features to store and deliver data, offer the required services, and permit employees to access the organizational data remotely
+
+* **Context-aware Authentication**
+  
+  It uses contextual information of a user such as geolocation, identity, and behavior for enhancing data security decisions
+
+### Mobile Email management
+
+It offers secure access to organizational email infrastructure and data on an employee's mobile devices
+
+### Mobile Security management
+
+It involves actions and precautionary steps for securing the organizational data and mobile devices used by employees
+
+### Enterprise Mobility management
+
+It consists of tools and  technologies used in an organization ti secure data in employee's personal **BYOD** and organizational devices
+
+### Remote Wipe
+
+It is a technique used for securing and protecting data from miscreants if a mobile device used by an employee was lost. This feature allows the administrator to send a command that can erase all the device data
+
+---
+
+# Mobile use approaches
+
+## Bring Your Own Device [BYOD]
+
+It refers to a policy that allows employees to bring their personal devices such as laptops, smartphones, and tables to the workplace and use them for accessing the organizational resources based on their access privileges
+
+**+** Low cost
+
+**-** Less secure
+
+## Company Owned Personally Enabled [COPE]
+
+## Company Owned Business Only [COBO]
+
+## Choose Your Own Device [CYOD]
+
+:15
