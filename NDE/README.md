@@ -1985,8 +1985,46 @@ It refers to a policy that allows employees to bring their personal devices such
 
 ## Company Owned Personally Enabled [COPE]
 
+It refers to a policy that allows employees to **use** and **manage** the devices purchased by the organization
+
 ## Company Owned Business Only [COBO]
+
+It refers to a policy that allows employees to use and manage the devices purchased by the organization but **restrict their usage for business purposes only**
+
+**+** Secure
 
 ## Choose Your Own Device [CYOD]
 
-:15
+It refers to a policy that allows employees to select devices from the list of devices approved by the company. The company purchases the selected device, and the employees use it for accessing the organizational resources according to their access privileges
+
+**+** Devices compatible with the company security policy
+
+---
+
+## Security Guidelines for Mobile Use Approaches
+
+### For Security professionals
+
+* Secure organizational data centers with **multi-layered protection systems**
+
+* **Educate** employees about **COPE policy**
+
+* Clarify who owns which apps and data
+
+* Use **encrypted channels** for data transfer
+
+* Clarify which apps are allowed or banned
+
+* **Control access** on a need-to-know basis
+
+### For Employee
+
+* Use the **encryption mechanism** to store data
+
+* Maintain a clear separation between business and personal data
+
+* Register devices with a **remote locate** and wipe facility if the company policy permits
+
+* Use **anti-virus** and **data loss prevention** solutions
+
+---
