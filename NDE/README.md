@@ -2112,3 +2112,101 @@ To address security breaches at early stages and to prevent malicious attacks on
 ---
 
 ---
+
+# Cryptographic Techniques
+
+Cryptography is the *conversion of data* into a scrambled code that is encrypted and sent across a private or public network; it is used to protect confidential data.
+
+**+** CONFIDENTIALITY
+
+**+** INTEGRITY
+
+**+** AUTHENTICATION
+
+**+** NON-REPUDIATION
+
+## Encryption
+
+It is a way of **protecting information** by transforming it in such a way that the resulting transformed form is unreadable to an unauthorized party. To encrypt data an encryption algorithm uses a *key* to perform a transformation on the data
+
+### Symmetric encryption
+
+A **single key** is used for encrypting and decrypting the data, it is used to encrypt *large amounts of data*
+
+### Asymmetric encryption
+
+**Two different keys** are used to carry out encryption and decryption; one key, called the **Public Key**, is used for encrypting messages, whereas the second key, called the **Private Key**, is used for decrypting messages
+
+---
+
+## Government Access to Keys [GAK]
+
+It means that the software companies will **give copies of all keys** to the government (or at least a sufficient portion of each key that the remainder could be cracked).
+
+The government promises that they will hold on to the keys in a secure manner and will only use them when a *court issues a warrant* to do so.
+
+---
+
+## Cryptographic Algorithms
+
+### Data Encryption Standard [DES]
+
+It is designed to *encipher* and *decipher* blocks of data consisting of 64bits under control of a 56-bit key. DES is the archetypal **block cipher**, *takes a fixed-length string of plaintext bits and transforms it into a ciphertext bit string of the same length*.
+
+*"It is **not strong**, some organizations triple repeat the process **Triple-DES [3DES]**"*
+
+### Advanced Encryption Standard [AES]
+
+It is a **symmetric-key** algorithm used by the US government agencies to secure sensitive data. AES is an **iterated block cipher** that works by repeating the same operation *multiple* times. It has a 128-bit block size with a key size of 128, 192 or 256.
+
+### RC4, RC5 and RC6 Algorithms
+
+* **RC4** is a variable key size **symmetric key stream cipher** with byte-oriented operations and is based on the use of a random permutation
+
+* **RC5** is a **parameterized algorithm** with a *variable block size, variable key size, and variable number of rounds*; uses a key size of 128bits
+
+* **RC6** is a **symmetric key block cipher** derived from *RC5*
+
+### Digital Signature Algorithm [DSA]
+
+*Federal Information Processing Standard [FIPS]* 126-2 specifies the digital signature algorithm that can be used in the **generation** and **verification** of **digital signatures** for sensitive, unclassified applications
+
+### Rivest-Shamir-Adleman [RSA]
+
+It is an **internet encryption and authentication system**, it is commonly used and is one of the *de-facto encryption standards*
+
+---
+
+## Hashing
+
+### MD5 algorithm
+
+It takes a message of *arbitrary length* as input and the outputs a 128-bit **fingerprint** of the output; It is not *collision resistant*
+
+*"Not recommended"*
+
+### MD6 algorithm
+
+It uses a Merkle tree-like structure to allow for immense parallel computation of hashes for very long inputs. It is resistant to differential cryptoanalysis attacks
+
+*"MD5 and MD6 are deployed for digital signature applications, file integrity checking, and storing passwords"*
+
+### Secure Hashing algorithm [SHA]
+
+This algo generates a cryptographically secure **one-way hash**
+
+* **SHA-1** produces a 160-bit digest from a message with a maximum length of 255bits and it is similar to MD5
+
+* **SHA-2** is a family of two similar hash functions with different block sizes, namely, **SHA-256**, which uses 32-bit words, and **SHA-512**, which uses 64-bit words
+
+* **SHA-3** uses the *sponge construction*, in which message blocks are *XORed* into the initial bits of the state, which is then invertibly permuted
+
+### Hash-based Message Authentication Code [HMAC]
+
+It is a type of *MAC* that makes use of cryptographic key in combination with a cryptographic hash function; it can use *SHA-1* or *MD5*; It executes the hash function **twice**, in order to protect the data from various length extension attacks
+
+---
+
+## :30
+
+# 
