@@ -2028,3 +2028,87 @@ It refers to a policy that allows employees to select devices from the list of d
 * Use **anti-virus** and **data loss prevention** solutions
 
 ---
+
+---
+
+# IoT Security
+
+Internet of Things, also known as Internet of Everything (IoE), refers to the network of devices having IP addresses and the capability to sense, collect and send data using embedded sensors, communication hardware and processors.
+
+![](IoT_arch.png)
+
+## Layers
+
+### Device layer
+
+Layer focused on the actual use or activation of the device
+
+### Communication layer
+
+It is the layer composed by:
+
+* **IoT Gateway**, manages all active device connections and implements semantics for multiple protocols
+
+* **Connection to the internet**, from the device to the cloud or from the user to the cloud; 
+
+### Cloud Platform layer
+
+Layer focused on receiving or forward information to and from the cloud platform in order to update *analytics*; the cloud platform allows the use of various types of applications
+
+### Process layer
+
+It his layer we take all the programmatic logic and we process data in the cloud
+
+---
+
+## Communications Models
+
+### Device-To-Device model
+
+The communication is between IoT devices, without the need of human intervention; sensors can provide a **wireless network** in order to communicate without the need of a network
+
+### Device-To-Cloud model
+
+The communication happens from / to devices and cloud platform (application service provider); in this model **information can be aggregated in the cloud** from multiple sensors
+
+### Device-To-Gateway model
+
+There is an application software operating on a local gateway device, which acts an an intermediary between the device and the cloud service and provides security and other functionalities; many protocols can be used such as *bluetooth smart, Wi-Fi, LR-WPAN*
+
+*"User can connect to the Wi-Fi network to interact and manage different sensors"*
+
+### Cloud-To-Cloud model
+
+This model can be also called **Back-End Data-Sharing model**, because the application service provider can share analytics about our sensor with various clouds; the communication between clouds platforms can take place via *HTTPS, Oauth 2.0 and JSON*
+
+---
+
+## Security
+
+Organizations should focus on countering attack scenarios in IoT enable environments. Network devices and routers must be secured, this helps restrict the attacker from accessing other parts of the network and performing targeted attacks.
+
+The organization should use **multilayered management** and constant maintenance.
+
+Company-wide *collaboration* and *synchronization* are required to secure an IoT-enabled environment.
+
+*"Remember to **harden** the device, disabling things we don't need and securing what we need"*
+
+---
+
+## IoT System Management
+
+### Device management
+
+Ensure *secure data transmission* to facilitate fine interaction between devices and to guarantee the proper functioning of devices in an IoT system
+
+### User management
+
+Provide control over the users who have access to an IoT system, user management includes *identify users, setting user roles, and access levels, controlling access*, etc ...
+
+### Security monitoring
+
+To address security breaches at early stages and to prevent malicious attacks on an IoT system, perform the activities such as **log and analyze command** sent by control applications to things **store all the actions** of users, **identify the patterns** of malicious behavior, etc ...
+
+---
+
+---
