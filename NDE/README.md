@@ -2207,6 +2207,202 @@ It is a type of *MAC* that makes use of cryptographic key in combination with a 
 
 ---
 
-## :30
+## Digital Signature
 
-# 
+![](dig_sig.png)
+
+It uses the **asymmetric key algorithms** to provide *data integrity*.
+
+The **sender** will **digitally sign the message** and a specific *verification function* is added to verify the signature to ensure message integrity at the recipient side.
+
+A **digital signature** is created using the *hash code* of the message, the *private key* of the sender, and the *signature function*; it is verified using the *hash code of the message, the public key of the sender, and the verification function*.
+
+---
+
+## Digital Certificates
+
+![](dig_cer.png)
+
+They are used for dealing with the security concerns regarding *transmission of public keys securely* to receiver in the digital signature; a **trusted intermediary solution** is used for securing the public keys, where the public key is bound with the name of its owner.
+
+__Owners of the public key need to acquire their public keys certified from the intermediary__; the intermediary then issues certificates called digital certificates to the owners, which they can use to send the public key to a number of users
+
+### Digital Certificate attributes:
+
+* **serial number**: unique certificate identifier
+
+* **subject**: owner of the certificate (person or organization)
+
+* **signature algorithm**: name of the algorithm used for creating the signature
+
+* **key-usage**: purpose of the public key (must be used for encryption, signature verification or both)
+
+* **public key**
+
+* **issuer**: identity of the intermediary who issued the certificate
+
+* **valid from**: date from which the certificate is valid
+
+* **valid to**: date till which the certificate is valid
+
+* **thumbprint algorithm**: hashing algorithm used for digital signatures
+
+* **thumbprint**: hash value for the certificate, used for verifying the certificate's integrity
+
+--
+
+## Public Key Infrastructure [PKI]
+
+It is a set of hardware, software, people, policies and procedures required for creating, managing, distributing, using, storing, revoking **digital certificates**
+
+### Components:
+
+![](pki.png)
+
+* **Certificate Authority [CA]**, that issues and verifies certificates
+
+* **Registration Authority [RA]**, that acts as the *verifier for the CA*
+
+* **Certificate Management system** for generation, distribution, storage, and verification of certificates
+
+* **Directories** where the certificates (along with their public keys) are stored
+
+ ---
+
+---
+
+# Data Security
+
+If an organization's data is exposed or lost by any means, it can severely damage business and reputation
+
+### Data loss risks in Business environment
+
+* **CAUSE**
+  
+  * Loss / Theft of laptops and mobile devices
+  
+  * Unauthorized data transfer to USB devices
+  
+  * Improper sensitive data categorization
+  
+  * Data theft by employees / external parties
+
+* **EFFECT**
+  
+  * Brand damage and reputation loss
+  
+  * Competitive advantage loss
+  
+  * Loss of customers
+  
+  * Market share loss
+  
+  * Shareholder value erosion
+  
+  * Fines and civil penalties
+
+
+
+### Critical States of Data security
+
+Data security involves the application of various *data security controls* to prevent any intentional or unintentional act of data misuse, data destruction, and data modification
+
+* **Data at REST** in an hard drive or workstation, data stored digitally at a physical location.
+  
+  Secured using:
+  
+  * **Data Encryption / File system Encryption**
+  
+  * **Password protection**
+  
+  * **Tokenization**
+  
+  * **Data federation**
+
+* **Data in USE** data that will be transmitted, data stored in memory.
+  
+  Secured using:
+  
+  * **Authentication techniques**
+  
+  * **Full memory encryption**
+  
+  * **Strong identity management**
+  
+  * **Tight control on this data's accessibility**
+
+* **Data in TRANSIT** data moved from one location to another, data traversing using some means of communication
+  
+  Secured using:
+  
+  * **SSL** and **TLS**
+  
+  * **Email encryption tools**, such as **PGP** or **S/MIME**
+  
+  * **Firewall controls**
+
+---
+
+## Data masking
+
+Protecting information by obscuring specific areas of data with *random characters* or *codes*
+
+---
+
+## Data resilience ans backup
+
+Making a duplicate copy of critical data that can be used for restore and recovery purposes when primary copy is lost or corrupted either accidentally or on purpose.
+
+### Redundant array of independent Disks [RAID]
+
+It is a method of combining multiple hard drives into a single unit and writing data across several disk drives, offering **fault tolerance** (if one drive fails, the system can continue operating)
+
+*"Encrypted disks can be copied in multiple locations of the disk set"*
+
+* *MIRRORING*, we can decide to mirror the content of a disk or a RAID on another disk or RAID (100% copied memory)
+
+* *PARITY*, there are multiple copies on a single disk set, also checks for errors during copy
+
+* *STRIPING*, data can be written simultaneously on multiple disks
+
+### Storage Area Network [SAN]
+
+It is a specialized, dedicated, and discrete high-speed network that connects storage devices with a high speed I/O interconnect; It supports data archival, backup, restore, transfer, retrieval, migration, and mirroring from one storage device to another.
+
+The management layer organizes the connections and the storage layer hosts the storage devices.
+
+---
+
+## Data destruction
+
+Destroying data, so that it cannot be recovered and used for wrong motives
+
+## Data retention
+
+Storing data securely for compliance or business requirements
+
+---
+
+:56
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 
+
+ 
