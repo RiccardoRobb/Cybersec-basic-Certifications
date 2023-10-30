@@ -2266,8 +2266,8 @@ It is a set of hardware, software, people, policies and procedures required for 
 * **Certificate Management system** for generation, distribution, storage, and verification of certificates
 
 * **Directories** where the certificates (along with their public keys) are stored
-
- ---
+  
+  ---
 
 ---
 
@@ -2300,8 +2300,6 @@ If an organization's data is exposed or lost by any means, it can severely damag
   * Shareholder value erosion
   
   * Fines and civil penalties
-
-
 
 ### Critical States of Data security
 
@@ -2349,11 +2347,11 @@ Protecting information by obscuring specific areas of data with *random characte
 
 ---
 
-## Data resilience ans backup
+# Data resilience ans backup
 
 Making a duplicate copy of critical data that can be used for restore and recovery purposes when primary copy is lost or corrupted either accidentally or on purpose.
 
-### Redundant array of independent Disks [RAID]
+## Redundant array of independent Disks [RAID]
 
 It is a method of combining multiple hard drives into a single unit and writing data across several disk drives, offering **fault tolerance** (if one drive fails, the system can continue operating)
 
@@ -2365,11 +2363,73 @@ It is a method of combining multiple hard drives into a single unit and writing 
 
 * *STRIPING*, data can be written simultaneously on multiple disks
 
-### Storage Area Network [SAN]
+## Storage Area Network [SAN]
 
 It is a specialized, dedicated, and discrete high-speed network that connects storage devices with a high speed I/O interconnect; It supports data archival, backup, restore, transfer, retrieval, migration, and mirroring from one storage device to another.
 
 The management layer organizes the connections and the storage layer hosts the storage devices.
+
+## Network Attached Storage [NAS]
+
+It is a **file-based** data storage service and a dedicated computer appliance shared over the network; it is a high-performance file server optimized for storing, retrieving, and serving files. Generally it contains open-source operating system optimized for serving files.
+
+**+** no compatibility issues
+
+**+** can be connected to a LAN
+
+**-** inefficient data transfer (uses TCP/IP, instead of specialized data transfer protocols)
+
+**-** data transfer bandwidth will significantly reduce network performance
+
+---
+
+## Backup Methods
+
+* **HOT Backup *(online)***
+  
+  Backup the data when the application, database, or system is **running** and available to users; used when **service level down time is not allowed**
+  
+  **+** immediate data backup
+  
+  **-** expensive
+
+* **COLD Backup *(offline)***
+  
+  Backup the data when the application, database, or system is **not running** and is not available to users; used when **service level down time is allowed and full backup is required**
+  
+  **+** cheaper
+  
+  **-** switching over the data backup requires additional time
+
+* **WARM Backup *(nearline)***
+  
+  A **combination of COLD and HOT** backups
+  
+  **+** cheaper than a *hot* backup
+  
+  **+** switching over the data backup take less time than a *cold* backup but more time than a *hot* backup
+  
+  **-** less accessible than *hot* backup
+
+## Types of Backup
+
+* **Full/Normal data backup**, all system data is copied to the backup media
+  
+  **+** fast restoration | **-** slow backup | **-** high storage requirements 
+
+* **Differential data backup**, all data that has been **changed** since the last backup is copied to the backup media
+  
+  **+** faster than a full backup | **-** slow restoring data | **-** slower than an incremental
+
+* **Incremental data backup**, only files that have been **change or created** after the last backup are copied to the backup media
+  
+  **+** fastest method | **+** least amount of storage space | **-** slowest restore speed
+
+## Data Backup Retention
+
+Data retention is the process of storing and maintaining important information for meeting compliance and business data archival requirements.
+
+**Data Retention Policy** is a **set of rules** for preserving and maintaining data for operational or regulatory compliance requirements; it specifies the **required retention periods** for different data types, and sets the minimum standards for destroying certain information.
 
 ---
 
@@ -2383,7 +2443,39 @@ Storing data securely for compliance or business requirements
 
 ---
 
-:56
+# Data Loss Prevention [DLP]
+
+It includes a set of software products and processes that do not allow users to *send confidential corporate data* outside the organization.
+
+It is used by organizations to **discover** source of data leaks, **monitor** the sources of data leakage, **protect** organization assets and resources, **prevent** accidental disclosure of sensitive information to unintended parties, and **manage** resources with business rules, security policies, and software.
+
+* **ENDPOINT DLP**, *monitors* and *protects* PC-based systems; it is used to prevent data leakage through clipboards, removable devices, and sharing applications
+
+* **NETWORK DLP**, *monitors*, *protects* and *reports all data in transit*, it is **installed at the perimeter** of an organization's network
+
+* **STORAGE DLP**, *monitors* and *protects data at rest*
+
+---
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2404,5 +2496,3 @@ Storing data securely for compliance or business requirements
 
 
 ## 
-
- 
