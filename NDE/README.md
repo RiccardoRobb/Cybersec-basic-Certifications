@@ -2461,40 +2461,34 @@ It is used by organizations to **discover** source of data leaks, **monitor** th
 
 # Network Traffic Monitoring
 
+It is a retrospective security approach that involves monitoring a network for abnormal activities, performance issues, bandwidth issues, etc ...
 
+Network monitoring is an integral part of *network security* and is demanding task within the network security operations organizations.
 
+## Network Traffic Signatures
 
+Signature is a set of *traffic characteristics* such as a source/destination IP address, ports, Transmission Control Protocol [TCP] flags, packet length, time to live [TTL], and protocols. Signatures define the **type of activity on a network**.
 
+* **NORMAL traffic signature**, *acceptable* traffic patterns allowed to enter the network
 
+* **ATTACK signature**, *suspicious* traffic patterns not allowed to enter the network
 
+## Baselining Network Traffic Signatures
 
+A **network baseline** is the **accepted behavior** for normal network traffic. It is a benchmark to differentiate between normal and suspicious traffic. Network baselines differ between organizations and change over time according to the *operating environment* and prevailing *threat scenario*.
 
+Basic considerations:
 
+* TCP/IP communication involves a three-way handshake for normal traffic
 
+* SYN flag appears at the beginning and FIN flag at the end of connection
 
+* All conversations originating inside the demilitarized zone [DMZ] are trusted traffic items
 
+* Any traffic violating the network policies is malicious
 
+## Categories of Suspicious Signatures
 
+* **Informational**, traffic containing certain signatures that may appear suspicious but *might not be malicious*
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 
+* :9
