@@ -2491,4 +2491,50 @@ Basic considerations:
 
 * **Informational**, traffic containing certain signatures that may appear suspicious but *might not be malicious*
 
-* :9
+* **Reconnaissance**, traffic containing certain signatures that indicate an attempt to gain information
+
+* **Unauthorized Access**, traffic containing certain signatures that indicate an attempt to gain unauthorized access
+
+* **Denial of Service**, traffic containing certain signatures that indicate a DoS attempt that floods a server with large number of requests
+
+---
+
+## Attack Signatures Analysis Techniques
+
+### Content-based signature analysis
+
+![](con_pack.png)
+
+Attack signatures are contained in **packet payloads**, check for **specific strings** occurring in the suspicious payload
+
+-
+
+### Context-based signature analysis
+
+![](cox_pack.png)
+
+Attack signatures are contained in **packet headers**, inspects packets for unusual/suspicious header information such as:
+
+* Source / Destination IP
+
+* IP options, protocols, and checksum
+
+* Source / Destination Ports
+
+* IP fragmentation flags, offset, or identification
+
+-
+
+### Composite-signature-based analysis
+
+**Multiple-packet** analysis is required to detect attack signatures
+
+-
+
+### Atomic-signature-based analysis
+
+**Single-packet** analysis is sufficient to detect attack signatures
+
+---
+
+:10
