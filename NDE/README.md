@@ -1,4 +1,4 @@
-![](/home/robb/Scrivania/CERT/NDE/certification.png)
+![](certification.png)
 
 # Network defense Essentials (NDE)
 
