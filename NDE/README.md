@@ -1,3 +1,5 @@
+![](/home/robb/Scrivania/CERT/NDE/certification.png)
+
 # Network defense Essentials (NDE)
 
 ### Information assurance (IA) Principles
