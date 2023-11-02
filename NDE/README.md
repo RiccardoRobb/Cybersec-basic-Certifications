@@ -141,6 +141,7 @@ The *Access control* is the selective restriction of access to an asset or a sys
 * **operation**, represents an *action* taken by a subject on an object
 
 ---
+---
 
 ## Principles:
 
