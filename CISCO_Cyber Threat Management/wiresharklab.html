@@ -1,0 +1,1335 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Lab - Use Wireshark to Compare Telnet and SSH Traffic</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Webdings;
+	panose-1:5 3 1 2 1 5 9 6 7 3;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Arial",sans-serif;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:3.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:3.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-weight:normal;}
+h5
+	{mso-style-link:"Heading 5 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:13.0pt;
+	font-family:"Arial",sans-serif;
+	font-style:italic;}
+h6
+	{mso-style-link:"Heading 6 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-link:"Heading 7 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-link:"Heading 8 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-style:italic;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-link:"Heading 9 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex2, li.MsoIndex2, div.MsoIndex2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex3, li.MsoIndex3, div.MsoIndex3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex4, li.MsoIndex4, div.MsoIndex4
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:48.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex5, li.MsoIndex5, div.MsoIndex5
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex6, li.MsoIndex6, div.MsoIndex6
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex7, li.MsoIndex7, div.MsoIndex7
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex8, li.MsoIndex8, div.MsoIndex8
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:96.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndex9, li.MsoIndex9, div.MsoIndex9
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.5in;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:48.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:96.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-link:"Footnote Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTof, li.MsoTof, div.MsoTof
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-24.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoEndnoteText, li.MsoEndnoteText, div.MsoEndnoteText
+	{mso-style-link:"Endnote Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToa, li.MsoToa, div.MsoToa
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-12.0pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoMacroText, li.MsoMacroText, div.MsoMacroText
+	{mso-style-link:"Macro Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoToaHeading, li.MsoToaHeading, div.MsoToaHeading
+	{margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-link:"Body Text Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{mso-style-link:"Document Map Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma",sans-serif;}
+pre
+	{mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Comment Subject Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma",sans-serif;}
+span.MsoPlaceholderText
+	{color:gray;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+p.ClientNote, li.ClientNote, div.ClientNote
+	{mso-style-name:"Client Note";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	color:red;
+	font-style:italic;}
+p.AnswerLineL25, li.AnswerLineL25, div.AnswerLineL25
+	{mso-style-name:"Answer Line L25";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-weight:bold;
+	font-style:italic;}
+p.PageHead, li.PageHead, div.PageHead
+	{mso-style-name:"Page Head";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	border:none;
+	padding:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.AnswerLineL50, li.AnswerLineL50, div.AnswerLineL50
+	{mso-style-name:"Answer Line L50";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-weight:bold;
+	font-style:italic;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma",sans-serif;}
+p.TableText, li.TableText, div.TableText
+	{mso-style-name:"Table Text";
+	mso-style-link:"Table Text Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+span.TableTextChar
+	{mso-style-name:"Table Text Char";
+	mso-style-link:"Table Text";}
+p.TableHeading, li.TableHeading, div.TableHeading
+	{mso-style-name:"Table Heading";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	text-align:center;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.Bulletlevel1, li.Bulletlevel1, div.Bulletlevel1
+	{mso-style-name:"Bullet level 1";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.Bulletlevel2, li.Bulletlevel2, div.Bulletlevel2
+	{mso-style-name:"Bullet level 2";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.InstNoteRed, li.InstNoteRed, div.InstNoteRed
+	{mso-style-name:"Inst Note Red";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:#EE0000;}
+p.ConfigWindow, li.ConfigWindow, div.ConfigWindow
+	{mso-style-name:"Config Window";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:3.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-style:italic;}
+p.SubStepAlpha, li.SubStepAlpha, div.SubStepAlpha
+	{mso-style-name:"SubStep Alpha";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.CMD, li.CMD, div.CMD
+	{mso-style-name:CMD;
+	mso-style-link:"CMD Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.BodyTextL50, li.BodyTextL50, div.BodyTextL50
+	{mso-style-name:"Body Text L50";
+	mso-style-link:"Body Text L50 Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.BodyTextL25, li.BodyTextL25, div.BodyTextL25
+	{mso-style-name:"Body Text L25";
+	mso-style-link:"Body Text L25 Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.InstNoteRedL50, li.InstNoteRedL50, div.InstNoteRedL50
+	{mso-style-name:"Inst Note Red L50";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:#EE0000;}
+p.DevConfigs, li.DevConfigs, div.DevConfigs
+	{mso-style-name:DevConfigs;
+	mso-style-link:"DevConfigs Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.Visual, li.Visual, div.Visual
+	{mso-style-name:Visual;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	text-align:center;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+span.DocumentMapChar
+	{mso-style-name:"Document Map Char";
+	mso-style-link:"Document Map";
+	font-family:"Tahoma",sans-serif;}
+span.LabTitleInstVersred
+	{mso-style-name:"Lab Title Inst Vers \(red\)";
+	font-family:"Arial",sans-serif;
+	color:#EE0000;
+	font-weight:bold;}
+span.Heading1Gray
+	{mso-style-name:"Heading 1 Gray";
+	font-family:"Arial",sans-serif;
+	border:none;
+	background:#D9D9D9;
+	font-weight:normal;}
+p.SubStepNum, li.SubStepNum, div.SubStepNum
+	{mso-style-name:"SubStep Num";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+span.DevConfigGray
+	{mso-style-name:"DevConfig Gray";
+	font-family:"Courier New";
+	color:windowtext;
+	border:none;
+	background:#D9D9D9;
+	font-weight:bold;}
+p.CMDOutput, li.CMDOutput, div.CMDOutput
+	{mso-style-name:"CMD Output";
+	mso-style-link:"CMD Output Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:9.0pt;
+	font-family:"Courier New";}
+p.InstNoteRedL25, li.InstNoteRedL25, div.InstNoteRedL25
+	{mso-style-name:"Inst Note Red L25";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:#EE0000;}
+p.BodyTextL25Bold, li.BodyTextL25Bold, div.BodyTextL25Bold
+	{mso-style-name:"Body Text L25 Bold";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";}
+span.CommentSubjectChar
+	{mso-style-name:"Comment Subject Char";
+	mso-style-link:"Comment Subject";
+	font-weight:bold;}
+p.ReflectionQ, li.ReflectionQ, div.ReflectionQ
+	{mso-style-name:"Reflection Q";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	page-break-after:avoid;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Times New Roman",serif;
+	color:white;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-link:"Heading 5";
+	font-family:"Times New Roman",serif;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-link:"Heading 6";
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+span.Heading7Char
+	{mso-style-name:"Heading 7 Char";
+	mso-style-link:"Heading 7";
+	font-family:"Times New Roman",serif;}
+span.Heading8Char
+	{mso-style-name:"Heading 8 Char";
+	mso-style-link:"Heading 8";
+	font-family:"Times New Roman",serif;
+	font-style:italic;}
+span.Heading9Char
+	{mso-style-name:"Heading 9 Char";
+	mso-style-link:"Heading 9";
+	font-family:"Times New Roman",serif;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Times New Roman",serif;
+	color:white;
+	font-weight:bold;}
+span.EndnoteTextChar
+	{mso-style-name:"Endnote Text Char";
+	mso-style-link:"Endnote Text";
+	font-family:"Times New Roman",serif;}
+span.FootnoteTextChar
+	{mso-style-name:"Footnote Text Char";
+	mso-style-link:"Footnote Text";
+	font-family:"Times New Roman",serif;}
+span.MacroTextChar
+	{mso-style-name:"Macro Text Char";
+	mso-style-link:"Macro Text";
+	font-family:"Courier New";}
+span.BodyTextChar
+	{mso-style-name:"Body Text Char";
+	mso-style-link:"Body Text";
+	font-family:"Times New Roman",serif;}
+p.ColorfulShading-Accent11, li.ColorfulShading-Accent11, div.ColorfulShading-Accent11
+	{mso-style-name:"Colorful Shading - Accent 11";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.BodyTextBold, li.BodyTextBold, div.BodyTextBold
+	{mso-style-name:"Body Text Bold";
+	mso-style-link:"Body Text Bold Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.CMDChar
+	{mso-style-name:"CMD Char";
+	mso-style-link:CMD;
+	font-family:"Courier New";}
+span.BodyTextBoldChar
+	{mso-style-name:"Body Text Bold Char";
+	mso-style-link:"Body Text Bold";
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:SimSun;
+	font-weight:bold;}
+p.CMDRed, li.CMDRed, div.CMDRed
+	{mso-style-name:"CMD Red";
+	mso-style-link:"CMD Red Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:#EE0000;}
+span.CMDRedChar
+	{mso-style-name:"CMD Red Char";
+	mso-style-link:"CMD Red";
+	font-family:"Courier New";
+	color:#EE0000;}
+p.CMDOutputRed, li.CMDOutputRed, div.CMDOutputRed
+	{mso-style-name:"CMD Output Red";
+	mso-style-link:"CMD Output Red Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:9.0pt;
+	font-family:"Courier New";
+	color:#EE0000;}
+span.BodyTextL25Char
+	{mso-style-name:"Body Text L25 Char";
+	mso-style-link:"Body Text L25";}
+span.CMDOutputChar
+	{mso-style-name:"CMD Output Char";
+	mso-style-link:"CMD Output";
+	font-family:"Courier New";}
+span.CMDOutputRedChar
+	{mso-style-name:"CMD Output Red Char";
+	mso-style-link:"CMD Output Red";
+	font-family:"Courier New";
+	color:#EE0000;}
+p.Drawing, li.Drawing, div.Drawing
+	{mso-style-name:Drawing;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-weight:bold;
+	font-style:italic;}
+p.TableAnswer, li.TableAnswer, div.TableAnswer
+	{mso-style-name:"Table Answer";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+span.Heading2GrayDnT
+	{mso-style-name:"Heading 2 Gray DnT";
+	font-family:"Arial",sans-serif;
+	border:none;
+	background:#D9D9D9;
+	font-weight:normal;}
+p.BodyTextL50Answer, li.BodyTextL50Answer, div.BodyTextL50Answer
+	{mso-style-name:"Body Text L50 Answer";
+	mso-style-link:"Body Text L50 Answer Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	background:#D9D9D9;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.BodyTextL50Char
+	{mso-style-name:"Body Text L50 Char";
+	mso-style-link:"Body Text L50";}
+span.BodyTextL50AnswerChar
+	{mso-style-name:"Body Text L50 Answer Char";
+	mso-style-link:"Body Text L50 Answer";
+	background:#D9D9D9;
+	font-weight:bold;}
+p.BodyTextL25Answer, li.BodyTextL25Answer, div.BodyTextL25Answer
+	{mso-style-name:"Body Text L25 Answer";
+	mso-style-link:"Body Text L25 Answer Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	background:#D9D9D9;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.BodyTextL25AnswerChar
+	{mso-style-name:"Body Text L25 Answer Char";
+	mso-style-link:"Body Text L25 Answer";
+	background:#D9D9D9;
+	font-weight:bold;}
+span.DevConfigsChar
+	{mso-style-name:"DevConfigs Char";
+	mso-style-link:DevConfigs;
+	font-family:"Courier New";}
+span.AnswerGray
+	{mso-style-name:"Answer Gray";
+	font-family:"Arial",sans-serif;
+	color:windowtext;
+	border:none;
+	background:#D9D9D9;
+	font-weight:bold;}
+span.DnTbold
+	{mso-style-name:"DnT bold";
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.DnTnobold
+	{mso-style-name:"DnT no bold";}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:76.3pt .75in .9in .75in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+
+/* dark theme */
+.dark-theme {
+  color: #fff;
+}
+
+.dark-theme p.ConfigWindow, .dark-theme li.ConfigWindow, .dark-theme div.ConfigWindow {
+  mso-style-name: "Config Window";
+  color: #212328;
+}
+
+.dark-theme h4{
+  color: #212328;
+}
+
+.dark-theme .MsoTitle span{
+  color: #fff !important;
+}
+
+.dark-theme textarea{
+  background-color: #212328;
+  color: #fff;
+}
+
+.dark-theme .BodyTextL25Answer{
+  background-color: #000;
+  color: #fff;
+}
+
+.dark-theme .BodyTextL25Answer > span{
+  padding: 4px;
+}
+
+.dark-theme .BodyTextL25Answer span{
+  color: #fff;
+}
+
+.dark-theme table tbody tr td{
+  color: #fff !important;
+}
+
+.show-all-answers, .hide-all-answers, .clear-all-responces {
+  background-color: #6abf4b;
+}
+
+.btn-text {
+    		border: 0px;
+    		padding: 0.5rem 1rem;
+    		background-color: #6abf4b;
+    		color: #fff;
+    		margin-top: 1rem;
+    		border-radius: 0;
+    		cursor: pointer;
+		}
+		.show-answer,
+		.hide-answer {
+		    padding: 0.5rem 1rem;
+		    background-color: #00bceb;
+		    color: #fff;
+		    border: none;
+		    margin-top: 1rem;
+		    cursor: pointer;
+		}
+        
+p.TableHeading,
+        li.TableHeading,
+        div.TableHeading {
+            color: #000;
+        }
+
+
+	</style>
+</head>
+
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoTitle><span style='color:#EE0000;font-weight:normal'><b><span
+style='color:windowtext'>Lab - Use Wireshark to Compare Telnet and SSH Traffic</span></b></span></p>
+
+<h1>Objectives</h1>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Use Wireshark
+to capture web browser traffic.</p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Use Wireshark
+to capture Telnet traffic.</p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Use Wireshark
+to capture SSH traffic.</p>
+
+<h1>Background / Scenario</h1>
+
+<p class=BodyTextL25>Wireshark is a network protocol analyzer that lets you see
+what’s happening on your network at a microscopic level. You can capture
+packets and store them for offline analysis. Wireshark includes many tools for
+deep inspection of hundreds of network protocols. In this lab, you will use
+Wireshark to capture and inspect web traffic, Telnet traffic, and SSH traffic.</p>
+
+<h1>Required Resources</h1>
+
+<p class=BodyTextL25><a name="_Hlk67492587">PC with the <b>CSE-LABVM</b>
+installed in VirtualBox</a></p>
+
+<h1>Instructions</h1>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Hlk67492613">Step 1: Open
+a terminal window in the CSE-LABVM.</a></h2>
+
+<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Launch the <b>CSE-LABVM</b>.</p>
+
+<p class=SubStepAlpha>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Double-click the <b>Terminal</b> icon to open a terminal.</p>
+
+<h2 style='margin-left:0in;text-indent:0in'>Step 2: Explore the Wireshark
+protocol analyzer.</h2>
+
+<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To capture traffic on your VM, you need to run Wireshark in promiscuous
+mode, which requires running with escalated privileges using <b>sudo</b>. Enter
+the <b>sudo wireshark</b> command, and then enter <b>password</b> for the
+password. The Wireshark graphical user interface (GUI) will open up.</p>
+
+<p class=CMD>cisco@labvm:~$ <b>sudo wireshark</b></p>
+
+<p class=CMD>[sudo] password for cisco: <b>password</b></p>
+
+<p class=CMDOutput>QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to
+'/tmp/runtime-root'</p>
+
+<p class=SubStepAlpha><a name="OLE_LINK74"></a><a name="OLE_LINK73">b.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Under the
+listing of interfaces, select <b>any</b>, and then click <b>Capture</b> &gt; <b>Start</b>
+from the menus. Alternatively, you can click the shark fin icon. Wireshark will
+begin capturing packets. </a></p>
+
+<p class=SubStepAlpha><a name="OLE_LINK76"></a><a name="OLE_LINK75">c.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>If you
+already have Firefox open, you may see traffic captured in the Wireshark
+interface. If Firefox is not open, go ahead and open it now. </a>In Wireshark,
+you should now see captured TCP traffic in the top third of the window.</p>
+
+<p class=SubStepAlpha><a name="OLE_LINK78"></a><a name="OLE_LINK77">d.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>In Firefox,
+enter www.cisco.com to visit the Cisco website. After the website loads, you
+can close Firefox.</a></p>
+
+<p class=SubStepAlpha>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Return to Wireshark and click <b>Capture</b> &gt; <b>Stop</b> from the
+menus. Alternatively, you can click the red square button next to the shark
+fin.<a name="OLE_LINK82"></a><a name="OLE_LINK81"></a></p>
+
+<p class=SubStepAlpha>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In Wireshark, you will see the filter field and three key panes or work
+areas: </p>
+
+<p class=Bulletlevel1 style='margin-left:.75in'><span style='font-size:7.0pt;
+font-family:Webdings'>=<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>The
+<b>Apply a display filter</b> field is directly below the toolbar.</p>
+
+<p class=Bulletlevel1 style='margin-left:.75in'><span style='font-size:7.0pt;
+font-family:Webdings'>=<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>The
+<b>Packet List</b> pane includes the following columns for each captured packet:</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>No</b>
+- the number of the packet (in numerical order).</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Time</b>
+- the timestamp of the packet</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Source</b>
+- the source IP address of the packet</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Destination</b>
+- the destination IP address of the packet</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Protocol</b>
+- the protocol of the packet</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Length</b>
+- the number of bytes captured for this packet</p>
+
+<p class=Bulletlevel2 style='margin-left:1.0in'><span style='font-family:"Courier New"'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><b>Info</b>
+- additional information about the packet’s content</p>
+
+<p class=Bulletlevel1 style='margin-left:.75in'><span style='font-size:7.0pt;
+font-family:Webdings'>=<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>The
+<b>Packet Details</b> pane shows the protocols and protocol fields of the
+selected packet. Notice that the fields can be expanded or collapsed by
+clicking the arrow next to the field.</p>
+
+<p class=Bulletlevel1 style='margin-left:.75in'><span style='font-size:7.0pt;
+font-family:Webdings'>=<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>The
+<b>Packet Bytes</b> pane shows the byte details of the selected packet. As you
+select parts of the packet in the Packet Details pane, the corresponding bytes
+will be highlighted in the Packet Bytes pane. The left side shows the
+hexadecimal representation of the bytes, and the right side shows the ASCII
+representation.<a name="OLE_LINK68"></a><a name="OLE_LINK67"></a></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="OLE_LINK4"></a><a
+name="OLE_LINK3"></a><a name="OLE_LINK88"></a><a name="OLE_LINK87"></a><a
+name="OLE_LINK2"></a><a name="OLE_LINK1">Step 3: Capture and analyze unencrypted
+Telnet traffic.</a></h2>
+
+<p class=SubStepAlpha><a name="OLE_LINK90"></a><a name="OLE_LINK89">a.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Start a
+new capture. In the <b>Unsaved packets…</b> dialog box, click <b>Continue
+without Saving</b>. This will clear out the packets from your last capture and
+start a new capture.</a></p>
+
+<p class=SubStepAlpha>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Double-click the <b>Terminal</b> icon to open a new terminal window. </p>
+
+<p class=SubStepAlpha>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>You can simulate a remote login to your VM by entering the <b>telnet
+localhost</b> command, and then logging in as <b>cisco</b> with <b>password</b>
+as the password.</p>
+
+<p class=CMD>cisco@labvm:~$ <b>telnet localhost</b></p>
+
+<p class=CMDOutput>Trying ::1...</p>
+
+<p class=CMDOutput>Trying 127.0.0.1...</p>
+
+<p class=CMDOutput>Connected to localhost.</p>
+
+<p class=CMDOutput>Escape character is '^]'.</p>
+
+<p class=CMDOutput>Ubuntu 20.04.2 LTS</p>
+
+<p class=CMD>labvm login: <b>cisco</b></p>
+
+<p class=CMD>Password: <b>password</b></p>
+
+<p class=CMDOutput>Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-67-generic
+x86_64)</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput> * Documentation:  https://help.ubuntu.com</p>
+
+<p class=CMDOutput> * Management:     https://landscape.canonical.com</p>
+
+<p class=CMDOutput> * Support:        https://ubuntu.com/advantage</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>0 updates can be installed immediately.</p>
+
+<p class=CMDOutput>0 of these updates are security updates.</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>Last login: Thu Mar 18 21:47:23 UTC 2021 on tty2</p>
+
+<p class=CMD>cisco@labvm:~$</p>
+
+<p class=SubStepAlpha><a name="OLE_LINK92"></a><a name="OLE_LINK91">d.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Enter the <b>exit</b>
+command to end the Telnet session:</a></p>
+
+<p class=CMD>cisco@labvm:~$ <b>exit</b></p>
+
+<p class=CMDOutput>logout</p>
+
+<p class=CMDOutput>Connection closed by foreign host.</p>
+
+<p class=CMD>cisco@labvm:~$<a name="OLE_LINK84"></a><a name="OLE_LINK83"></a></p>
+
+<p class=SubStepAlpha><a name="OLE_LINK86"></a><a name="OLE_LINK85">e.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Return to
+Wireshark and </a>stop the capture. </p>
+
+<p class=SubStepAlpha>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In the <b>Apply a display filter</b> field, type <b>telnet</b> and press
+<b>Enter</b> to filter for only Telnet packets.</p>
+
+<p class=SubStepAlpha>g.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>On the toolbar, click the magnifying glass icon to <b>Find a packet</b>.
+Additional search features are now shown below the <b>Apply a display filter</b>
+field.</p>
+
+<p class=SubStepAlpha>h.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Click the arrows next to <b>Display filter</b> and change it to <b>String</b>.
+Then click the arrows next to Packet list and change it to <b>Packet details</b>.</p>
+
+<p class=SubStepAlpha>i.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To find the packet requesting login information, type <b>labvm login:</b>
+in the field next to <b>String</b>, and then press <b>Enter</b> or click <b>Find</b>.
+Wireshark will highlight the packet that contains the &quot;labvm login:&quot;
+text string.</p>
+
+<p class=SubStepAlpha>j.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In the <b>Packet Details</b> pane, click the arrow next to <b>Telnet</b>
+to expand its content. You should see that <b>labvm login:</b> is the data for
+this packet. The data for the packet is also shown in <b>Packet Bytes</b> pane.
+You can tell that the text was sent unencrypted because you can read it. </p>
+
+<p class=SubStepAlpha>k.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In the <b>Packet List</b> pane, click the highlighted packet with <b>labvm
+login</b> as the data to select it.</p>
+
+<p class=SubStepAlpha>l.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To find the username and password, use your down arrow on the keyboard
+to select the next packet. In the <b>Packet Details</b> pane, you should see
+the value for <b>Data</b> under <b>Telnet</b> is the first letter you typed in
+the field for &quot;labvm login:&quot; prompt, which was <b>c</b> for <b>cisco</b>.
+If you click the down arrow again, you will see the next packet's data is also <b>c</b>.
+This is because the packet is listed twice: one time for source sending to
+destination and again for destination receiving the packet. Because the source
+and destination are the same interface (loopback 127.0.0.1), the packet is
+listed twice by Wireshark.</p>
+
+<p class=SubStepAlpha>m.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Continue to press the down arrow key until you reach the last packet
+with a data value of <b>o</b> for the username <b>cisco</b>.</p>
+
+<p class=SubStepAlpha>n.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Continue to click the down arrow until you will see <b>Password:</b> in
+the <b>Data</b> field. Continue pressing the down arrow to read the data of the
+next eight packets which reveal, one letter at a time, that <b>password</b> is
+the password for user <b>cisco</b>.</p>
+
+<p class=SubStepAlpha>o.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>If you continue to press the down arrow through the rest of the captured
+packets, you will see all the text sent and received during the Telnet session,
+including your <b>exit</b> command and the <b>logout</b> message. </p>
+
+<h2 style='margin-left:0in;text-indent:0in'>Step 4: Capture and analyze
+encrypted SSH traffic.</h2>
+
+<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Start a new capture. In the <b>Unsaved packets…</b> dialog box, click <b>Continue
+without Saving</b>. This will clear out the packets from your last capture and
+start a new capture.</p>
+
+<p class=SubStepAlpha>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Return to your open terminal window or start a new terminal session.</p>
+
+<p class=SubStepAlpha>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>To simulate an SSH login, enter the command <b>ssh localhost</b>. If
+this is your first time to use the command, the system warns you about the
+authenticity of localhost and asks you if you want to continue. Enter <b>yes</b>,
+and then <b>password</b> as the password to log in.</p>
+
+<p class=CMD>cisco@labvm:~$ <b>ssh localhost</b></p>
+
+<p class=CMDOutput><span style='background:yellow; color: #000;'>The authenticity of host
+'localhost (::1)' can't be established.</span></p>
+
+<p class=CMDOutput>ECDSA key fingerprint is
+SHA256:lEvtfM55v9O8L88uvZ4Em/UL4ARo8jWGE1hV8mVnDhQ.</p>
+
+<p class=CMD>Are you sure you want to continue connecting
+(yes/no/[fingerprint])? <b>yes</b></p>
+
+<p class=CMDOutput>Warning: Permanently added 'localhost' (ECDSA) to the list
+of known hosts.</p>
+
+<p class=CMD>cisco@localhost's password: <b>password</b></p>
+
+<p class=CMDOutput>Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-67-generic
+x86_64)</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput> * Documentation:  https://help.ubuntu.com</p>
+
+<p class=CMDOutput> * Management:     https://landscape.canonical.com</p>
+
+<p class=CMDOutput> * Support:        https://ubuntu.com/advantage</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>0 updates can be installed immediately.</p>
+
+<p class=CMDOutput>0 of these updates are security updates.</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>Last login: Thu Mar 25 14:01:58 2021 from localhost</p>
+
+<p class=CMD>cisco@labvm:~$</p>
+
+<p class=SubStepAlpha>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Enter the <b>exit</b> command to end the SSH session.</p>
+
+<p class=SubStepAlpha>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Return to Wireshark and stop the capture. If you left <b>telnet</b> as
+the search term in the <b>Apply a display filter</b> field, no packets will be
+listed. Change the search term from <b>telnet</b> to <b>ssh</b>. All the
+packets from your SSH session should now be shown in the <b>Packet List</b>
+pane.</p>
+
+<p class=SubStepAlpha>f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In the <b>Packet Details</b> pane, expand the <b>SSH Protocol</b> fields
+to view the content. In the <b>Packet List</b> pane, click the first packet,
+and then use the down arrow to view a variety of the SSH packets. Notice that
+the <b>Data</b> for the <b>SSH Protocol</b> field shows that all the data is
+encrypted.</p>
+
+<p class=ConfigWindow>End of document</p>
+
+</div>
+<div id="footerDIV"><span><br><hr><span style="padding-right:5px;float:left;font-family:arial;font-size:12px;">© 2017 - 2022 Cisco and/or its affiliates. All rights reserved. Cisco Public</span><br></span></div>
+</body>
+
+</html>
