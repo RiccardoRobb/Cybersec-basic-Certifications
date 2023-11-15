@@ -317,8 +317,6 @@ It is offered by the U.S. Department of Homeland Security, it enables the real-t
 
 ---
 
-
-
 ---
 
 ---
@@ -439,6 +437,268 @@ Network behavior is described by a large amount of diverse data such as the pack
   * Metasploit, CORE Impact, ethical hackers
 
 ---
+
+## Common Vulnerability Scoring System [CVSS]
+
+It is a risk assessment tool that is designed to convey the common attributes and severity of vulnerabilities in computer HW and SW.
+
+**Benefits:**
+
+* it provides standardized vulnerability scores that should be meaningful across organizations
+
+* it provides an open framework with the meaning of each metric openly available to all users
+
+* it helps prioritize risk
+
+### CVSS Metric groups
+
+![](cvss.png)
+
+**Basic metric group** represents the characteristics of a vulnerability that are constant over time and across contexts; has 2 classes of metrics:
+
+* **Exploitability**, features of the exploit required
+
+* **Impact metrics**, impact of the exploit rooted in the CIA triad
+
+| Criteria                | Description                                                                                                                                                                      |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Attack vector**       | reflects the proximity of the threat actor to the vulnerable component; the more remote the actor the higher the severity (more difficult to remediate)                          |
+| **Attack complexity**   | Expresses the number of components, software, hardware, or networks, that are beyond the attacker's control and must be present for a vulnerability to be successfully exploited |
+| **Privileges required** | Level of access that is required for a successful exploit of the vulnerability                                                                                                   |
+| **User interaction**    | Presence or Absence of the requirement for a user interaction                                                                                                                    |
+| **Scope**               | Expresses whether multiple authorities must be involved in an exploit; != NULL if the initial authority changes to a second authority during the exploit                         |
+
+ 
+
+**Temporal metric group** represents the characteristics of a vulnerability that can change over time, but not across user environment. Over time the severity can change (can get bad or good, based on patches and countermeasures used).
+
+**Environmental metric group**, measures the aspects of a vulnerability that are rooted in a specific organization's environment.
+
+---
+
+## Risk Management
+
+![](risk_man.png)
+
+* **Risk avoidance**
+  
+  * Stop performing the activities that create risk
+  
+  * After risk assessment, the risk involved in an activity outweighs the benefit of the activity -> the activity must be discontinued
+
+* **Risk reduction**
+  
+  * Take measures to reduce vulnerability
+  
+  * Change management approaches
+
+* **Risk sharing**
+  
+  * Shift some of the risk to other parties
+  
+  * Security services can be hired to perform security monitoring, for example (SECaaS) CSIRT
+  
+  * Use insurances
+
+* **Risk retention**
+  
+  * Accept the risk and its consequences
+
+---
+
+## Vulnerability Management
+
+<img title="" src="vuln_man.png" alt="" data-align="inline">
+
+* **Discover**
+  
+  Inventory all assets across the network and identify host details, including operating systems and open services, to identify vulnerabilities. Develop a network baseline. Identify security vulnerabilities on a regular automated schedule.
+
+* **Prioritize Assets**
+  
+  Categorize assets into groups or business units, and assign a business value to asset groups based on their criticality to business operations.
+
+* **Assess**
+  
+  Determine a baseline risk profile
+
+* **Report**
+
+* **Remediate**
+
+* **Verify**
+  
+  Verify that threats have been eliminated through follow-up audits
+
+---
+
+## Patch Management Techniques
+
+### Agent-based
+
+A software agent must be running on each host to be patched. The agent monitors and reports vulnerable software installed on the host.
+
+It communicates with a patch manager server and install new patches from the server.
+
+Preferred for mobile devices.
+
+### Agentless Scanning
+
+Patch manager servers scans the network for devices that require patching.
+
+Only devices that are on scanned network segments can be patched in this way.
+
+### Passive network monitoring
+
+Device requiring patching are identified through the monitoring of the traffic on the network. Effective only for software that includes version information in its network traffic.
+
+---
+
+---
+
+# Module 4 Quiz solutions
+
+> n profiling a server, what defines what an application is allowed to do or run on  server?
+> 
+> * service accounts
+
+> In network security assessments, which type of test is used to evaluate the risk posed by vulnerabilities to a specific organization including assessment of the likelihood of attacks and the impact of successful exploits on the organization?
+> 
+> * penetration testing
+
+> When a network baseline is being established for an organization, which network profile element indicates the time between the establishment of a  data flow and its termination?
+> 
+> * session duration
+
+> Which type of evaluation includes the assessment of the likelihood of an attack, the type of threat actor likely to perpetrate such an attack, and what the consequences could be to the organization if the exploit is successful?
+> 
+> * risk analysis
+
+> A cybersecurity analyst is performing a CVSS assessment on an attack where a web link was sent to several employees. Once clicked, an internal attack was launched. Which CVSS Base Metric Group Exploitability metric is used to document that the user had to click on the link in order for the attack to occur?
+> 
+> * user interaction
+
+> Which metric class in the CVSS Basic Metric Group identifies the impacts on confidentiality, integrity, and availability?
+> 
+> * Impact
+
+> Which metric in the CVSS Base Metric Group is used with an attack vector?
+> 
+> * the proximity of the threat actor to the vulnerability
+
+> Which statement describes the threat-vulnerability (T-V) pairing?
+> 
+> * It is the identification of threats and vulnerabilities and the matching of threats with vulnerabilities.
+
+> In addressing an identified risk, which strategy aims to shift some of the risk to other parties?
+> 
+> * risk sharing
+
+> Which step in the Vulnerability Management Life Cycle categorizes assets into groups or business units, and assigns a business value to asset groups based on their criticality to business operations?
+> 
+> * prioritize assets
+
+> What is an action that should be taken in the discovery step of the vulnerability management life cycle?
+> 
+> * developing a network baseline
+
+---
+
+---
+
+# Risk Management and Security Controls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
