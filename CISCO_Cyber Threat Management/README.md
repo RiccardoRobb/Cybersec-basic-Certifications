@@ -468,8 +468,6 @@ It is a risk assessment tool that is designed to convey the common attributes an
 | **User interaction**    | Presence or Absence of the requirement for a user interaction                                                                                                                    |
 | **Scope**               | Expresses whether multiple authorities must be involved in an exploit; != NULL if the initial authority changes to a second authority during the exploit                         |
 
- 
-
 **Temporal metric group** represents the characteristics of a vulnerability that can change over time, but not across user environment. Over time the severity can change (can get bad or good, based on patches and countermeasures used).
 
 **Environmental metric group**, measures the aspects of a vulnerability that are rooted in a specific organization's environment.
@@ -608,136 +606,26 @@ Device requiring patching are identified through the monitoring of the traffic o
 
 # Risk Management and Security Controls
 
+It is a formal process that measures the impact of a threat and the cost to implement controls or countermeasures to mitigate that threat. All organizations accept some risk and the cost of a counter measure should not be more than the value of the asset being protected.
 
+## Risk Management
 
+### Frame the risk
 
+We need to identify the threats throughout the organization that increase risk. Threats identified include loss or damage of processes and products, attacks, potential failure or disruption of services, harm to the organization's reputation, legal liability, and loss of intellectual property.
 
+### Assess the risk
 
+Once a risk has been identified, it is assessed and analyzed to determine the severity that the threat poses. Risk can be prioritized by actual financial impact (quantitative analysis) or scaled impact on the organization's operation (qualitative analysis).
 
+### Respond to the risk
 
+Develop an action plan to reduce overall organization risk exposure. Risk can be eliminated, mitigated, transferred, or accepted.
 
+### Monitor the risk
 
+Not all risks can be eliminated, so threats that are accepted need to be closely monitored. An organization can use a risk registry that contains details about the risk and the controls implemented or response strategies used.
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Risk Assessment
