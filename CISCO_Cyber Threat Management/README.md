@@ -629,3 +629,264 @@ Not all risks can be eliminated, so threats that are accepted need to be closely
 ---
 
 ## Risk Assessment
+
+Organizations assess and examine their operational risks by performing a risk assessment to ensure their risk management meets all their business objectives.
+
+### Threat source types
+
+A threat is the potential that a vulnerability will be identified and exploited, while a threat vector is the path an attacker utilizes to impact the target.
+
+A threat can be internal and external or/and :
+
+* **Adversarial**, threats from individuals, groups, organizations or nations
+
+* **Accidental**, actions that occur without a malicious intent
+
+* **Structural**, equipment and software failures
+
+* **Environmental**, external disasters that can be either natural or human-caused, such as fires and floods
+
+## Risk Analysis
+
+It examines the dangers posed by natural and human-caused events to the assets of an organization. A user performs an asset identification to help determine which assets to protect.
+
+1. Identify assets and their value
+
+2. Identify vulnerabilities and threats
+
+3. Quantify the probability and impact of the identified threats
+
+4. Balance the impact of the threat against the cost of the countermeasure
+
+### Quantitative risk analysis
+
+It assigns numbers to the risk analysis process. "Used in economic analysis, considering the asset value"
+
+### Qualitative risk analysis
+
+It considers the opinions and scenarios plotting a likelihood of a threat against it. "Server failure may be likely, but its impact may only be marginal"
+
+---
+
+## Control types
+
+* **Administrative controls** consist of procedures and policies that an organization puts into place when dealing with sensitive information [how the people act]
+
+* **Technical controls** involve hardware and/or software implemented to manage risk and provide protection
+
+* **Physical controls** are mechanisms such as fences and locks deployed to protect systems, facilities, personnel and resources [separate people or other threats from systems]
+
+## Functional security controls
+
+* **Preventive controls** stop unwanted and unauthorized activity from happening and/or apply restrictions for authorized users
+
+* **Deterrent controls** aim to discourage something from happening; limit or mitigate an action or behavior
+
+* **Detective controls** identifies different types of unauthorized activity
+
+* **Corrective controls**
+
+* **Recovery controls** restore resources, functions and capabilities after a violation of a security policy
+
+* **Compensative controls** provide options to other controls to bolster enforcement in support of a security policy
+
+### Center of Internet Security [CIS]
+
+It has created a mapping of 18 critical security controls to some of the common compliance frameworks. In order to provide guidance to security professionals.
+
+---
+
+---
+
+# Module 5 Quiz solutions
+
+> As part of HR policy in a company, an individual may opt-out of having information shared with any third party other than the employer. Which law protects the privacy of personal shared information?
+> 
+> * GLBA
+
+> Which threat is mitigated through user awareness training and tying security awareness to performance reviews?
+> 
+> * user-related threats
+
+> A breach occurs in a company that processes credit card information. Which industry specific law governs credit card data protection?
+> 
+> * PCI DSS
+
+> A company has had several incidents involving users downloading unauthorized software, using unauthorized websites, and using personal USB devices. The CIO wants to put in place a scheme to manage the user threats. What three things might be put in place to manage the threats?
+> 
+> * Use content filtering, Provide security awareness training, Disable CD and USB access
+
+> What is the workforce framework category that includes highly specialized review and evaluation of incoming cybersecurity information to determine if it is useful for intelligence?
+> 
+> * Analyze
+
+> A security professional is asked to perform an analysis of the current state of a company network. What tool would the security professional use to scan the network only for security risks?
+> 
+> * vulnerability scanner
+
+> What type of network security test uses simulated attacks to determine the feasibility of an attack as well as the possible consequences if the attack occurs?
+> 
+> * penetration testing
+
+> What information does the SIEM network security management tool provide to network administrators?
+> 
+> * real time reporting and analysis of security events
+
+> What network testing tool would an administrator use to assess and validate system configurations against security policies and compliance standards?
+> 
+> * Tripwire
+
+> What type of network security test can detect and report changes made to network systems?
+> 
+> * integrity checking
+
+> Which organization defines unique CVE Identifiers for publicly known information-security vulnerabilities that make it easier to share data?
+> 
+> * MITRE
+
+> Which statement describes Trusted Automated Exchange of Indicator Information (TAXII)?
+> 
+> * It is the specification for an application layer protocol that allows the communication of CTI over HTTPS.
+
+> How does AIS address a newly discovered threat?
+> 
+> * by enabling real-time exchange of cyberthreat indicators with U.S. Federal Government and the private sector
+
+> Which security management plan specifies a component that involves tracking the location and configuration of networked devices and software across an enterprise?
+> 
+> * asset management
+
+> Which step in the Vulnerability Management Life Cycle determines a baseline risk profile to eliminate risks based on asset criticality, vulnerability threat, and asset classification?
+> 
+> * assess
+
+> What are the three impact metrics contained in the CVSS 3.0 Base Metric Group?
+> 
+> * confidentiality, availability, integrity
+
+> When establishing a network profile for an organization, which element describes the time between the establishment of a data flow and its termination?
+> 
+> * session duration
+
+> In addressing an identified risk, which strategy aims to decrease the risk by taking measures to reduce vulnerability?
+> 
+> * risk reduction
+
+> Which risk mitigation strategies include outsourcing services and purchasing insurance?
+> 
+> * transfer
+
+> In which situation would a detective control be warranted?
+> 
+> * when the organization needs to look for prohibited activity
+
+> The team is in the process of performing a risk analysis on the database services. The  information collected includes the initial value of these assets, the threats to the assets and the impact of the threats. What type of risk analysis is the team performing by calculating the annual loss expectancy?
+> 
+> * quantitative analysis
+
+> Based on the risk management process, what should the cybersecurity team
+>  do as the next step when a cybersecurity risk is identified?
+> 
+> * assess the risk
+
+> Why would an organization perform a quantitative risk analysis for network security threats?
+> 
+> * so that the organization can focus resources where they are most needed
+
+> Which two values are required to calculate annual loss expectancy?
+> 
+> * single loss expectancy, annual rate of occurrence
+
+---
+
+---
+
+# Digital Forensics and Incident Analysis and Response
+
+## Digital Forensics process
+
+1. **Collection**, it is the identification of potential sources of forensic data and acquisition, handling, and storage of that data. [Don't damage, lose, or omit important data]
+
+2. **Examination**, consists in assessing and extracting relevant information from the collected data. This may involve decompression or decryption of the data. [Identify relevant data in relevant and sparse data]
+
+3. **Analysis**, drawing conclusions from the data
+
+4. **Reporting**, prepare and present information that resulted from the analysis
+
+## Evidence collection
+
+**IETF RFC 3227** provides guidelines for the collection of digital evidence. It describes the order for the collection of digital evidence based on the volatility of the data.
+
+![](datacoll.png)
+
+## Chain of Custody
+
+An accused individual can say that the evidences have been altered or fabricated after being collected. In order to counter this argument, a rigorous chain of custody must be defined:
+
+* Who discovered and collected the evidence?
+
+* Details about the handling of evidence including times, places, and personnel involved
+
+* Who has the primary responsibility for the evidence, when responsibility was assigned, and when custody changed?
+
+* Who has physical access to the evidence while it was stored?
+
+## MITRE ATT&CK framework
+
+It is a framework for detect attacker tactics, techniques, and procedures [TTP] as part of threat defense and attack attribution. This is done by mapping the steps in an attack to a matrix of generalized tactics and describing the techniques that are used in each tactic.
+
+This framework is a global knowledge base of threat actor behavior.
+
+---
+
+**Gather system information after incident Lab:** [file](gathersysinfolab.html)
+
+---
+
+## Cyber Kill Chain
+
+It was developed by Lockheed Martin to identify and prevent cyber intrusions. The Cyber Kill Chain specifies what an attacker must complete to accomplish their goal.
+
+If the attacker is stopped at any stage, the chain of attack is broken.
+
+![](killchain.png)
+
+### 1- Reconnaissance
+
+It is when the threat actor performs research, gathers intelligence and select targets.
+
+The threat actor will choose targets that have been neglected or unprotected because they will have a higher likelihood of becoming penetrated and compromised.
+
+### 2- Weaponization
+
+The goal of this step is to use the information from reconnaissance to develop a weapon against a specific targeted systems or individuals in the organization.
+
+The threat actor needs to look at what attacks are available for the vulnerabilities they have discovered.
+
+### 3- Delivery
+
+The weapon is transmitted to the target using a delivery vector. This may be through the use of a website, removable USB media, or an email attachment.
+
+### 4- Exploitation
+
+After the weapon has been delivered, the threat actor uses it to break the vulnerability and gain control of the target.
+
+### 5- Installation
+
+When the threat actor establishes a back door into the system to allow for continued access to the target.
+
+### 6- Command & Control [CnC]
+
+The goal is to establish command and control with the target system. Compromised hosts usually beacon out of the network to a controller on the internet. CnC channels are used by the threat actor to issue commands to the software that they installed on the target.
+
+### 7- Actions on Objectives
+
+The threat actor achieves his original objective.
+
+---
+
+## Diamond Model
+
+It is a model of Intrusion analysis made up of four parts. the model represents a security incident or event. An event is a time-bound activity that is restricted to a specific step in which an adversary uses a capability in order to attack a victim.
+
+![](diamond.png)

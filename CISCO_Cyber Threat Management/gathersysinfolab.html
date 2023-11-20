@@ -1,0 +1,713 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Lab - Gather System Information After an Incident</title>
+<style>
+
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Webdings;
+	panose-1:5 3 1 2 1 5 9 6 7 3;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Arial",sans-serif;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	font-size:8.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman",serif;
+	font-weight:bold;}
+p.PageHead, li.PageHead, div.PageHead
+	{mso-style-name:"Page Head";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	border:none;
+	padding:0in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;}
+p.Bulletlevel1, li.Bulletlevel1, div.Bulletlevel1
+	{mso-style-name:"Bullet level 1";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.ConfigWindow, li.ConfigWindow, div.ConfigWindow
+	{mso-style-name:"Config Window";
+	margin:0in;
+	font-size:3.0pt;
+	font-family:"Arial",sans-serif;
+	color:white;
+	font-style:italic;}
+p.SubStepAlpha, li.SubStepAlpha, div.SubStepAlpha
+	{mso-style-name:"SubStep Alpha";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.CMD, li.CMD, div.CMD
+	{mso-style-name:CMD;
+	mso-style-link:"CMD Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.BodyTextL50, li.BodyTextL50, div.BodyTextL50
+	{mso-style-name:"Body Text L50";
+	mso-style-link:"Body Text L50 Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.BodyTextL25, li.BodyTextL25, div.BodyTextL25
+	{mso-style-name:"Body Text L25";
+	mso-style-link:"Body Text L25 Char";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+span.LabTitleInstVersred
+	{mso-style-name:"Lab Title Inst Vers \(red\)";
+	font-family:"Arial",sans-serif;
+	color:#EE0000;
+	font-weight:bold;}
+p.SubStepNum, li.SubStepNum, div.SubStepNum
+	{mso-style-name:"SubStep Num";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.CMDOutput, li.CMDOutput, div.CMDOutput
+	{mso-style-name:"CMD Output";
+	mso-style-link:"CMD Output Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.5in;
+	font-size:9.0pt;
+	font-family:"Courier New";}
+span.CMDChar
+	{mso-style-name:"CMD Char";
+	mso-style-link:CMD;
+	font-family:"Courier New";}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:SimSun;
+	font-weight:bold;}
+span.BodyTextL25Char
+	{mso-style-name:"Body Text L25 Char";
+	mso-style-link:"Body Text L25";}
+span.CMDOutputChar
+	{mso-style-name:"CMD Output Char";
+	mso-style-link:"CMD Output";
+	font-family:"Courier New";}
+span.BodyTextL50Char
+	{mso-style-name:"Body Text L50 Char";
+	mso-style-link:"Body Text L50";}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:76.3pt .75in .9in .75in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+
+/* dark theme */
+.dark-theme {
+	color: #fff;
+}
+
+.dark-theme p.ConfigWindow, .dark-theme li.ConfigWindow, .dark-theme div.ConfigWindow {
+	mso-style-name: "Config Window";
+	color: #212328;
+}
+
+.dark-theme h4{
+	color: #212328;
+}
+
+.dark-theme .MsoTitle span{
+	color: #fff !important;
+}
+
+.dark-theme textarea{
+	background-color: #212328;
+	color: #fff;
+}
+
+.dark-theme .BodyTextL25Answer{
+	background-color: #000;
+	color: #fff;
+}
+
+.dark-theme .BodyTextL25Answer > span{
+	padding: 4px;
+}
+
+.dark-theme .BodyTextL25Answer span{
+	color: #fff;
+}
+
+.dark-theme table tbody tr td{
+	color: #fff !important;
+}
+
+.show-all-answers, .hide-all-answers, .clear-all-responces {
+	background-color: #6abf4b;
+}
+
+.btn-text {
+	border: 0px;
+	padding: 0.5rem 1rem;
+	background-color: #6abf4b;
+	color: #fff;
+	margin-top: 1rem;
+	border-radius: 0;
+	cursor: pointer;
+}
+.show-answer,
+.hide-answer {
+	padding: 0.5rem 1rem;
+	background-color: #00bceb;
+	color: #fff;
+	border: none;
+	margin-top: 1rem;
+	cursor: pointer;
+}
+
+p.TableHeading,
+        li.TableHeading,
+        div.TableHeading {
+            color: #000;
+        }
+
+
+	</style>
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoTitle><span style='color:#EE0000;font-weight:normal'><b><span
+style='color:windowtext'>Lab - Gather System Information After an Incident</span></b></span></p>
+
+<h1>Objectives</h1>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>Collect system
+information after an incident has occurred.</p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>View logs for
+potential intrusions.</p>
+
+<h1>Background / Scenario</h1>
+
+<p class=BodyTextL25>When an incident occurs in an organization, people
+responsible must know how to respond. An organization needs to develop an
+incident response plan and put together a Computer Security Incident Response
+Team (CSIRT) to manage the response. In this lab, you will gather system information
+and review logs after an incident has occurred. Doing these tasks immediately
+after the incident is important because any data residing in RAM will be gone
+when the system is shut down.</p>
+
+<h1>Required Resources</h1>
+
+<p class=BodyTextL25>PC with the <b>CSE-LABVM</b> installed in VirtualBox</p>
+
+<h1>Instructions</h1>
+
+<h2 style='margin-left:0in;text-indent:0in'>Step 1: Open a terminal window in
+the CSE-LABVM.</h2>
+
+<p class=SubStepAlpha> a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Launch the <b>CSE-LABVM</b>.</p>
+
+<p class=SubStepAlpha> b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Double-click the <b>Terminal</b> icon to open a terminal.</p>
+
+<h2 style='margin-left:0in;text-indent:0in'>Step 2: Collect volatile
+information of the compromised system.</h2>
+
+<p class=BodyTextL25>In this step, you will create a file called <b>report.txt</b>
+that includes a variety of system information that can be used for incident
+analysis. This report can then be transferred to a USB drive, emailed, or
+uploaded to a cloud server to preserve the information. Then the system can be
+taken down.</p>
+
+<p class=SubStepAlpha> a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Switch to the root user with the <b>sudo su</b> command. Enter <b>password</b>
+as the root password.</p>
+
+<p class=CMD>cisco@labvm:~$ <b>sudo su</b></p>
+
+<p class=CMD>[sudo] password for cisco: <b>password</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# </p>
+
+<p class=SubStepAlpha><a name="OLE_LINK3"></a><a name="OLE_LINK4"> b.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Enter the <b>echo</b>
+command, and then specify a heading for a newly created file named <b>report.txt</b>.
+Enter the <b>cat</b> command to review the new file.</a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo Incident Investigator Report &gt;
+report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>cat report.txt</b> </p>
+
+<p class=CMDOutput>Incident Investigator Report</p>
+
+<p class=CMD>root@labvm:/home/cisco# </p>
+
+<p class=SubStepAlpha><a name="OLE_LINK7"></a><a name="OLE_LINK8"></a><a
+name="OLE_LINK13"></a><a name="OLE_LINK14"> c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Enter the <b>date</b> command and redirect the date and timestamp to the
+<b>report.txt</b> file. Be sure to use the double angle brackets (<b>&gt;&gt;</b>)
+to append to the <b>report.txt </b>file. Otherwise, you will replace the
+previous content.</a></p>
+
+<p class=BodyTextL50><b>Note</b>: To better document the content stored in
+report.txt, use the <b>echo</b> command to add a subheading as shown here for <b>Start
+Date and Time</b>. Each substep will specify a subheading for you to append
+before you gather information.</p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====Start Date and Time=====
+&gt;&gt; report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>date &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha><a name="OLE_LINK9"></a><a name="OLE_LINK10"> d.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Enter the <b>uname</b>
+command to print system information. Use the <b>-a</b> option to append all
+system information to the <b>report.txt</b> file.</a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====System Information=====
+&gt;&gt; report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>uname -a &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha><a name="OLE_LINK11"></a><a name="OLE_LINK12"> e.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Enter the <b>ifconfig
+-a</b> command and append all network interface information to the <b>report.txt</b>
+file. </a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====Network Interfaces=====
+&gt;&gt;</b> <b>report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>ifconfig -a &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha> f.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The <b>netstat</b> command can collect all the network statistics. Enter
+the command with the options <b>-ano</b> to collect data on all sockets (<b>-a</b>),
+IP addresses instead of domain names (<b>-n</b>), and information related to
+networking times (<b>-o</b>). Append the output to the <b>report.txt</b> file.</p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====Network Statistics=====
+&gt;&gt; report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>netstat -ano &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha> g.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>The <b>ps</b> command reports a snapshot of the current processes
+running on the system. Enter the command with the options <b>-axu</b> to list
+every process running on the system (<b>-a</b> and <b>-x</b>) and in a
+user-oriented format (<b>-u</b>). Append the output to the <b>report.txt</b>
+file.</p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====Processes===== &gt;&gt;
+report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>ps axu &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha> h.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>The route command lists the routing table currently used by the system.
+Enter the command with the option <b>-n</b> to list IP addresses instead of
+trying to determine host names. Append the output to the <b>report.txt</b> file.</p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====Routing Table===== &gt;&gt;
+report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>route -n &gt;&gt; report.txt</b> </p>
+
+<p class=SubStepAlpha><a name="OLE_LINK17"></a><a name="OLE_LINK18"> i.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Enter the <b>date</b>
+command and append the date and timestamp to the end of the file to complete
+the report.</a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>echo =====End Date and Time=====
+&gt;&gt; report.txt</b></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>date<a name="OLE_LINK15"></a><a
+name="OLE_LINK16"> </a>&gt;&gt; report.txt </b></p>
+
+<p class=SubStepAlpha><a name="OLE_LINK19"></a><a name="OLE_LINK20"> j.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Use the <b>cat</b>
+command and pipe the output to the <b>less</b> command to view <b>report.txt</b>
+one page or line at a time. </a><a name="OLE_LINK21"></a><a name="OLE_LINK22">Press
+the <b>spacebar</b> to scroll down by page or press <b>Enter</b> to scroll down
+by a single line. Type <b>q</b> when finished. </a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>cat report.txt | less</b> </p>
+
+<p class=CMDOutput>Incident Investigator Report</p>
+
+<p class=CMDOutput>=====Start Date and Time=====</p>
+
+<p class=CMDOutput>Wed 24 Mar 2021 05:06:53 PM UTC</p>
+
+<p class=CMDOutput>=====System Information=====</p>
+
+<p class=CMDOutput>Linux labvm 5.4.0-67-generic #75-Ubuntu SMP Fri Feb 19
+18:03:38 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux</p>
+
+<p class=CMDOutput>=====Network Interfaces=====</p>
+
+<p class=CMDOutput>enp0s3: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt; 
+mtu 1500</p>
+
+<p class=CMDOutput>        inet 10.0.2.15  netmask 255.255.255.0  broadcast
+10.0.2.255</p>
+
+<p class=CMDOutput>        inet6 fe80::a00:27ff:feb5:4bb0  prefixlen 64 
+scopeid 0x20&lt;link&gt;</p>
+
+<p class=CMDOutput>        ether 08:00:27:b5:4b:b0  txqueuelen 1000  (Ethernet)</p>
+
+<p class=CMDOutput>        RX packets 47719  bytes 36618515 (36.6 MB)</p>
+
+<p class=CMDOutput>        RX errors 0  dropped 0  overruns 0  frame 0</p>
+
+<p class=CMDOutput>        TX packets 31406  bytes 3590109 (3.5 MB)</p>
+
+<p class=CMDOutput>        TX errors 0  dropped 0 overruns 0  carrier 0 
+collisions 0</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</p>
+
+<p class=CMDOutput>        inet 127.0.0.1  netmask 255.0.0.0</p>
+
+<p class=CMDOutput>        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</p>
+
+<p class=CMDOutput>        loop  txqueuelen 1000  (Local Loopback)</p>
+
+<p class=CMDOutput>        RX packets 2292  bytes 244651 (244.6 KB)</p>
+
+<p class=CMDOutput>        RX errors 0  dropped 0  overruns 0  frame 0</p>
+
+<p class=CMDOutput>        TX packets 2292  bytes 244651 (244.6 KB)</p>
+
+<p class=CMDOutput>        TX errors 0  dropped 0 overruns 0  carrier 0 
+collisions 0</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>=====Network Statistics=====</p>
+
+<p class=CMDOutput>Active Internet connections (servers and established)</p>
+
+<p class=CMDOutput>&lt;output omitted&gt;</p>
+
+<p class=CMDOutput>unix  3      [ ]         STREAM     CONNECTED     22100    </p>
+
+<p class=CMDOutput>unix  3      [ ]         STREAM     CONNECTED     18249    </p>
+
+<p class=CMDOutput>=====Processes=====</p>
+
+<p class=CMDOutput>USER         PID %CPU %MEM    VSZ   RSS TTY      STAT
+START   TIME COMMAND</p>
+
+<p class=CMDOutput>root           1  0.0  0.5 101896 10768 ?        Ss  
+Mar23   0:03 /sbin/init</p>
+
+<p class=CMDOutput>root           2  0.0  0.0      0     0 ?        S    Mar23  
+0:00 [kthreadd]</p>
+
+<p class=CMDOutput>root           3  0.0  0.0      0     0 ?        I&lt;  
+Mar23   0:00 [rcu_gp]</p>
+
+<p class=CMDOutput>&lt;output omitted&gt;</p>
+
+<p class=CMDOutput>root        5319  0.0  0.0      0     0 ?        I   
+16:31   0:00 [kworker/0:2-events]</p>
+
+<p class=CMDOutput>root        5490  0.0  0.1  11492  3332 pts/1    R+   17:06  
+0:00 ps axu</p>
+
+<p class=CMDOutput>=====Routing Table=====</p>
+
+<p class=CMDOutput>Kernel IP routing table</p>
+
+<p class=CMDOutput>Destination     Gateway         Genmask         Flags Metric
+Ref    Use Iface</p>
+
+<p class=CMDOutput>0.0.0.0         10.0.2.2        0.0.0.0         UG    100   
+0        0 enp0s3</p>
+
+<p class=CMDOutput>10.0.2.0        0.0.0.0         255.255.255.0   U     0     
+0        0 enp0s3</p>
+
+<p class=CMDOutput>10.0.2.2        0.0.0.0         255.255.255.255 UH    100   
+0        0 enp0s3</p>
+
+<p class=CMDOutput>=====End Date and Time=====</p>
+
+<p class=CMDOutput>Wed 24 Mar 2021 05:06:53 PM UTC</p>
+
+<p class=CMDOutput>(END) <b>q</b></p>
+
+<p class=CMDOutput>root@labvm:/home/cisco#</p>
+
+<h2 style='margin-left:0in;text-indent:0in'>Step 3: Analyze different log files
+and learn their importance.</h2>
+
+<p class=BodyTextL25><a name="OLE_LINK23"></a><a name="OLE_LINK24">In addition
+to capturing information stored in RAM, the system also maintains a variety of
+logs that you should review after an incident. These log files can also be
+appended to your <b>report.txt</b> file or stored separately off the system in
+the event the system needs to be wiped. Logs of particular interest include,
+but are not limited to, the following:</a></p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>auth.log - logs
+system authorization information</p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>btmp.log - logs
+failed login attempts</p>
+
+<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>wtmp.log - logs
+who is currently logged into the system</p>
+
+<p class=SubStepAlpha> a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Use the <b>cat</b> command to view the auth.log and pipe it to the <b>less</b>
+command. Press the <b>spacebar</b> to scroll down by page or press <b>Enter</b>
+to scroll down by a single line. Type <b>q</b> when finished. Your output will
+be different.</p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>cat /var/log/auth.log | less </b></p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm sshd[375]: Server listening on 0.0.0.0
+port 22.</p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm sshd[375]: Server listening on :: port
+22.</p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm systemd-logind[366]: New seat seat0.</p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm systemd-logind[366]: Watching system
+buttons on /dev/input/event0 (Power Button)</p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm systemd-logind[366]: Watching system
+buttons on /dev/input/event1 (Sleep Button)</p>
+
+<p class=CMDOutput>Mar 18 21:43:57 labvm systemd-logind[366]: Watching system
+buttons on /dev/input/event2 (AT Translated Set 2 keyboard)</p>
+
+<p class=CMDOutput>Mar 18 21:43:59 labvm sshd[408]: error:
+kex_exchange_identification: Connection closed by remote host</p>
+
+<p class=CMDOutput>Mar 18 21:43:59 labvm sshd[407]: <span style='background:
+yellow; color: #000;'>Accepted password for cisco from 10.0.2.</span>2 port 57067 ssh2</p>
+
+<p class=CMDOutput>Mar 18 21:43:59 labvm sshd[407]: pam_unix(sshd:session):
+session opened for user cisco by (uid=0)</p>
+
+<p class=CMDOutput>Mar 18 21:43:59 labvm systemd-logind[366]: <span
+style='background:yellow; color: #000;'>New session 1 of user cisco</span>.</p>
+
+<p class=CMD>&lt;output omitted&gt;</p>
+
+<p class=CMD>(END) <b>q</b></p>
+
+<p class=CMD>root@labvm:/home/cisco#</p>
+
+<p class=SubStepAlpha><a name="OLE_LINK25"></a><a name="OLE_LINK26"> b.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>The <b>last</b>
+command shows a listing of last logged in users. Enter the command with the <b>-f</b>
+option to specify the log file. The <b>btmp</b> log file shows failed login
+attempts. Your output will be different. </a></p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>last -f /var/log/btmp</b></p>
+
+<p class=CMDOutput>UNKNOWN  tty6                          Thu Mar 18 21:47   
+gone - no logout</p>
+
+<p class=CMDOutput>UNKNOWN  tty4                          Thu Mar 18 21:47   
+gone - no logout</p>
+
+<p class=CMDOutput>UNKNOWN  tty3                          Thu Mar 18 21:47   
+gone - no logout</p>
+
+<p class=CMDOutput>cisco    tty1                          Thu Mar 18 21:47    gone
+- no logout</p>
+
+<p class=CMDOutput>cisco    tty1                          Thu Mar 18 21:47 -
+21:47  (00:00)</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>btmp begins Thu Mar 18 21:47:05 2021</p>
+
+<p class=CMD>root@labvm:/home/cisco#</p>
+
+<p class=SubStepAlpha> c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span>Enter the <b>last</b> command again specifying the <b>wtmp</b> file to
+show who is currently connected to the system. Your output will be different. </p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>last -f /var/log/wtmp</b></p>
+
+<p class=CMDOutput>cisco    tty7         :0               Tue Mar 23 19:38   
+gone - no logout</p>
+
+<p class=CMDOutput>reboot   system boot  5.4.0-67-generic Tue Mar 23 14:38  
+still running</p>
+
+<p class=CMDOutput>cisco    tty2                          Thu Mar 18 21:47 -
+21:47  (00:00)</p>
+
+<p class=CMDOutput>reboot   system boot  5.4.0-67-generic Thu Mar 18 21:43 -
+22:02  (00:18)</p>
+
+<p class=CMDOutput>&nbsp;</p>
+
+<p class=CMDOutput>wtmp begins Thu Mar 18 21:43:54 2021</p>
+
+<p class=SubStepAlpha> d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span>Enter the <b>exit</b> command to switch back to the cisco user. </p>
+
+<p class=CMD>root@labvm:/home/cisco# <b>exit</b> </p>
+
+<p class=CMD>cisco@labvm:~$</p>
+
+<p class=ConfigWindow>End of document</p>
+
+<div id="footerDIV"><span><br>
+	<hr><span style="padding-right:5px;float:left;font-family:arial;font-size:12px;">© 2017 - 2022 Cisco
+		and/or its affiliates. All rights reserved. Cisco Public</span><br>
+</span></div>
+
+</div>
+
+</body>
+
+</html>
