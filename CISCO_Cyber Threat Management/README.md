@@ -839,7 +839,7 @@ This framework is a global knowledge base of threat actor behavior.
 
 ---
 
-**Gather system information after incident Lab:** [file](gathersysinfolab.html)
+**Gather system information after incident Lab:** [here](gathersysinfolab.html)
 
 ---
 
@@ -890,3 +890,39 @@ The threat actor achieves his original objective.
 It is a model of Intrusion analysis made up of four parts. the model represents a security incident or event. An event is a time-bound activity that is restricted to a specific step in which an adversary uses a capability in order to attack a victim.
 
 ![](diamond.png)
+
+*"The adversary uses the infrastructure to connect to the victim. The adversary develops capability to exploit the victim"*
+
+**Important elements:**
+
+* `Timestamp`, start and stop time of an event
+
+* `Phase`, similar to the steps in the Cyber Kill Chain; malicious activities includes two or more steps executed
+
+* `Result` compromised [confidentiality, integrity, and availability]
+
+* `Direction`, [Adv-to-Infra, Infra-to-Victim, Victim-to-Infra, and Infra-to-Adv]
+
+* `Methodology`, general classification for the event, such as port scan, phishing, content delivery attack, syn flood etc.
+
+* `Resources`
+  
+  * external sources: software, adversary's knowledge, and information
+  
+  * assets to carry out the attack: hardware, funds, facilities, network access
+
+### Illustrate an attack using the Diamond model
+
+![](diamondusage.png)
+
+### Diamond Model and Cyber Kill Chain
+
+Adversaries do not operate in just a single event. Instead, events are threaded together in a chain in which each event must be successfully completed before the next event.
+
+This thread of events can be mapped using the Cyber Kill Chain.
+
+Every event can be modeled using the Diamond Model.
+
+![](killdiamond.png)
+
+---
