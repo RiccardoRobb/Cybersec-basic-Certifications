@@ -1,0 +1,2753 @@
+<html>
+
+<head>
+	<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+	<meta name=Generator content="Microsoft Word 15 (filtered)">
+	<title>Lab - Attack Analysis</title>
+	<style>
+		/* Font Definitions */
+		@font-face {
+			font-family: Wingdings;
+			panose-1: 5 0 0 0 0 0 0 0 0 0;
+		}
+
+		@font-face {
+			font-family: SimSun;
+			panose-1: 2 1 6 0 3 1 1 1 1 1;
+		}
+
+		@font-face {
+			font-family: "Cambria Math";
+			panose-1: 2 4 5 3 5 4 6 3 2 4;
+		}
+
+		@font-face {
+			font-family: Calibri;
+			panose-1: 2 15 5 2 2 2 4 3 2 4;
+		}
+
+		@font-face {
+			font-family: Webdings;
+			panose-1: 5 3 1 2 1 5 9 6 7 3;
+		}
+
+		@font-face {
+			font-family: Tahoma;
+			panose-1: 2 11 6 4 3 5 4 4 2 4;
+		}
+
+		@font-face {
+			font-family: "\@SimSun";
+			panose-1: 2 1 6 0 3 1 1 1 1 1;
+		}
+
+		/* Style Definitions */
+		p.MsoNormal,
+		li.MsoNormal,
+		div.MsoNormal {
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			line-height: 115%;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		h1 {
+			mso-style-link: "Heading 1 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			text-indent: 0in;
+			page-break-after: avoid;
+			font-size: 13.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		h2 {
+			mso-style-link: "Heading 2 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			text-indent: 0in;
+			page-break-after: avoid;
+			font-size: 12.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		h3 {
+			mso-style-link: "Heading 3 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			text-indent: 0in;
+			page-break-after: avoid;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		h4 {
+			mso-style-link: "Heading 4 Char";
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: .5in;
+			margin-bottom: .0001pt;
+			page-break-after: avoid;
+			font-size: 3.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+			font-weight: normal;
+		}
+
+		h5 {
+			mso-style-link: "Heading 5 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 13.0pt;
+			font-family: "Arial", sans-serif;
+			font-style: italic;
+		}
+
+		h6 {
+			mso-style-link: "Heading 6 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoHeading7,
+		li.MsoHeading7,
+		div.MsoHeading7 {
+			mso-style-link: "Heading 7 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoHeading8,
+		li.MsoHeading8,
+		div.MsoHeading8 {
+			mso-style-link: "Heading 8 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-style: italic;
+		}
+
+		p.MsoHeading9,
+		li.MsoHeading9,
+		div.MsoHeading9 {
+			mso-style-link: "Heading 9 Char";
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex1,
+		li.MsoIndex1,
+		div.MsoIndex1 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 12.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex2,
+		li.MsoIndex2,
+		div.MsoIndex2 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 24.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex3,
+		li.MsoIndex3,
+		div.MsoIndex3 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: .5in;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex4,
+		li.MsoIndex4,
+		div.MsoIndex4 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 48.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex5,
+		li.MsoIndex5,
+		div.MsoIndex5 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 60.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex6,
+		li.MsoIndex6,
+		div.MsoIndex6 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 1.0in;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex7,
+		li.MsoIndex7,
+		div.MsoIndex7 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 84.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex8,
+		li.MsoIndex8,
+		div.MsoIndex8 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 96.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndex9,
+		li.MsoIndex9,
+		div.MsoIndex9 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 1.5in;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc1,
+		li.MsoToc1,
+		div.MsoToc1 {
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc2,
+		li.MsoToc2,
+		div.MsoToc2 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 12.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc3,
+		li.MsoToc3,
+		div.MsoToc3 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 24.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc4,
+		li.MsoToc4,
+		div.MsoToc4 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: .5in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc5,
+		li.MsoToc5,
+		div.MsoToc5 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 48.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc6,
+		li.MsoToc6,
+		div.MsoToc6 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 60.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc7,
+		li.MsoToc7,
+		div.MsoToc7 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 1.0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc8,
+		li.MsoToc8,
+		div.MsoToc8 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 84.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToc9,
+		li.MsoToc9,
+		div.MsoToc9 {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 96.0pt;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoFootnoteText,
+		li.MsoFootnoteText,
+		div.MsoFootnoteText {
+			mso-style-link: "Footnote Text Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoCommentText,
+		li.MsoCommentText,
+		div.MsoCommentText {
+			mso-style-link: "Comment Text Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoHeader,
+		li.MsoHeader,
+		div.MsoHeader {
+			mso-style-link: "Header Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			line-height: 115%;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoFooter,
+		li.MsoFooter,
+		div.MsoFooter {
+			mso-style-link: "Footer Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 0in;
+			margin-bottom: .0001pt;
+			font-size: 8.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoIndexHeading,
+		li.MsoIndexHeading,
+		div.MsoIndexHeading {
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoTof,
+		li.MsoTof,
+		div.MsoTof {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 24.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -24.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoEndnoteText,
+		li.MsoEndnoteText,
+		div.MsoEndnoteText {
+			mso-style-link: "Endnote Text Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoToa,
+		li.MsoToa,
+		div.MsoToa {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 12.0pt;
+			margin-bottom: .0001pt;
+			text-indent: -12.0pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoMacroText,
+		li.MsoMacroText,
+		div.MsoMacroText {
+			mso-style-link: "Macro Text Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Courier New";
+		}
+
+		p.MsoToaHeading,
+		li.MsoToaHeading,
+		div.MsoToaHeading {
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoTitle,
+		li.MsoTitle,
+		div.MsoTitle {
+			mso-style-link: "Title Char";
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			font-size: 16.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoTitleCxSpFirst,
+		li.MsoTitleCxSpFirst,
+		div.MsoTitleCxSpFirst {
+			mso-style-link: "Title Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 16.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoTitleCxSpMiddle,
+		li.MsoTitleCxSpMiddle,
+		div.MsoTitleCxSpMiddle {
+			mso-style-link: "Title Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 16.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoTitleCxSpLast,
+		li.MsoTitleCxSpLast,
+		div.MsoTitleCxSpLast {
+			mso-style-link: "Title Char";
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			font-size: 16.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoBodyText,
+		li.MsoBodyText,
+		div.MsoBodyText {
+			mso-style-link: "Body Text Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		a:link,
+		span.MsoHyperlink {
+			color: blue;
+			text-decoration: underline;
+		}
+
+		a:visited,
+		span.MsoHyperlinkFollowed {
+			color: purple;
+			text-decoration: underline;
+		}
+
+		p.MsoDocumentMap,
+		li.MsoDocumentMap,
+		div.MsoDocumentMap {
+			mso-style-link: "Document Map Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 0in;
+			margin-bottom: .0001pt;
+			font-size: 8.0pt;
+			font-family: "Tahoma", sans-serif;
+		}
+
+		pre {
+			mso-style-link: "HTML Preformatted Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Courier New";
+		}
+
+		p.MsoCommentSubject,
+		li.MsoCommentSubject,
+		div.MsoCommentSubject {
+			mso-style-link: "Comment Subject Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.MsoAcetate,
+		li.MsoAcetate,
+		div.MsoAcetate {
+			mso-style-link: "Balloon Text Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 0in;
+			margin-bottom: .0001pt;
+			font-size: 8.0pt;
+			font-family: "Tahoma", sans-serif;
+		}
+
+		span.MsoPlaceholderText {
+			color: gray;
+		}
+
+		p.MsoRMPane,
+		li.MsoRMPane,
+		div.MsoRMPane {
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoListParagraph,
+		li.MsoListParagraph,
+		div.MsoListParagraph {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 10.0pt;
+			margin-left: .5in;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoListParagraphCxSpFirst,
+		li.MsoListParagraphCxSpFirst,
+		div.MsoListParagraphCxSpFirst {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: .5in;
+			margin-bottom: .0001pt;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoListParagraphCxSpMiddle,
+		li.MsoListParagraphCxSpMiddle,
+		div.MsoListParagraphCxSpMiddle {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: .5in;
+			margin-bottom: .0001pt;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.MsoListParagraphCxSpLast,
+		li.MsoListParagraphCxSpLast,
+		div.MsoListParagraphCxSpLast {
+			margin-top: 0in;
+			margin-right: 0in;
+			margin-bottom: 10.0pt;
+			margin-left: .5in;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		span.Heading1Char {
+			mso-style-name: "Heading 1 Char";
+			mso-style-link: "Heading 1";
+			font-weight: bold;
+		}
+
+		span.Heading2Char {
+			mso-style-name: "Heading 2 Char";
+			mso-style-link: "Heading 2";
+			font-family: "Times New Roman", serif;
+			font-weight: bold;
+		}
+
+		p.ClientNote,
+		li.ClientNote,
+		div.ClientNote {
+			mso-style-name: "Client Note";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 0in;
+			margin-left: 0in;
+			margin-bottom: .0001pt;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+			color: red;
+			font-style: italic;
+		}
+
+		p.AnswerLineL25,
+		li.AnswerLineL25,
+		div.AnswerLineL25 {
+			mso-style-name: "Answer Line L25";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		p.PageHead,
+		li.PageHead,
+		div.PageHead {
+			mso-style-name: "Page Head";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			line-height: 115%;
+			border: none;
+			padding: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.AnswerLineL50,
+		li.AnswerLineL50,
+		div.AnswerLineL50 {
+			mso-style-name: "Answer Line L50";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			/* margin-left: .5in; */
+			margin-left: 24px;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		span.HeaderChar {
+			mso-style-name: "Header Char";
+			mso-style-link: Header;
+		}
+
+		span.FooterChar {
+			mso-style-name: "Footer Char";
+			mso-style-link: Footer;
+		}
+
+		span.BalloonTextChar {
+			mso-style-name: "Balloon Text Char";
+			mso-style-link: "Balloon Text";
+			font-family: "Tahoma", sans-serif;
+		}
+
+		p.TableText,
+		li.TableText,
+		div.TableText {
+			mso-style-name: "Table Text";
+			mso-style-link: "Table Text Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		span.TableTextChar {
+			mso-style-name: "Table Text Char";
+			mso-style-link: "Table Text";
+		}
+
+		p.TableHeading,
+		li.TableHeading,
+		div.TableHeading {
+			mso-style-name: "Table Heading";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			text-align: center;
+			line-height: 115%;
+			page-break-after: avoid;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		p.Bulletlevel1,
+		li.Bulletlevel1,
+		div.Bulletlevel1 {
+			mso-style-name: "Bullet level 1";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .5in;
+			text-indent: -.25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.Bulletlevel2,
+		li.Bulletlevel2,
+		div.Bulletlevel2 {
+			mso-style-name: "Bullet level 2";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .75in;
+			text-indent: -.25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.InstNoteRed,
+		li.InstNoteRed,
+		div.InstNoteRed {
+			mso-style-name: "Inst Note Red";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: #EE0000;
+		}
+
+		p.ConfigWindow,
+		li.ConfigWindow,
+		div.ConfigWindow {
+			mso-style-name: "Config Window";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 3.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+			font-style: italic;
+		}
+
+		p.SubStepAlpha,
+		li.SubStepAlpha,
+		div.SubStepAlpha {
+			mso-style-name: "SubStep Alpha";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .5in;
+			text-indent: -.25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.CMD,
+		li.CMD,
+		div.CMD {
+			mso-style-name: CMD;
+			mso-style-link: "CMD Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: .5in;
+			font-size: 10.0pt;
+			font-family: "Courier New";
+		}
+
+		p.BodyTextL50,
+		li.BodyTextL50,
+		div.BodyTextL50 {
+			mso-style-name: "Body Text L50";
+			mso-style-link: "Body Text L50 Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			/* margin-left: .5in; */
+			margin-left: 24px;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.BodyTextL25,
+		li.BodyTextL25,
+		div.BodyTextL25 {
+			mso-style-name: "Body Text L25";
+			mso-style-link: "Body Text L25 Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.InstNoteRedL50,
+		li.InstNoteRedL50,
+		div.InstNoteRedL50 {
+			mso-style-name: "Inst Note Red L50";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .5in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: #EE0000;
+		}
+
+		p.DevConfigs,
+		li.DevConfigs,
+		div.DevConfigs {
+			mso-style-name: DevConfigs;
+			mso-style-link: "DevConfigs Char";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			line-height: 115%;
+			font-size: 10.0pt;
+			font-family: "Courier New";
+		}
+
+		p.Visual,
+		li.Visual,
+		div.Visual {
+			mso-style-name: Visual;
+			margin-top: 12.0pt;
+			margin-right: 0in;
+			margin-bottom: 12.0pt;
+			margin-left: 0in;
+			text-align: center;
+			line-height: 115%;
+			font-size: 11.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		span.DocumentMapChar {
+			mso-style-name: "Document Map Char";
+			mso-style-link: "Document Map";
+			font-family: "Tahoma", sans-serif;
+		}
+
+		span.LabTitleInstVersred {
+			mso-style-name: "Lab Title Inst Vers \(red\)";
+			font-family: "Arial", sans-serif;
+			color: #EE0000;
+			font-weight: bold;
+		}
+
+		span.Heading1Gray {
+			mso-style-name: "Heading 1 Gray";
+			font-family: "Arial", sans-serif;
+			border: none;
+			background: #D9D9D9;
+			font-weight: normal;
+		}
+
+		p.SubStepNum,
+		li.SubStepNum,
+		div.SubStepNum {
+			mso-style-name: "SubStep Num";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .75in;
+			text-indent: -.25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		span.DevConfigGray {
+			mso-style-name: "DevConfig Gray";
+			font-family: "Courier New";
+			color: windowtext;
+			border: none;
+			background: #D9D9D9;
+			font-weight: bold;
+		}
+
+		p.CMDOutput,
+		li.CMDOutput,
+		div.CMDOutput {
+			mso-style-name: "CMD Output";
+			mso-style-link: "CMD Output Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: .5in;
+			font-size: 9.0pt;
+			font-family: "Courier New";
+		}
+
+		p.InstNoteRedL25,
+		li.InstNoteRedL25,
+		div.InstNoteRedL25 {
+			mso-style-name: "Inst Note Red L25";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: #EE0000;
+		}
+
+		p.BodyTextL25Bold,
+		li.BodyTextL25Bold,
+		div.BodyTextL25Bold {
+			mso-style-name: "Body Text L25 Bold";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		span.HTMLPreformattedChar {
+			mso-style-name: "HTML Preformatted Char";
+			mso-style-link: "HTML Preformatted";
+			font-family: "Courier New";
+		}
+
+		span.CommentTextChar {
+			mso-style-name: "Comment Text Char";
+			mso-style-link: "Comment Text";
+		}
+
+		span.CommentSubjectChar {
+			mso-style-name: "Comment Subject Char";
+			mso-style-link: "Comment Subject";
+			font-weight: bold;
+		}
+
+		p.ReflectionQ,
+		li.ReflectionQ,
+		div.ReflectionQ {
+			mso-style-name: "Reflection Q";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			text-indent: -.25in;
+			page-break-after: avoid;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		span.Heading4Char {
+			mso-style-name: "Heading 4 Char";
+			mso-style-link: "Heading 4";
+			font-family: "Times New Roman", serif;
+			color: white;
+		}
+
+		span.Heading5Char {
+			mso-style-name: "Heading 5 Char";
+			mso-style-link: "Heading 5";
+			font-family: "Times New Roman", serif;
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		span.Heading6Char {
+			mso-style-name: "Heading 6 Char";
+			mso-style-link: "Heading 6";
+			font-family: "Times New Roman", serif;
+			font-weight: bold;
+		}
+
+		span.Heading7Char {
+			mso-style-name: "Heading 7 Char";
+			mso-style-link: "Heading 7";
+			font-family: "Times New Roman", serif;
+		}
+
+		span.Heading8Char {
+			mso-style-name: "Heading 8 Char";
+			mso-style-link: "Heading 8";
+			font-family: "Times New Roman", serif;
+			font-style: italic;
+		}
+
+		span.Heading9Char {
+			mso-style-name: "Heading 9 Char";
+			mso-style-link: "Heading 9";
+			font-family: "Times New Roman", serif;
+		}
+
+		span.Heading3Char {
+			mso-style-name: "Heading 3 Char";
+			mso-style-link: "Heading 3";
+			font-family: "Times New Roman", serif;
+			font-weight: bold;
+		}
+
+		span.EndnoteTextChar {
+			mso-style-name: "Endnote Text Char";
+			mso-style-link: "Endnote Text";
+			font-family: "Times New Roman", serif;
+		}
+
+		span.FootnoteTextChar {
+			mso-style-name: "Footnote Text Char";
+			mso-style-link: "Footnote Text";
+			font-family: "Times New Roman", serif;
+		}
+
+		span.MacroTextChar {
+			mso-style-name: "Macro Text Char";
+			mso-style-link: "Macro Text";
+			font-family: "Courier New";
+		}
+
+		span.BodyTextChar {
+			mso-style-name: "Body Text Char";
+			mso-style-link: "Body Text";
+			font-family: "Times New Roman", serif;
+		}
+
+		p.ColorfulShading-Accent11,
+		li.ColorfulShading-Accent11,
+		div.ColorfulShading-Accent11 {
+			mso-style-name: "Colorful Shading - Accent 11";
+			margin: 0in;
+			margin-bottom: .0001pt;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		p.BodyTextBold,
+		li.BodyTextBold,
+		div.BodyTextBold {
+			mso-style-name: "Body Text Bold";
+			mso-style-link: "Body Text Bold Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		span.CMDChar {
+			mso-style-name: "CMD Char";
+			mso-style-link: CMD;
+			font-family: "Courier New";
+		}
+
+		span.BodyTextBoldChar {
+			mso-style-name: "Body Text Bold Char";
+			mso-style-link: "Body Text Bold";
+			font-family: "Times New Roman", serif;
+			font-weight: bold;
+		}
+
+		span.TitleChar {
+			mso-style-name: "Title Char";
+			mso-style-link: Title;
+			font-family: SimSun;
+			font-weight: bold;
+		}
+
+		p.CMDRed,
+		li.CMDRed,
+		div.CMDRed {
+			mso-style-name: "CMD Red";
+			mso-style-link: "CMD Red Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: .5in;
+			font-size: 10.0pt;
+			font-family: "Courier New";
+			color: #EE0000;
+		}
+
+		span.CMDRedChar {
+			mso-style-name: "CMD Red Char";
+			mso-style-link: "CMD Red";
+			font-family: "Courier New";
+			color: #EE0000;
+		}
+
+		p.CMDOutputRed,
+		li.CMDOutputRed,
+		div.CMDOutputRed {
+			mso-style-name: "CMD Output Red";
+			mso-style-link: "CMD Output Red Char";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: .5in;
+			font-size: 9.0pt;
+			font-family: "Courier New";
+			color: #EE0000;
+		}
+
+		span.BodyTextL25Char {
+			mso-style-name: "Body Text L25 Char";
+			mso-style-link: "Body Text L25";
+		}
+
+		span.CMDOutputChar {
+			mso-style-name: "CMD Output Char";
+			mso-style-link: "CMD Output";
+			font-family: "Courier New";
+		}
+
+		span.CMDOutputRedChar {
+			mso-style-name: "CMD Output Red Char";
+			mso-style-link: "CMD Output Red";
+			font-family: "Courier New";
+			color: #EE0000;
+		}
+
+		p.Drawing,
+		li.Drawing,
+		div.Drawing {
+			mso-style-name: Drawing;
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .25in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		p.TableAnswer,
+		li.TableAnswer,
+		div.TableAnswer {
+			mso-style-name: "Table Answer";
+			margin-top: 3.0pt;
+			margin-right: 0in;
+			margin-bottom: 3.0pt;
+			margin-left: 0in;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			color: white;
+		}
+
+		span.Heading2GrayDnT {
+			mso-style-name: "Heading 2 Gray DnT";
+			font-family: "Arial", sans-serif;
+			border: none;
+			background: #D9D9D9;
+			font-weight: normal;
+		}
+
+		p.BodyTextL50Answer,
+		li.BodyTextL50Answer,
+		div.BodyTextL50Answer {
+			mso-style-name: "Body Text L50 Answer";
+			mso-style-link: "Body Text L50 Answer Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			margin-left: .5in;
+			background: #D9D9D9;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		span.BodyTextL50Char {
+			mso-style-name: "Body Text L50 Char";
+			mso-style-link: "Body Text L50";
+		}
+
+		span.BodyTextL50AnswerChar {
+			mso-style-name: "Body Text L50 Answer Char";
+			mso-style-link: "Body Text L50 Answer";
+			background: #D9D9D9;
+			font-weight: bold;
+		}
+
+		p.BodyTextL25Answer,
+		li.BodyTextL25Answer,
+		div.BodyTextL25Answer {
+			mso-style-name: "Body Text L25 Answer";
+			mso-style-link: "Body Text L25 Answer Char";
+			margin-top: 6.0pt;
+			margin-right: 0in;
+			margin-bottom: 6.0pt;
+			/* margin-left: .25in; */
+			margin-left: 24px;
+			background: #D9D9D9;
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		span.BodyTextL25AnswerChar {
+			mso-style-name: "Body Text L25 Answer Char";
+			mso-style-link: "Body Text L25 Answer";
+			background: #D9D9D9;
+			font-weight: bold;
+		}
+
+		span.DevConfigsChar {
+			mso-style-name: "DevConfigs Char";
+			mso-style-link: DevConfigs;
+			font-family: "Courier New";
+		}
+
+		span.AnswerGray {
+			mso-style-name: "Answer Gray";
+			font-family: "Arial", sans-serif;
+			color: windowtext;
+			border: none;
+			/* background: #D9D9D9; */
+			font-weight: bold;
+		}
+
+		span.DnTbold {
+			mso-style-name: "DnT bold";
+			font-family: "Arial", sans-serif;
+			font-weight: bold;
+		}
+
+		span.DnTnobold {
+			mso-style-name: "DnT no bold";
+		}
+
+		span.UnresolvedMention1 {
+			mso-style-name: "Unresolved Mention1";
+			color: #605E5C;
+			background: #E1DFDD;
+		}
+
+		.MsoChpDefault {
+			font-size: 10.0pt;
+			font-family: "Arial", sans-serif;
+		}
+
+		/* Page Definitions */
+		@page WordSection1 {
+			size: 8.5in 11.0in;
+			margin: 76.3pt .75in .9in .75in;
+		}
+
+		div.WordSection1 {
+			page: WordSection1;
+		}
+
+		/* List Definitions */
+		ol {
+			margin-bottom: 0in;
+		}
+
+		ul {
+			margin-bottom: 0in;
+		}
+
+
+		/* Add css for textarea */
+
+		.AnswerGray {
+			padding: 0.2rem;
+		}
+
+		.question-action-container {
+			margin-top: 6pt;
+			margin-right: 0in;
+			margin-bottom: 6pt;
+			/* margin-left: 0.5in; */
+			margin-left: 24px;
+		}
+
+		.show-answer,
+		.hide-answer {
+			padding: 0.5rem 1rem;
+			background-color: #3d692b;
+			color: #fff;
+			border: 0px;
+			cursor: pointer;
+		}
+
+		.global-action-container {
+			display: flex;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.global-action-container .btn__action {
+			margin: 10px;
+		}
+
+		.btn__container button.btn__action:not(.is-full-width) {
+			width: calc(50% - .5%);
+		}
+
+		.btn-text {
+			border: 0px;
+			padding: 0.5rem 1rem;
+			background-color: #3d692b;
+			color: #fff;
+			border-radius: 0;
+			cursor: pointer;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		/* dark theme */
+		.dark-theme {
+			color: #fff;
+		}
+		
+		.dark-theme p.ConfigWindow, .dark-theme li.ConfigWindow, .dark-theme div.ConfigWindow {
+			mso-style-name: "Config Window";
+			color: #212328;
+		}
+		
+		.dark-theme h4{
+			color: #212328;
+		}
+		
+		.dark-theme .MsoTitle span{
+			color: #fff !important;
+		}
+		
+		.dark-theme textarea{
+			background-color: #212328;
+			color: #fff;
+		}
+		
+		.dark-theme .BodyTextL25Answer{
+			background-color: #000;
+			color: #fff;
+		}
+		
+		.dark-theme .BodyTextL25Answer > span{
+			padding: 4px;
+		}
+		
+		.dark-theme .BodyTextL25Answer span{
+			color: #fff;
+		}
+		
+		.dark-theme table tbody tr td{
+			color: #fff !important;
+		}
+		
+		.show-all-answers, .hide-all-answers, .clear-all-responces {
+			background-color: #6abf4b;
+		}
+
+.btn-text {
+	border: 0px;
+	padding: 0.5rem 1rem;
+	background-color: #6abf4b;
+	color: #fff;
+	margin-top: 1rem;
+	border-radius: 0;
+	cursor: pointer;
+}
+.show-answer,
+.hide-answer {
+	padding: 0.5rem 1rem;
+	background-color: #00bceb;
+	color: #fff;
+	border: none;
+	margin-top: 1rem;
+	cursor: pointer;
+}
+		
+	p.TableHeading,
+        li.TableHeading,
+        div.TableHeading {
+            color: #000;
+        }
+
+
+	</style>
+
+</head>
+
+
+<body lang=EN-US link=blue vlink=purple>
+
+	<div class=WordSection1>
+
+		<p class=MsoTitle><span style='color:#EE0000;font-weight:normal'><b><span style='color:windowtext'>Lab - Attack
+						Analysis</span></b></span></p>
+
+		<h1 style='margin-left:.25in;text-indent:-.25in'>Objectives</h1>
+
+		<p class=BodyTextL25Bold>Part 1: Investigate IOCs</p>
+
+		<p class=BodyTextL25Bold>Part 2: Investigate the Malicious Activity</p>
+
+		<p class=BodyTextL25Bold>Part 3: Investigate the More Malicious Activity</p>
+
+		<h1 style='margin-left:.25in;text-indent:-.25in'>Introduction</h1>
+
+		<p class=BodyTextL25>Once an alert has been reported and validated, the digital
+			forensics and incident response analysis must be completed. In a large
+			organization, members of the incident response team (i.e., CSIRT) are
+			responsible for this process. The response team typically consists of veteran
+			threat hunters and select cybersecurity analysts and technicians. To help the
+			incident response team, various tools and resources are available.</p>
+
+		<p class=BodyTextL25>In this lab, you will use the ANY.RUN online interactive
+			malware hunting service and the Mitre ATT&amp;CK Matrix to investigate
+			potential malicious activity. </p>
+
+		<p class=BodyTextL25>ANY.RUN offers a free service in which community users can
+			upload suspected malware files for analysis. It provides a very rich set of
+			analyses features that lets you safely investigate the behavior of malware. The
+			ANY.RUN sandbox can dynamically run the malware and display details of what the
+			malware does in safe and secure analysis interface. </p>
+
+		<p class=BodyTextL25><b>Note:</b> You will use the free version of ANY.RUN
+			which has limited features and can only run malware samples on a 32-bit Windows
+			7 virtual machine. Two more advanced versions are available for a monthly
+			subscription. The Searcher and Hunter versions provide access advanced features
+			and other operating systems (e.g., Windows 10). </p>
+
+		<h1 style='margin-left:.25in;text-indent:-.25in'>Scenario</h1>
+
+		<p class=BodyTextL25>You are working a cyber technician and you have been
+			selected to work with the incident response team at XYZ, Inc. A cybersecurity
+			analyst has asked you to evaluate hash values from security alerts that have
+			been generated by the Intrusion Prevention System (IPS). The IPS has flagged a
+			series of events as potentially malicious. </p>
+
+		<p class=BodyTextL25>You will use the ANY.RUN online tool and Mitre ATT&amp;CK
+			Matrix to perform forensic analysis based on the provided hash values.</p>
+
+		<h1 style='margin-left:.25in;text-indent:-.25in'>Required Resources</h1>
+
+		<p class=Bulletlevel1>&#9679;<span style='font-size:7.0pt;font-family:Webdings'><span
+					style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span>A device with
+			internet access</p>
+
+		<h1 style='margin-left:0in;text-indent:0in'>Instructions</h1>
+
+		<h2 style='margin-left:0in;text-indent:0in'>Part 1: Investigate IOCs</h2>
+
+		<p class=BodyTextL25>In this part, you will use the ANY.RUN website to
+			categorize identified hash values to see if they are malicious, suspicious, or
+			benign.</p>
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 1: Explore the ANY.RUN site</h3>
+
+		<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Open a web browser and navigate to the <b>ANY.RUN </b>webpage.</p>
+
+		<p class=BodyTextL25 style='margin-left:.5in;text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>At the top
+			of webpage are available links starting with “WHY US”. Click <b>SERVICE</b>
+			from the horizontal menu to move to the sandbox service interface.</p>
+
+		<p class=SubStepAlpha>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click one of the countries in the map to show the list of public
+			submissions from that country. Community users can view a detailed analysis for
+			each submission.</p>
+
+		<p class=SubStepAlpha>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Explore and become familiar with this dashboard. The ANY.RUN tool has
+			many options available that will be of great value to a cybersecurity analyst.
+			Use this opportunity to learn more about the tool.</p>
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 2: Validate Suspicious Hashes</h3>
+
+		<p class=BodyTextL25>In this step, you will investigate some MD5 hash of files
+			that the cybersecurity analyst has identified in the table below. You will
+			verify if they are potentially malicious, suspicious, or benign.</p>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>a.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>To search hash values, click <b>Public Tasks</b> in the menu on the left.</p>
+
+		<p class=BodyTextL50>This opens the <b>Public submissions</b> page which displays
+			a list of public tasks arranged by the most recent submission. Notice that each
+			task is labelled with the analysis verdict identifying the submission as no
+			threat detected (i.e., benign), suspicious activity, or malicious activity. </p>
+
+		<p class=MsoListParagraph style='text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>The Cybersecurity analyst has asked you to validate several hash values.
+			Complete the following table by copying and pasting the identified MD5 hash
+			value in the search box in the upper right of the window and press <b>Enter</b>.</p>
+
+		<div class="question-container">
+
+			<table class=LabTableStyle align=center border=1 cellspacing=0 cellpadding=0
+				summary="This table allows to record if the file is malicious and the associated filename. Enter your answers in the cells labeled &quot;blank&quot;"
+				width=0 style='width:7.0in;border-collapse:collapse;border:none'>
+				<thead>
+					<tr style='page-break-inside:avoid'>
+						<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+   background:#DBE5F1;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>IOCs MD5 Hash Values</p>
+						</td>
+						<td width=198 valign=bottom style='width:148.3pt;border:solid windowtext 1.0pt;
+   border-left:none;background:#DBE5F1;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>Malicious / Suspicious / Benign</p>
+						</td>
+						<td width=204 valign=bottom style='width:153.35pt;border:solid windowtext 1.0pt;
+   border-left:none;background:#DBE5F1;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>Associated Filename </p>
+						</td>
+					</tr>
+				</thead>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>2fd03624e271ec70349ce56fb30f563b</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>c419df63e0121d72411285780c2fc6cc</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>3acf52e5a62d50bdcedcb89174bf5492</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>766b774626947000e67e0b318f558e94</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>422a6ca28a7e4d8e5e498523c6f049f4</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>b497845beb135740e6caed03a2020036</b></p>
+					</td>
+					<td width=198 valign=top style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+					<td width=204 valign=top style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<!-- <p class=TableAnswer>blank</p> -->
+						<div class=AnswerLineL50>
+							<fieldset style="font-size:10px;font-style:normal;color:gray;">
+								<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+									placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+							</fieldset>
+					</td>
+				</tr>
+			</table>
+
+		
+
+		<p class=ConfigWindow>Blank Line, No additional information</p>
+
+		<p class=BodyTextL25><b>Note:</b> These malicious hash values will also be used
+			in Part 2 and 3.</p>
+
+			<p>
+				<span class=AnswerGray style="background-color: transparent;">
+
+			<table class=LabAnswerTable align=center border=1 cellspacing=0 cellpadding=0
+				summary="This table allows to record if the file is malicious and the associated filename. Enter your answers in the cells labeled &quot;blank&quot;"
+				width=0 style='width:7.0in;border-collapse:collapse;border:none'>
+				<thead>
+					<tr style='page-break-inside:avoid'>
+						<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+   background:#F2DBDB;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>IOCs MD5 Hash Values</p>
+						</td>
+						<td width=198 valign=bottom style='width:148.3pt;border:solid windowtext 1.0pt;
+   border-left:none;background:#F2DBDB;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>Malicious / Suspicious / Benign</p>
+						</td>
+						<td width=204 valign=bottom style='width:153.35pt;border:solid windowtext 1.0pt;
+   border-left:none;background:#F2DBDB;padding:.7pt 5.75pt .7pt 5.75pt'>
+							<p class=TableHeading>Associated Filename </p>
+						</td>
+					</tr>
+				</thead>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>2fd03624e271ec70349ce56fb30f563b</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Malicious</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>wireframe.exe</p>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>c419df63e0121d72411285780c2fc6cc</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Suspicious</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Updreg.EXE</p>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>3acf52e5a62d50bdcedcb89174bf5492</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Benign</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>BACs_Payment2847.html</p>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>766b774626947000e67e0b318f558e94</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Malicious</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>gh2st.exe</p>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>422a6ca28a7e4d8e5e498523c6f049f4</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Malicious</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>file1.exe</p>
+					</td>
+				</tr>
+				<tr style='page-break-inside:avoid'>
+					<td width=270 valign=bottom style='width:202.35pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText><b>b497845beb135740e6caed03a2020036</b></p>
+					</td>
+					<td width=198 valign=bottom style='width:148.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>Suspicious</p>
+					</td>
+					<td width=204 valign=bottom style='width:153.35pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:.7pt 5.75pt .7pt 5.75pt'>
+						<p class=TableText>winlogon.exe</p>
+					</td>
+				</tr>
+			</table>
+			</span>
+			</p>
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+
+		</div>
+
+		<p class=ConfigWindow>Blank Line, No additional information</p>
+
+		<h2 style='margin-left:0in;text-indent:0in'>Part 2: Investigate the Malicious
+			Activity</h2>
+
+		<p class=BodyTextL25>In this part, you will use the ANY.RUN website to
+			investigate the malicious activity identified in the previous part. From the
+			ANY.RUN tool, you will pivot to different tools to examine the malicious
+			activity. Finally, you will use the Mitre ATT&amp;K Matrix to identify the
+			tactics and techniques used by the threat actors.</p>
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 1: Investigate the first
+			malicious hash process tree.</h3>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>a.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>From the ANY.RUN Public submissions page, search for the first
+			identified malicious hash value in Part 1, Step 2b.</p>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the resulting entry to open it in the ANY.RUN sandbox. The ANY.RUN
+			analysis interface provides insights to many aspects of the malware behavior.</p>
+
+		<p class=BodyTextL50><b>Note:</b> If more than one submission is displayed,
+			then click the submission with the <b>wireframe.exe</b> filename.</p>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>c.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>On the right-hand side of the screen, you will see the process tree
+			which displays a group of horizontal blue bars in a nested tree-like structure.
+			It shows all the software processes that were used in the exploit. Some of them
+			are windows software components, and others are part of the malware.</p>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What are the names of the processes
+			used in this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>wireframe.exe, cmd.exe,
+							timeout.exe, and NvidiaGPU.exe.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>wireframe</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>.exe</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, cmd.exe,
+timeout.exe, and NvidiaGPU.exe.</span></span></span></p> -->
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 2: Investigate the malicious
+			activity text report.</h3>
+
+		<p class=BodyTextL25>Above the process tree are three text boxes labelled “Text
+			report”, “Processes graph”, and ATT&amp;CK matrix. </p>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>a.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the <b>Text report</b> to open a report in a new web browser
+			window.</p>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Scroll through the document to see the generated report.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the SHA256 value associated
+			with this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span
+							style='border:none'>9C83A89EA0E56D5AF9AA37D2DABED20B2412DB8C9694A13128EA173A73557487</span></span></span>
+			</p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>9C83A89EA0E56D5AF9AA37D2DABED20B2412DB8C9694A13128EA173A73557487</span></span></span></p> -->
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 3: Investigate the malicious
+			activity processes graph.</h3>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>a.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage and click the <b>Processes graph</b>. </p>
+
+		<h4>Questions:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>Which process was executed first?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>wireframe.exe</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>wireframe.exe</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the process name in the red
+			highlighted box?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>nvidiagpu.exe</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>n</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>vidia</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>gpu</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>.exe</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='margin-top:0in;text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Click the
+			red highlighted box.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the identified danger?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>ASYNCRAT was detected</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>ASYNCRAT was detected</span></span></span></p> -->
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 4: Investigate the malicious
+			activity in the ATT&amp;CK matrix</h3>
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>a.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage and click the <b>ATT&amp;CK matrix</b> to
+			open the Mitre ATT&amp;CK Matrix page.</p>
+
+		<h4>Questions:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>How many Tactics, Techniques, and
+			Events are there related to this malicious activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>4 tactics, 5 techniques, and 16 events.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>4 tactics, 5 techniques, and 16 events.</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='margin-top:0in'>What are the tactics that were used
+			by the threat actors?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Execution, Persistence, Privilege escalation, and Discovery</span></span></span>
+			</p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Execution, </span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>P</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>ersistence,
+</span></span></span><span class=AnswerGray><span style='border:none'><span
+style='border:none'>P</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>rivilege escalation, and </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>D</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>iscovery</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>b.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the various techniques that were used.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>Which technique is identified as a
+			Danger?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Boot or Logon Autostart Executio</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Boot or Log</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>o</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>n
+Autostart Execution</span></span></span></p> -->
+
+		<h2 style='margin-left:0in;text-indent:0in'>Part 3: Investigate the More
+			Malicious Activity</h2>
+
+		<p class=BodyTextL25>In this part, you will repeat the steps in Part 2 to
+			examine the other two malicious entries discovered in Part 1.</p>
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 1: Investigate the second
+			malicious hash process tree.</h3>
+
+		<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the ANY.RUN Public submissions page, and search for the second
+			identified malicious hash value discovered in Part 1, Step 2b.</p>
+
+		<p class=SubStepAlpha>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the resulting entry to open it in the ANY.RUN sandbox.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the name in the process
+			tree of the process used in this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>gh2st.exe</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>gh2st</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>.exe</span></span></span></p> -->
+
+		<p class=SubStepAlpha>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Open the Text report.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the SHA256 value associated
+			with this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span
+							style='border:none'>88DD2037D0C43ABACEBAD866DF3F8CCD2EE7D64B01405AA6756A3A1C2FAC28FA</span></span></span>
+			</p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>88DD2037D0C43ABACEBAD866DF3F8CCD2EE7D64B01405AA6756A3A1C2FAC28FA</span></span></span></p> -->
+
+		<p class=SubStepAlpha>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage and open<b> </b>the <b>Processes graph</b>.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What are the identified dangers?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Steals credentials from Web Browsers, Stealing
+							of credential data, Actions
+							looks like stealing of personal data, Connects
+							to CnC server, and REDLINE
+							was detected.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Steals credentials from Web Browsers</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Stealing
+of credential da<span style='border:none'>ta</span></span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Actions
+looks like stealing of personal data</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Connects
+to CnC server</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>, and </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>REDLINE
+was detected.</span></span></span></p> -->
+
+		<p class=SubStepAlpha>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage open the <b>ATT&amp;CK matrix</b>.</p>
+
+		<h4>Questions:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>How many Tactics, Techniques, and
+			Events are there related to this malicious activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>3 tactics, 7 techniques, and 245 events.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>3</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'> tactics, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>7</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>
+techniques, and </span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>245</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'> events.</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='margin-top:0in'>What are the tactics that were used
+			by the threat actors?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Credential access, Discovery, and Collection</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Credential access, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>D</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>iscovery</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, and </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>C</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>ollection</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='text-indent:-.25in'>c.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the various techniques that were used.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in;text-indent:-.25in'>d.<span
+				style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Which techniques
+			are identified as a Danger?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Credential from Password Stores, Unsecured Credentials, Software Discovery, and
+							Email Collection</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Credential from Password Stores, Unsecured Credentials,
+Software Discovery, and Email Collection</span></span></span></p> -->
+
+		<h3 style='margin-left:0in;text-indent:0in'>Step 2: Investigate the third
+			malicious hash process tree</h3>
+
+		<p class=SubStepAlpha>a.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the ANY.RUN Public submissions page, and search for the third
+			identified malicious hash value discovered in Part 1, Step 2b.</p>
+
+		<p class=SubStepAlpha>b.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Click the resulting entry to open it in the ANY.RUN sandbox.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the name in the process
+			tree of the process used in this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>file1.exe</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>file1.exe</span></span></span></p> -->
+
+		<p class=SubStepAlpha>c.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Open the <b>Text report</b>.</p>
+
+		<h4>Questions:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What is the SHA256 value associated
+			with this activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span
+							style='border:none'>F7B1639B6C4CA677BA279B945A94C5F6D67E6C4C89FD39CD8BE882A8A7CDFCAA</span></span></span>
+			</p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>F7B1639B6C4CA677BA279B945A94C5F6D67E6C4C89FD39CD8BE882A8A7CDFCAA</span></span></span></p> -->
+
+		<p class=SubStepAlpha>d.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage and open<b> </b>the <b>Processes graph</b>.</p>
+
+		<h4>Question:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>What Dangers does it display?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Steals credentials from Web Browsers, Stealing
+							of credential data, Actions
+							looks like stealing of personal data, Connects
+							to CnC server, REDLINE
+							was detected.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Steals credentials from Web Browsers</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Stealing
+of credential data</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Actions
+looks like stealing of personal data</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Connects
+to CnC server</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>REDLINE
+was detected</span></span></span><span class=AnswerGray><span style='border:
+none'><span style='border:none'>.</span></span></span></p> -->
+
+		<p class=SubStepAlpha>e.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Return to the analysis webpage open the <b>ATT&amp;CK matrix</b>.</p>
+
+		<h4>Questions:</h4>
+
+		<p class=BodyTextL50 style='margin-top:0in'>How many Tactics, Techniques, and
+			Events are there related to this malicious activity?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>3 tactics, 7 techniques, and 1525 events.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>3</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'> tactic</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>s</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>7</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>
+techniques, and </span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>1525 </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>events.</span></span></span></p> -->
+
+		<p class=BodyTextL50 style='margin-top:0in'>What are the tactics that were used
+			by the threat actors?</p>
+
+		<!-- <p class=AnswerLineL50>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Credential Access, Discovery, and Collection</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL50><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Credential Access, </span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>Discovery</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, and
+Collection</span></span></span></p> -->
+
+		<h1 style='margin-left:.25in;text-indent:-.25in'>Reflection Questions</h1>
+
+		<p class=ReflectionQ>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Explain how forensic analysis and incident response is very much like
+			law enforcement trying to solve a criminal case.</p>
+
+		<!-- <p class=AnswerLineL25>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>Like a police detective, you must validate that a crime has happened, collect
+							all of the possible evidence, and
+							analyze the result.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL25><span class=AnswerGray><span style='border:none'><span
+style='border:none'>Like a police detective, you must<span style='border:none'>
+validate that a crime has happened</span></span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, collect
+all of the possible </span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>evidence</span></span></span><span
+class=AnswerGray><span style='border:none'><span style='border:none'>, and
+analyze the result</span></span></span><span class=AnswerGray><span
+style='border:none'><span style='border:none'>. </span></span></span></p> -->
+
+		<p class=ReflectionQ>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+			</span>Two of our malicious activities referred to Redline. What is Redline?</p>
+
+		<!-- <p class=AnswerLineL25>Type your answers here.</p> -->
+		<div class="question-container">
+			<div class=AnswerLineL50>
+				<fieldset style="width:50%;font-size:10px;font-style:normal;color:gray;">
+					<legend>Answer Area</legend><textarea rows="3" name="answerArea"
+						placeholder="Type your answer here." style="border:none;width:100%;"></textarea>
+				</fieldset>
+			</div>
+
+			<p class=BodyTextL25Answer><span class=AnswerGray><span style='color:black;
+border:none'><span style='border:none'>RedLine Stealer is a malicious program that collects users' confidential data
+							from browsers, systems, and installed software. It also infects operating systems with other
+							malware.</span></span></span></p>
+
+			<div class="question-action-container">
+				<button class="MetroBtn show-answer">Show Answer</button>
+				<button class="MetroBtn hide-answer">Hide Answer</button>
+			</div>
+		</div>
+
+		<!-- <p class=BodyTextL25><span class=AnswerGray><span style='border:none'><span
+style='border:none'>RedLine Stealer is a malicious program that collects users'
+co<span style='border:none'>nfidential data from browsers, systems, and
+installed software. It also infects operating systems with other malware.</span></span></span></span></p> -->
+
+		<p class=ConfigWindow>End of document</p>
+
+		<div class="global-action-container btn__container">
+			<button class="show-all-answers btn-text btn__action">Show All Answers</button>
+			<button class="hide-all-answers btn-text btn__action hidden">Hide All Answers</button>
+			<button class="clear-all-responces btn-text btn__action">Clear My Responses</button>
+		</div>
+
+		<div id="footerDIV"><span><br>
+				<hr><span style="padding-right:5px;float:left;font-family:arial;font-size:12px;">© 2017 - 2022 Cisco
+					and/or its affiliates. All rights reserved. Cisco Public</span><br>
+			</span></div>
+
+	</div>
+
+</body>
+<script>
+
+	window.addEventListener('load', function () {
+		console.log('loaded');
+		document.querySelectorAll(".AnswerGray").forEach(function (ele) {
+			ele.classList.add("hidden");
+		})
+		document.querySelectorAll(".hide-answer").forEach(function (ele) {
+			ele.classList.add("hidden");
+		})
+		document.querySelectorAll(".show-answer").forEach(function (ele) {
+			ele.addEventListener("click", function (e) {
+				e.currentTarget.nextElementSibling.classList.remove("hidden");
+				e.currentTarget.closest('.question-container').querySelectorAll(".AnswerGray").forEach(function (ele) {
+					ele.classList.remove("hidden");
+				})
+				ele.classList.add("hidden");
+			})
+		})
+		document.querySelectorAll(".hide-answer").forEach(function (ele) {
+			ele.addEventListener("click", function (e) {
+				e.currentTarget.previousElementSibling.classList.remove("hidden");
+				e.currentTarget.closest('.question-container').querySelectorAll(".AnswerGray").forEach(function (ele) {
+					ele.classList.add("hidden");
+				})
+				ele.classList.add("hidden");
+			})
+		})
+		var event = new Event('click', {
+			bubbles: true,
+			cancelable: true,
+		});
+		document.querySelectorAll(".show-all-answers").forEach(function (ele) {
+			ele.addEventListener("click", function (e) {
+				e.currentTarget.nextElementSibling.classList.remove("hidden");
+				ele.classList.add('hidden');
+				document.querySelectorAll(".show-answer").forEach(function (ele) {
+					ele.dispatchEvent(event);
+				})
+			})
+		})
+
+		document.querySelectorAll(".hide-all-answers").forEach(function (ele) {
+			ele.addEventListener("click", function (e) {
+				e.currentTarget.previousElementSibling.classList.remove("hidden");
+				ele.classList.add('hidden');
+				document.querySelectorAll(".hide-answer").forEach(function (ele) {
+					ele.dispatchEvent(event);
+				})
+			})
+		})
+
+		document.querySelectorAll(".clear-all-responces").forEach(function (ele) {
+			ele.addEventListener("click", function (e) {
+				document.querySelectorAll("textArea").forEach(function (ele) {
+					ele.value = "";
+				})
+			})
+		})
+
+
+
+	})
+</script>
+
+</html>

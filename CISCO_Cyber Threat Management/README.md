@@ -891,6 +891,14 @@ It is a model of Intrusion analysis made up of four parts. the model represents 
 
 ![](diamond.png)
 
+* **Adversary**, threat actor
+
+* **Infrastructure**, network path used for the exploit
+
+* **Victim**, can be a person, resource, or asset
+
+* **Capability**, tools and techniques used by an adversary
+
 *"The adversary uses the infrastructure to connect to the victim. The adversary develops capability to exploit the victim"*
 
 **Important elements:**
@@ -925,4 +933,90 @@ Every event can be modeled using the Diamond Model.
 
 ![](killdiamond.png)
 
+Attack analysis lab: [here](attlab.html)
+
 ---
+
+## Incident Response
+
+Incident response involves the methods, policies, and procedures that are used by an organization to respond to a cyberattack. The aims of incident response are to limit the impact of the attack, assess the damage caused, and implement recovery procedures.
+
+The **NIST 800-61r2** provides guidelines for incident handling.
+
+The first step for an organization is to establish a **computer security incident response capability [CSIRC]**. NIST recommends creating policies, plans, and procedures for establishing and maintaining a CSIRC:
+
+* **Policies elements** must be reviewed regularly to adjust it to meet the goals of the roadmap that has been laid out. It is composed by:
+  
+  * Statement of management commitment
+  
+  * Purpose and objectives of the policy
+  
+  * Scope of the policy
+  
+  * Definition of computer security incidents and related terms
+  
+  * Organizational structure and definition of roles, responsibilities, and levels of authority
+  
+  * Prioritization of severity ratings of incidents
+  
+  * Performance measures
+  
+  * Reporting and contact forms
+
+* **Plan elements** will ensure that each party involved in the incident response has a clear understanding of not only what they will be doing, but what others will be doing as well. Those are the elements:
+  
+  * Mission
+  
+  * Strategies and goals
+  
+  * Senior management approval
+  
+  * Organizational approach to incident response
+  
+  * Communication methods used by incident response team with the organization and other organizations
+  
+  * Metrics for measuring the incident response capability
+  
+  * How the program fits into overall organization
+
+* **Procedure elements** are followed during an incident response and must follow the incident response plan. Composed by:
+  
+  * Technical processes
+  
+  * Using techniques
+  
+  * Filling out forms
+  
+  * Following checklists
+  
+  Those are typical **standard operating procedures [SOPs]** that minimize errors that may be caused by personnel that are under stress while participating in incident handling.
+
+## Incident response Stakeholders
+
+**Managers** create the policies that everyone must follow. Management must coordinate the incident response with other stakeholders.
+
+**Information Assurance** are needed in order to change things such as firewalls rules during some stages of incident management such as containment or recovery.
+
+**IT Support** are the most useful figure, because they work with the technology in the organization.
+
+**Legal department** must be involved during the procedures and for reviewing the policies and plans.
+
+**Public affairs and Media relations** useful for informing the public.
+
+**Human Resources** needed to perform disciplinary measures if an incident caused by an employee occurs.
+
+**Business Continuity Planners**
+
+**Physical Security and Facilities Management**
+
+## Cybersecurity Maturity Model Certification [CMMC]
+
+It is a framework created to assess the ability of an organization that perform functions for the U.S. Department of Defense to protect the military supply chain.
+
+Divided by levels *"the more, the better"*:
+
+2. Basic NIST process, detect, report, and prioritize events
+
+3. Report incidents with documents to all stackholders + test of capabilities
+
+4. 
