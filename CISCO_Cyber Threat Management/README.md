@@ -1009,6 +1009,8 @@ The first step for an organization is to establish a **computer security inciden
 
 **Physical Security and Facilities Management**
 
+---
+
 ## Cybersecurity Maturity Model Certification [CMMC]
 
 It is a framework created to assess the ability of an organization that perform functions for the U.S. Department of Defense to protect the military supply chain.
@@ -1017,6 +1019,140 @@ Divided by levels *"the more, the better"*:
 
 2. Basic NIST process, detect, report, and prioritize events
 
-3. Report incidents with documents to all stackholders + test of capabilities
+3. Report incidents with documents to all stakeholders + test of capabilities
 
-4. 
+4. Use "knowledge of attacker tactics, techniques, and procedures [TTP]" to refine incident response planning and execution + security operation center [SOC] 24/7
+
+5. Use computer forensic data gathering techniques including the secure handling and storage of forensic data. Use manual and automated real-time responses to potential incidents (using known patterns)
+
+---
+
+## NIST incident response
+
+1.  **Preparation**
+   
+   Members of the CSIRT should continually develop knowledge of emerging threats.
+   
+   * It must allow communication between people, for example stakeholders, other CSIRTs, and law enforcement ...
+   
+   * Facilities to host the response team and the SOC are created
+   
+   * HW and SW for incident analysis and mitigation must be acquired
+   
+   * Risk assessments are used to implement controls that will limit the number of incidents
+   
+   * Validation of security hardware and software deployment is performed on end-user devices, servers, and network devices
+   
+   * Training material must be update
+   
+   * List of critical assets, network diagrams, port lists, hashes of critical files, and baseline readings of system and network activity
+   
+   * clean OS images and application installation files may be needed for recover a computer from an incident
+
+2. **Detection and Analysis**
+   
+   CSIRT must identify, analyze and validate an incident.
+   
+   * **Attack vectors**, Web, Email, Loss or Theft, Impersonation, Attrition (brute force), and Media (external storage/removable media)
+   
+   * **Detection**, must determine the type of incident and the extent of the effect; there are two categories for the signs of an incident:
+     
+     * *Precursor*, sign that an incident can occur in the future.
+     
+     * *Indicator*, sign that an incident might already have occurred or is currently occuring
+   
+   * **Analysis**, using predefined process and documenting each step, it is possible to find useful metrics for known indicators
+   
+   * **Scoping**, networks, systems, or application are the incident's scope
+   
+   * **Incident Notification**, incident response teams need to notify the appropriate stakeholdes
+
+3. **Containment, Eradication, and Recovery**
+   
+   CSIRT implements procedures to contain the threat, eradicate the impact on organizational assets, and use backups to restore data and software (in necessary re-start from 2).
+   
+   * **Containment Strategy**, how to contain the threat? Many times it is impossible to directly unplug the compromised host from the network.
+   
+   * **Evidence**, Logging is vital, those are the most important items to log when documenting evidence used in the chain custody:
+     
+     * Location of the recovery and Storage of all evidence
+     
+     * Identifying criteria for all evidence such as serial number, MAC, hostname and IP
+     
+     * Identification information for all the people that participated in collecting or handling the evidence
+     
+     * Time and Date for each evidence
+
+4. **Post-Incident Activities**
+   
+   CSIRT documents how the incident wad handled, recommends changes for future responses and how to avoid reoccurrence.
+
+---
+
+## Incident Data Collection and Retention
+
+The collection of vital evidences and other data is an important priority. Following the *step 3 of the NIST response life cycle* it is possible to collect all the important logs,. ...
+
+There should be a policy in place in each organization that outlines how long the evidence of an incident is retained [months-years]. Compliance regulation may mandate the retention period. 
+
+Factor for evidence retention:
+
+* **Prosecution**, the attacker will be prosecuted because of a security incident, the evidence should be retained until after all legal actions have been completed
+
+* **Data Type**, Specific type of data should be kept for a specific period of time
+
+* **Cost** the bigger the expensive
+
+---
+
+# Disaster Recovery
+
+Types of disasters:
+
+* **Natural disasters** differ depending on location and are sometimes difficult to predict. They can be Geological, Meteorological, Heath disasters, and Miscellaneous disasters such as fires, floods, solar storm and avalanches
+
+* **Human-caused disasters** involve people or organizations and fall into the Labor events (strikes), Sociopolitical (vandalism, sabotage), Materials events such as hazardous spills and fires, and Utility disruptions such as power failures, communications outages, ...
+
+## Disaster Recovery Plan [DRP]
+
+It includes the activities the organization takes to assess, salvage, repair and restore damaged facilities or assets
+
+## Disaster Recovery Controls
+
+Minimize the effects of a disaster so that the organization can resume operation
+
+* **Preventive controls** that prevent a disaster from occurring (identify and mitigate risk)
+
+* **Detective controls** that discover unwanted events, uncovering new potential threats
+
+* **Corrective controls** for restoring the systems after a disaster or an event
+
+---
+
+## Business Continuity Planning [BCP]
+
+It is a broader plan than a disaster recovery plan because it can include getting critical systems to another location while repair of the original facility is underway.
+
+In order to have a BCP a Business Impact Analysis [BIA] is needed so we can have the identification of critical business processes, resources and relationships between systems. BIA focuses on the consequences of the interruption to critical business functions and examines the key consideration listed here:
+
+* Recovery Time Objectives [RTO], maximum tolerable length of time that a system, network or application can be unavailable
+
+* Recovery Point Objectives [RPOs], avg lifespan of a given asset before it fails
+
+* Mean Time of Repair [MTTR]
+
+* Mean Time between Failures [MTBF], avg time that elapses between one failure and the next
+
+### Exercising your disaster recovery plan
+
+There are several different methods available to train staff and test the organization's disaster recovery plan:
+
+* **Tabletop**, It is a discussion in which participants sit around a table with a facilitator who supplies information related to a scenario incident and processes that are being examined
+
+* **Functional** test where certain aspects of a plan are tested to see how well they work (how well-prepared personnel is)
+
+* **Operational** exercises, or simulations. These are designed to interrupt services to verify that all aspects of a plan are in place and sufficient to respond
+
+---
+
+---
