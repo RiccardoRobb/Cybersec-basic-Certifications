@@ -1029,7 +1029,7 @@ Divided by levels *"the more, the better"*:
 
 ## NIST incident response
 
-1.  **Preparation**
+1. **Preparation**
    
    Members of the CSIRT should continually develop knowledge of emerging threats.
    
@@ -1156,3 +1156,79 @@ There are several different methods available to train staff and test the organi
 ---
 
 ---
+
+# Module 6 Quiz solutions
+
+> Keeping data backups offsite is an example of which type of disaster recovery control?
+> 
+> * preventive
+
+> What type of exercise interrupts services to verify that all aspects of a business continuity plan are able to respond to a certain type of incident?
+> 
+> * Operational exercise
+
+> According to NIST, which step in the digital forensics process involves identifying potential sources of forensic data, its acquisition, handling, and storage?
+> 
+> * collection
+
+> Which activity is typically performed by a threat actor in the installation phase the Cyber Kill Chain?
+> 
+> * Install a web shell on the target web server for persistent access.
+
+> What is specified in the plan element of the NIST incident response plan?
+> 
+> * metrics for measuring the incident response capability and effectiveness
+
+> Which NIST-defined incident response stakeholder is responsible for coordinating incident response with other stakeholders and minimizing the damage of an incident?
+> 
+> * management
+
+> A cybersecurity analyst has been called to a crime scene that contains several technology items including a computer. Which technique will be used so that the information found on the computer can be used in court?
+> 
+> * unaltered disk image
+
+> Which type of evidence supports an assertion based on previously obtained evidence?
+> 
+> * corroborating evidence
+
+> What is a chain of custody?
+> 
+> * the documentation surrounding the preservation of evidence related to an incident
+
+> What will a threat actor do to create a back door on a compromised target according to the Cyber Kill Chain model?
+> 
+> * Add services and autorun keys
+
+> In which step of the NIST incident response process does the CSIRT perform an analysis to determine which networks, systems, or applications are affected; who or what originated the incident; and how the incident is occurring?
+> 
+> * scoping
+
+> Which type of controls restore the system after a disaster or an event?
+> 
+> * Corrective controls
+
+> Which type of data would be considered an example of volatile data?
+> 
+> * memory registers
+
+> What is the objective the threat actor in establishing a two-way communication channel between the target system and a CnC infrastructure?
+> 
+> * to allow the threat actor to issue commands to the software that is installed on the target
+
+> A company is applying the NIST.SP800-61 r2 incident handling process to security events. What are two examples of incidents that are in the category of precursor? (Choose two.)
+> 
+> * log entries that show a response to a port scan, a newly-discovered vulnerability in Apache web servers
+
+> According to the Cyber Kill Chain model, after a weapon is delivered to a targeted system, what is the next step that a threat actor would take?
+> 
+> * exploitation
+
+> Which task describes threat attribution?
+> 
+> * determining who is responsible for the attack
+
+---
+
+---
+
+@Author: [RiccardoRobb (Robb) · GitHub](https://github.com/RiccardoRobb)
