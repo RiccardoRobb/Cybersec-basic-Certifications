@@ -191,5 +191,3 @@ These are many essential technical services needed for a network to operate
   An organization needs to monitor its domain reputation, including its IP address, to help protect against malicious external domains
 
 * **DNS spoofing**
-  
-  
