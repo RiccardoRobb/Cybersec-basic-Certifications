@@ -627,3 +627,113 @@ Threat actors position themselves between a source and destination to transparen
 ## Session hijacking
 
 Threat actors gain access to the physical network, and then use an MitM attack to hijack a session.
+
+---
+
+---
+
+# TCP
+
+It provides these services:
+
+* **Reliable delivery**
+  
+  TCP incorporates acknowledgments to guarantee delivery, instead of relying on upper-layer protocols to detect and restore errors. If a timely acknowledgment is not received, the sender retransmits the data. Requiring acknowledgments of received data can cause substantial delays.
+
+* **Flow control**
+  
+  TCP implements flow control to address this issue. Rather than acknowledge one segment at a time, multiple segments can be acknowledged with a single acknowledgment segment.
+
+* **Stateful communication**
+  
+  TCP stateful communication between two parties occurs during the TCP three-way handshake.
+
+# TCP attacks
+
+## TCP SYN Flood attack
+
+![](tcpflood.png)
+
+The attacker continually sending TCP SYN session request packets with a random spoofed source IP address to the target. The target replies with a TCP SYN-ACK packet to the spoofed IP address and waits for a TCP ACK packet.
+
+The TCP ACK packet will never arrive to the victim in this way TCP services are denied to legitimate users.
+
+## TCP Reset attack
+
+A TCP connection terminates when it receives a `RST` bit. So a malicious user can send a spoofed packet containing a TCP `RST` packet to one or both endpoints.
+
+## TCP Session Hijacking
+
+The threat actor must spoof the IP address of one host, predict the next sequence number, and send an ACK to the other host. If successful, the threat actor could send, but not receive, data from the target device.
+
+---
+
+# UDP
+
+It is used for real-time applications such as media streaming or VoIP. It is connectionless transport layer protocol.
+
+# UDP Attacks
+
+UDP is not protected by any encryption. You can implement one or add a checksum, but in both cases it is not difficult to change it.
+
+## UDP Flood attacks
+
+All the resources on the network are consumed. The threat actor must use a tool like UDP Unicorn or Low Orbit Ion Cannon. These tools send a flood of UDP packets, often from a spoofed host, to a server on the subnet. This results in a DoS attack.
+
+---
+
+---
+
+# Module 3 Quiz solutions
+
+> Which field in an IPv6 packet is used by the router to determine if a packet has expired and should be dropped?
+> 
+> * Hop limit
+
+> An attacker is using a laptop as a rogue access point to capture all network traffic from a targeted user. Which type of attack is this?
+> 
+> * 
+
+> Which field in the IPv4 header is used to prevent a packet from traversing a network endlessly?
+> 
+> * Time-to-Live
+
+> What is involved in an IP address spoofing attack?
+> 
+> * A legitimate network IP address is hijacked by a rogue node.
+
+> Which type of attack involves the unauthorized discovery and mapping of network systems and services?
+> 
+> * reconnaissance
+
+> In which TCP attack is the cybercriminal attempting to overwhelm a target host with half-open TCP connections?
+> 
+> * SYN flood attack
+
+> How is optional network layer information carried by IPv6 packets?
+> 
+> * inside an extension header attached to the main IPv6 packet header
+
+> A threat actor wants to interrupt a normal TCP communication between two hosts by sending a spoofed packet to both endpoints. Which TCP option bit would the threat actor set in the spoofed packet?
+> 
+> * RST
+
+> A threat actor uses a program to launch an attack by sending a flood of UDP packets to a server on the network. The program sweeps through all of the known ports trying to find closed ports. It causes the server to reply with an ICMP port unreachable message and is similar to a DoS attack. Which two programs could be used by the threat actor to launch the attack? (Choose two.)
+> 
+> * UDP Unicorn, Low Orbit Ion Cannon
+
+> Which term describes a field in the IPv4 packet header used to detect corruption in the IPv4 header?
+> 
+> * header checksum
+
+> What kind of ICMP message can be used by threat actors to map an internal IP network?
+> 
+> * ICMP mask reply
+
+> Users in a company have complained about network performance. After investigation, the IT staff has determined that an attacker has used a specific technique that affects the TCP three-way handshake. What is the name of this type of network attack?
+> 
+> * SYN flood
+
+---
+
+---
