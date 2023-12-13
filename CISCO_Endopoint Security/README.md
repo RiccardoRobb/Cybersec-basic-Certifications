@@ -450,7 +450,7 @@ It is likely to be an organization's most valuable asset. Data loss or data exfi
 
 * **Improper Access control**
 
-Packet Tracer exercise: [here](investigate_threat.pka) and [instructions](investigating_threat.html)
+Packet Tracer exercise: [here](investigate_threat.pka)
 
 ---
 
