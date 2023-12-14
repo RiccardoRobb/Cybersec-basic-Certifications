@@ -737,3 +737,381 @@ All the resources on the network are consumed. The threat actor must use a tool 
 ---
 
 ---
+
+# IP Services
+
+## ARP
+
+Hosts broadcast an ARP request to other hosts on the network segment to determine the MAC address of a host with a particular IP address. All hosts on the subnet receive and process the ARP request. The host with matching IP address in the `ARP request` sends an `ARP reply`.
+
+Any host can send a `gratuitous ARP` so that he says "I'm the owner of IP / MAC" this can be used for malicious purposes.
+
+## ARP Cache poisoning
+
+It can be used to launch various Man-in-the-Middle attacks.
+
+1. `ARP request`, a device requires the MAC address of its default gateway; therefore, it sends an ARP request for a MAC address
+
+2. `ARP reply`, the device updates its ARP cache with the IP and MAC addresses of a device. The device sends a ARP reply to the requesting device.
+
+3. `Spoofed Gratuitous ARP replies`, the threat actor sends two spoofed `gratuitous ARP` replies using its own MAC address for the other destination IP addresses. Now the threat actor is the new default gateway of the device that updates its ARP cache. This is a **MitM attack**.
+   
+   * **Passive ARP poisoning**
+     
+     When the threat actor steal confidential information
+   
+   * **Active ARP poisoning**
+     
+     When the threat actor modifies data in transit or inject malicious data
+
+---
+
+## DNS
+
+The Domain Name Service protocol defines an automated service that matches resource names, such as www.xyz.com, with the required numeric network address (IPv4 or IPv6). It includes the format for queries, responses, and data and uses resource records [RR] to identify the type of DNS response.
+
+## DNS Open Resolver attacks
+
+A DNS open resolver answers queries from clients outside of its administrative domain.
+
+* **DNS cache poisoning attacks**
+  
+  The threat actor sends spoofed, falsified record resource [RR] information to a DNS resolver to redirect users from legitimate sites to malicious sites. DNS cache poisoning attacks can all be used to inform the DNS resolver to use a malicious name server that is providing RR information for malicious activities
+
+* **DNS amplification and reflection attacks**
+  
+  Threat actors send DNS messages to the open resolvers using the IP address of a target host. The server will always reply, so a Dos or DDoS can be carried out in order to hide the true source of an attack
+
+* **Fast flux**
+  
+  The DNS IP addresses are continuously changed within minutes so that it is possible to hide phishing and malware delivery sites and botnets
+
+* **Double IP flux**
+  
+  Threat actors change the hostname to IP address mappings and also change the authoritative name server; it can be used in combination with Fast flux
+
+* **Domain generation algorithms**
+  
+  Used to randomly generate domain names that can then be used as rendezvous point to their command ans control CoC servers
+
+* **DNS Domain shadowing attacks**
+  
+  The threat actor must gather domain account credentials in order to silently create multiple sub-domains to be used during the attacks. These subdomains typically point to malicious servers without alerting the actual owner of the parent domain
+
+## DNS Tunnelling
+
+The DNS is used from threat actors for botnets that are user to spread malware or launch DDoS attacks and phishing attacks.
+
+Threat actors who use DNS tunnelling place non-DNS traffic within DNS traffic. This method often circumvents security solutions. For the threat actor to use DNS tunnelling, the different types of DNS records such as `TXT`, `MX`, `SRV`, `NULL`, `A` or `CNAME` are altered.
+
+A TXT record can store the commands that are sent to the infected host bots as DNS replies. DNS tunnelling attack using TXT works like this:
+
+1. The data is split into multiple encoded chunks
+
+2. Each chunk is placed into a lower level domain name label of the DNS query
+
+3. Because there is no response from the local or networked DNS for the query, the request is sent to the ISP's recursive DNS servers
+
+4. Recursive DNS service will forward the query to the attacker's authoritative name server
+
+5. The process is repeated until all of the queries containing the chunks are sent
+
+6. When the attacker's authoritative name server receives the DNS queries from the infected device, it sends responses for each DNS query, which contains the encapsulated, encoded commands
+
+7. Malware on the compromised host recombines the chunks and executes the commands hidden within
+
+---
+
+## DHCP
+
+DHCP servers dynamically provide IP configuration information to clients.
+
+1. A client broadcasts a `DHCP discover` message
+
+2. The DHCP server responds with an unicast offer that includes addressing information the client can use; `DHCP offer`
+
+3. The client broadcasts a `DHCP request` to tell the server that the client accepts the offer
+
+4. The server replies with a unicast acknowledgment accepting the request; `DHCP ack`
+
+## DHCP Spoofing attacks
+
+It occurs when a rogue DHCP server is connected to the network and provides false IP configuration parameters to legitimate clients.
+
+A rogue server can provide a variety of misleading information:
+
+* **wrong default gateway**
+  
+  The threat actor provide an invalid gateway or the IP address of its host to create a MitM attack
+
+* **wrong DNS server**
+  
+  Threat actor provides an incorrect DNS server address pointing the user to a malicious website
+
+* **wrong IP address**
+  
+  Threat actor provides an invalid IP address, invalid default gateway IP address, or both. The threat actor then creates a DoS attack on the DHCP client
+
+---
+
+# Enterprise Services
+
+## Common HTTP exploits
+
+* **Malicious iFrames**
+
+* **HTTP 302 Cushioning**
+  
+  The threat actors use the `302 Found` HTTP response status code to direct the user's web browser to a new location.
+
+* **Domain Shadowing**
+  
+  The threat actor must first compromise a domain. Then, the threat actor must create multiple subdomains of that domain to be used for the attacks.
+
+## Email
+
+* **Attachment-base attacks**
+
+* **Email spoofing**
+  
+  Threat actors create email messages with a forged sender address that is meant to fool the recipient into providing money or sensitive information.
+
+* **Spam email**
+
+* **Open mail relay server**
+  
+  Threat actors take advantage if enterprise servers that are misconfigured as open mail relays to send large volumes of spam or malware to unsuspecting users.
+
+* **Homoglyphs**
+
+---
+
+---
+
+## Defending the network
+
+* Develop a write security policy for the company
+
+* Educate employees
+
+* Control physical access to systems
+
+* Use strong passwords and change them
+
+* Encrypt and password-protect sensitive data
+
+* Implement security HR and SW such as firewalls, intrusion prevention/detection systems, virtual private network devices, antivirus and content filtering
+
+* Perform backups and test them
+
+* Shut down unnecessary services and ports
+
+* Keep patches up-to-date
+
+* Perform security audits
+
+## Mitigating / Countering Malware
+
+One way for mitigating virus and trojan horse attacks is antivirus software. Antiviruses must be up-to-date. We must remember that antiviruses don't prevent viruses from entering the network!
+
+Security devices at the network perimeter can identify known malware files based on their indicators of compromise in order to prevent malware files from entering the network.
+
+## Mitigating / Countering Worms
+
+Worms are more network-based than viruses.
+
+![](wormdef.png)
+
+1. **Containment**
+   
+   This phase involves limiting the spread of a worm infection to areas of the network that are already affected. This requires *compartmentalization* and *segmentation* of the network to slow down or stop the worm and to prevent currently infected hosts from targeting and infecting other systems.
+   
+   `outgoing ACL` and `incoming ACL` on routers and firewalls
+
+2. **Inoculation**
+   
+   This phase runs parallel or subsequent to the containment phase. All uninfected systems are patched with the appropriate vendor patch. The aim of this phase is to deprive the worm of any available target
+
+3. **Quarantine**
+   
+   During this phase we must track down and identify the infected machines within the contained areas and disconnecting, blocking, or removing them.
+
+4. **Treatment**
+   
+   This phase involves actively disinfecting infected systems. This can involve terminating the worm process, removing modified files or systems settings that the worm introduced, and patching the vulnerability the worm used to exploit the system.
+
+## Mitigating Reconnaissance attacks
+
+We can setup alarms triggered when a certain parameters are exceeded, such as the number of ICMP requests per second.
+
+* Implementing authentication to ensure proper access
+
+* Using encryption to render packet sniffer attacks useless
+
+* Using anti-sniffer tools to detect packet sniffer attacks
+
+* Implementing a switched infrastructure
+
+* Using a firewall and IPS
+
+## Mitigating Access attacks
+
+* Strong passwords
+
+* Disable accounts after specified number of unsuccessful logins has occurred
+
+* Use Encryption
+
+* Principle of Minimum Trust
+
+* Multi factor Authentication
+
+* Create and Read log files
+
+Access attacks can be detected by reviewing logs, bandwidth utilization, and process loads.
+
+## Mitigating DoS attacks
+
+One of the first signs of a DoS attack is a large number of user complaints about unavailable resources or unusually slow network performance
+
+* Network behavior analysis can detect unusual patterns of usage
+
+* Network utilization graph
+
+* Network utilization software
+
+---
+
+---
+
+# Module 4 Quiz solutions
+
+> Which action best describes a MAC address spoofing attack?
+> 
+> * altering the MAC address of an attacking host to match that of a legitimate host
+
+> What is an objective of a DHCP spoofing attack?
+> 
+> * to provide false DNS server addresses to DHCP clients so that visits to a legitimate web server are directed to a fake server
+
+> What is the primary means for mitigating virus and Trojan horse attacks?
+> 
+> * antivirus software
+
+> What method can be used to mitigate ping sweeps?
+> 
+> * blocking ICMP echo and echo-replies at the network edge
+
+> What worm mitigation phase involves actively disinfecting infected systems?
+> 
+> * treatment
+
+> What is the result of a DHCP starvation attack?
+> 
+> * Legitimate clients are unable to lease IP addresses.
+
+> Which term is used for bulk advertising emails flooded to as many end users as possible?
+> 
+> * Spam
+
+> Which type of DNS attack involves the cybercriminal compromising a parent domain and creating multiple subdomains to be used during the attacks?
+> 
+> * shadowing
+
+> Which protocol would be the target of a cushioning attack?
+> 
+> * HTTP
+
+> Which language is used to query a relational database?
+> 
+> * SQL
+
+> Which two attacks target web servers through exploiting possible vulnerabilities of input functions used by an application? (Choose two.)
+> 
+> * cross-site scripting, SQL injection
+
+> In which type of attack is falsified information used to redirect users to malicious Internet sites?
+> 
+> * DNS cache poisoning
+
+> What is a characteristic of a DNS amplification and reflection attack?
+> 
+> * Threat actors use DNS open resolvers to increase the volume of attacks and to hide the true source of an attack.
+
+---
+
+---
+
+# Wireless Communications
+
+## 802.11 Frame
+
+Recall that all Layer 2 consist of a header, payload, and **Frame Check Sequence** [FCS] section.
+
+![](802.png)
+
+* **Frame Control** = Type of wireless frame, protocol version, frame type, address type, power management, and security settings
+
+* **Duration** = Remaining duration needed to receive the next frame transmission
+
+* **Address1** = MAC address of the receiving device
+
+* **Address2** = MAC address of the transmitting device
+
+* **Address3** = MAC address of the destination, such as the router interface
+
+* **Sequence Control** = Control sequencing and Fragmented frames
+
+* **Address4** = For AdHoc mode
+
+## Carrier Sense Multiple Access Collision Avoidance [CSMA / CA]
+
+WLANs are half-duplex, shared media configurations. Half-duplex means that only one client can transmit or receive at any given moment. Shared media means that wireless clients can all transmit and receive on the same radio channel.
+
+So wireless client cannot hear while it is sending, which makes it impossible to detect a collision.
+
+The solution is using CMSA/CA on WLANs:
+
+1. Client listens on the channel to see if it is idle, which means that it senses no other traffic on the channel / carrier
+
+2. Sends a `ready to send [RTS]` message to the AP to request dedicated access to the network
+
+3. Receives a `clear to send [CTS]` message from the AP granting access to send
+
+4. If the wireless client does not receive a CTS message, it waits a random amount of time before restarting the process
+
+5. After it receives the CTS, it transmits the data
+
+6. All transmissions are acknowledged. If a client does not receive an ack, it assumes a collision occurred
+
+## Wireless Client and AP association
+
+For wireless devices to communicate over a network, they must first associate with an AP or wireless route. Wireless device must:
+
+1. Discover a wireless AP
+
+2. Authenticate with AP
+
+3. Associate with AP
+
+They must agree on specific parameters:
+
+* **SSID** = SSID name appears in the list of available wireless networks on a client
+
+* **Password** = required from the wireless client to authenticate
+
+* **Network mode** = refers to the 802.11a/b/g/n/ac/ad WLAN standards. APs and routers can support clients connecting via multiple standards
+
+* **Security mode** = WEB, WPA or WPA2
+
+* **Channel settings** = frequency bands used to transmit data
+
+Wireless devices must discover and connect to an AP or wireless router.
+
+* **Passive Discover mode**
+  
+  The AP openly advertises its service by periodically sending broadcast beacon frames containing the SSID, supported standards, and security settings
+
+* **Active Discover mode**
+  
+  Wireless clients must know the name of the SSID. The wireless client initiates the process by broadcasting a probe request frame on multiple channels. The probe request includes the SSID name and standards supported
