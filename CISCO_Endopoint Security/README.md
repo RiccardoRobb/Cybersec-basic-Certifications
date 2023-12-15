@@ -1158,7 +1158,7 @@ A popular wireless MitM attack is called the **evil twin AP** attack, where an a
 
 ## SSID Cloaking
 
-APs and some wireless routers allow the SSID beacon fram to be disabled, wireless clients must manually configure the SSID to connect to the network.
+APs and some wireless routers allow the SSID beacon frame to be disabled, wireless clients must manually configure the SSID to connect to the network.
 
 ## MAC Address Filtering
 
@@ -1179,3 +1179,324 @@ MAC addresses can be spoofed and SSID can be easily discovered. The best way to 
   * **Personal**. intended for home or small office networks, users authenticate using a pre-shared key [PSK]
   
   * **Enterprise**, It requires a Remote Authentication Dial-In User Service [RADIUS] authentication server. The device must be authenticated by the RADIUS server and then users must authenticate using 802.1x standards
+
+## Encryption Methods
+
+The WPA and WPA2 standards use the following encryption protocols:
+
+* **Temporal Key integrity protocol [TKIP]** used by WPA. It provides support for legacy WLAN equipment by addressing the original flaws associated with the 802.11 WEP encryption method.
+  
+  It makes use of WEP, but encrypts the Layer 2 payload using TKIP, and carries out a *Message Integrity Check [MIC]* in the encrypted packet to ensure the message has not been altered.
+
+* **Advanced Encryption Standards [AES]** used by WPA2. It uses the *Counter Cipher Mode* with *Block Chaining Message Authentication Code protocol [CCMP]* that allows destination hosts to recognize if the encrypted and non-encrypted bit have been altered.
+
+Packet Tracer exercise: [here](wireless_security.pka) and [here](analyze_wireless.pksz)
+
+## WPA3
+
+* **Personal**
+  
+  Threat actors can listen to "handshakes" between a wireless client and the AP and use brute force attack to try to guess the PSK
+
+* **Enterprise**
+  
+  It uses 802.1X/EAP authentication. But it requires the use of a 192bit cryptographic suite and eliminates the mixing of security protocols for previous 802.11 standards
+
+* **Open networks**
+  
+  It does not require authentication but they do use Opportunistic Wireless Encryption [OWE] to encrypt all wireless traffic
+
+---
+
+---
+
+# Module 5 Quiz solutions
+
+> City Center Hospital provides WLAN connectivity to its employees. The security policy requires that communication between employee mobile devices and the access points must be encrypted. What is the purpose of this requirement?
+> 
+> * to prevent the contents of intercepted messages from being read
+
+> What is a feature that can be used by an administrator to prevent unauthorized users from connecting to a wireless access point?
+> 
+> * MAC filtering
+
+> What is an advantage of SSID cloaking?
+> 
+> * Clients will have to manually identify the SSID to connect to the network.
+
+> For which discovery mode will an AP generate the most traffic on a WLAN?
+> 
+> * passive mode
+
+> At a local college, students are allowed to connect to the wireless network without using a password. Which mode is the access point using?
+> 
+> * open
+
+> An employee connects wirelessly to the company network using a cell phone. The employee then configures the cell phone to act as a wireless access point that will allow new employees to connect to the company network. Which type of security threat best describes this situation?
+> 
+> * rogue access point
+
+> The company handbook states that employees cannot have microwave ovens in their offices. Instead, all employees must use the microwave ovens located in the employee cafeteria. What wireless security risk is the company trying to avoid?
+> 
+> * accidental interference
+
+> Which two roles are typically performed by a wireless router that is used in a home or small business? (Choose two.)
+> 
+> * access point, Ethernet switch
+
+> What method of wireless authentication is dependent on a RADIUS authentication server?
+> 
+> * WPA2 Enterprise
+
+> Which wireless encryption method is the most secure?
+> 
+> * WPA2 with AES
+
+> Which parameter is commonly used to identify a wireless network name when a home wireless AP is being configured?
+> 
+> * SSID
+
+> Which wireless parameter refers to the frequency bands used to transmit data to a wireless access point?
+> 
+> * channel setting
+
+> Which device can control and manage a large number of corporate APs?
+> 
+> * WLC
+
+> A wireless engineer is comparing the deployment of a network using WPA2 versus WPA3 authentication. How is WPA3 authentication more secure when deployed in an open WLAN network in a newly built company-owned cafe shop?
+> 
+> * WPA3 uses OWE to encrypt all wireless traffic
+
+---
+
+---
+
+# Security Devices
+
+## Firewalls
+
+Firewalls are resistant to network attacks, are the only transit point between internal corporate networks and external networks ans enforce the access control policy.
+
+| Benefits                                                                                               | Limitations                                                                               |
+| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Prevent the exposure of sensitive hosts, resources and applications                                    | Misconfigured firewall can have serious consequences (single point of failure)            |
+| Sanitize protocol flow                                                                                 | The data from many applications cannot be passed over firewalls securely                  |
+| Block malicious data                                                                                   | Users might search for ways around the firewall to receive blocked material               |
+| Reduce security management complexity (network access control managed by few firewalls in the network) | Network performance can slow down                                                         |
+|                                                                                                        | Unauthorized traffic can be tunneled or hidden as legitimate traffic through the firewall |
+
+Firewall design is primarily about device interfaces permitting or denying traffic based on the source, the destination, and the type of traffic.
+
+## Firewall Designs
+
+* **Private and Public**
+  
+  The public network (outside network) is untrusted, and the private network (inside network) is trusted
+  
+  * Traffic originating from the private network is permitted and inspected as it travels toward the public network. Inspected traffic returning from the public network and associated with traffic that originated from the private network is permitted
+  
+  or
+  
+  * Traffic originating from the public network and traveling to the private network is generally blocked
+
+* **Demilitarized Zone [DMZ]**
+  
+  It is a design where there is **one inside interface** connected to the private network, **one outside interface** connected to the public network and **one DMZ interface**
+  
+  ![](DMZ.png)
+  
+  * Traffic originating from the public network
+    
+    * Traveling to the private network = blocked
+    
+    * Traveling toward the DMZ = selectively permitted and inspected
+  
+  * Traffic from the DMZ
+    
+    * Traveling to the public network = dynamically permitted
+    
+    * Traveling to the private network = blocked
+  
+  * Traffic from the private network
+    
+    * Traveling to the public network or DMZ = inspected and permitted with little or no restriction
+
+* **Zone-Based policy firewalls**
+  
+  A zone is a group of one or more interfaces that have similar functions or features. Traffic between interfaces in the same zone is not subject to any policy and passes freely. All zone-to-zone traffic is blocked (a policy allowing or inspecting traffic must be configured)
+
+## Firewall Types
+
+### Packet Filtering (Stateless) firewall
+
+This is usually part of a router firewall, which permits or denies traffic based on Layer 3 and Layer 4 information. It uses a simple policy table lookup that filters traffic based on specific criteria **ACLs**.
+
+![](firewallpktfilter.png)
+
+### Stateful firewall
+
+It is the most versatile and most common firewall, it provides stateful packet filtering by using connection information maintained in a stable table.
+
+![](firewallstateful.png)
+
+### Application Gateway firewall / Proxy firewall
+
+It filters information at Layer 3, 4, 5, and 7 of the OS reference model. Most of the firewall control and filtering is done in software. When a client needs to access a remote server, it connects to a proxy server. The proxy server connects to the remote server on behalf of the client.
+
+![](firewallproxy.png)
+
+### Host-based (server and personal) firewall
+
+A PC or server with firewall software running on it.
+
+### Transparent firewall
+
+Filters IP traffic between a pair of bridged interfaces.
+
+### Hybrid firewall
+
+A combination of various firewall types.
+
+---
+
+# Intrusion Prevention and Detection Devices
+
+When implementing **Intrusion Detection Systems [IDS]** or **Intrusion Prevention Systems [IPS]** it is important to be familiar with the types of systems available, host-based and network-based approaches, the placement of these systems and the role of signature categories.
+
+1. Malicious traffic is sent to the target host that is inside the network
+
+2. The traffic is routed into the network and received by an IPS-enabled sensor where it is blocked
+
+3. The IPS-enabled sensor sends logging information regarding the traffic to the network security management console
+
+4. The IPS-enabled sensor kill all the traffic (sent to the Bit Bucket)
+
+Those are sensors that can be in the form of several different devices:
+
+* router configured with CISCO IOS IPS software
+
+* device specifically designed to provide dedicated IDS or IPS services
+
+* network module installed in an adaptive security appliance [ASA], switch or router
+
+IDS and IPS use **signature** to detect patterns in network traffic. Can detect **atomic signature patterns [single packet]** or **composite signature patterns [multi-packet]**.
+
+| Solution | Advantages                                                                                                                                                             | Disadvantages                                                                                                                               |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IDS**  | No impact on network latency and jitter; No network impact if there is a sensor failure; No network impact if there is sensor overload; It is deployed in OFFLINE mode | Response action stops trigger packets; Correct tuning required for response actions; More vulnerable to network security evasion techniques |
+| **IPS**  | Stops trigger packets; Can use stream normalization techniques                                                                                                         | Sensor issues might affect network traffic; Sensor overloading impacts the network; Some impact on network latency and jitter               |
+
+## Types of IPS
+
+### Host-based IPS [HIPS]
+
+It is a  software installed on a host to monitor and analyze suspicious activity. It can protect operating system and critical system processes that are specific to that host. It can prevent the host from executing commands that do not match typical behavior (unauthorized registry updates, and activities that cause buffer overflows). It can also monitor network traffic to prevent the host from participating in DoS attack or being part of an illicit FTP session.
+
+It is like a firewall + antivirus sw + antimalware sw.
+
+The problem is that it only works on a **local level**.
+
+### Network-based IPS
+
+Sensors detect malicious and unauthorized activity in real time and can take action when required. This allow security managers to monitor network activity while it is occurring, regardless of the location of the attack target.
+
+---
+
+## Specialized Security Appliances
+
+* **CISCO Advanced Malware Protection [AMP]**
+  
+  It provides comprehensive malware protection for organization before, during, and after an attack:
+  
+  * [Before], AMP strengthens defenses and protects against known and emerging threats
+  
+  * [During], AMP identifies and blocks policy-violating file types, exploit attempts, and malicious files from infiltrating the network
+  
+  * [After], AMP goes beyond point-in-time detection capabilities and continuously monitors and analyzes all file activity and traffic
+
+* **CISCO Web Security Appliance [WSA]**
+  
+  It is a secure web gateway that combines leading protections to help organizations address the growing challenges of securing and controlling web traffic.It blocks risky sites and tests unknown sites before allowing the users to access them.
+
+* **CISCO Email Security Appliance [ESA]**
+
+---
+
+# Security Services
+
+## Traffic control with ACLs
+
+An Access Control List is a series of command that control whether a device forwards or drops packets based on information found in the packet header.
+
+* They limit network traffic to increase network performance
+
+* They provide traffic flow control
+
+* They provide a basic level of security for network access
+
+* They filter traffic based on traffic type
+
+* They screens hosts, to permit or deny access to network services
+
+They can also select types of traffic to be analyzed, forwarded, or processed in other ways.
+
+![](ACL.png)
+
+ACLs filter IPv4 packets based on several attributes:
+
+* `protocol type`
+
+* `source IPv4 address`
+
+* `destination IPv4 address`
+
+* `source TCP or UDP ports`
+
+* `destination TCP or UDP ports`
+
+* `optional protocol type information`
+
+Packet Tracer exercise: [here](acl.pka)
+
+---
+
+## Simple Network Management Protocol [SNMP]
+
+It allows administrators to manage end devices such as servers, workstations, routers, switches, and security appliances, on an IP network.
+
+It is an application layer protocol that provides a message format for communication between:
+
+* SNMP manager that runs SNMP management sw
+
+* SNMP agents which are the nodes being monitored and managed
+
+---
+
+## NetFlow
+
+It is a tools that provides statistics on packets flowing through a CISCO router or multilayer switch. A packet can be considered of a different flow based on:
+
+* `source IP addr`
+
+* `destination IP addr`
+
+* `source port number`
+
+* `destination port number`
+
+* `Layer 3 protocol type` = type of header
+
+* `Type of Service [ToS] marking` = how to apply quality of service to the packets
+
+* `input logical interface`
+
+---
+
+## Port Mirroring
+
+It is a feature that allows a switch to make **duplicate copies of traffic** passing through a switch, and then send it out to a port with a network monitor attached.
+
+---
+
+## Syslog Servers
