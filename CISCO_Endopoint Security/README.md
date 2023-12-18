@@ -1746,3 +1746,147 @@ New hives cannot be created. Registry keys and values can be created, modified, 
 ---
 
 ## Windows Management Instrumentation
+
+It is used to manage remote computers. It can retrieve information about computer components, hw and sw statistics, and monitor the health of remote computers.
+
+Some attacks today use WMI to connect to remote systems, modify the registry, and run commands. WMI helps them to avoid detection because it is common traffic, most often trusted by the network security devices and the remote WMI commands do not usually leave evidence on the remote host.
+
+---
+
+## The net command
+
+`net` command is used in the administration and maintenance of the OS, it supports many subcommands:
+
+* `net accounts` sets passwords and logon requirements for users
+
+* `net session` lists of disconnects sessions between a computer and other computers on the network
+
+* `net share` creates, removes or manages shared resources
+
+* `net start` starts a network service or lists running network services
+
+* `net stop` stops a network service
+
+* `net use` connects, disconnects, and displays information about shared network resources
+
+* `net view` shows a list of computers and network devices on the network
+
+----
+
+## The nslookup and netstat command
+
+Domain Name System [DNS] should also be tested because it is essential to finding the address of hosts by translating it from a name, such as a URL.
+
+`nslookup <URL>` allows to test DNS, when the address is returned, you know that DNS is functioning correctly.
+
+`netstat` allows to see details of active network connections, also check what ports are open and where they are connected and their status. It is useful to see inbound and outbound TCP connections so that we can discover unauthorized connections.
+
+We can link connections with running processes using: `netstat -abno`
+
+---
+
+# Windows Security
+
+## Event Viewer
+
+It logs the history of application, security, and system events. These log files are a valuable troubleshooting tool because they provide information necessary to identify a problem.
+
+Categories of event log:
+
+* **Windows logs**
+
+* **Application and Service logs**
+
+## Local Security Policy
+
+A security policy is a set of objectives that ensures the security of a network, the data, and the computer systems in an organization. The security policy is a constantly evolving document based on changes in technology, business, and employee requirements.
+
+* **Domain security policies** apply to all computers that join the domain
+
+* **Account policies** are automatically set when a user logs in to a computer that is a member of a domain
+  
+  * Password policies and Account Lookout policy that prevents brute-force login attempts.
+
+## Windows Defender
+
+It is the built-in virus and spyware protection.
+
+It can acts as:
+
+* Antivirus that continuously monitors for viruses; when a virus is detected, the user is warned, and the program attempts to quarantine or delete virus
+
+* Adware protection
+
+* Phishing protection blocks the IP addresses of known phishing websites and warns the user about suspicious sites
+
+* Spyware protection scans for keyloggers and other spyware
+
+* Trusted / Untrusted sources warns you about unsafe programs installed or unsafe websites
+
+## Windows Defender Firewall
+
+Allows to selectively deny traffic to a computer or network segment. 
+
+*"Test it to better understand"*
+
+---
+
+---
+
+# Module 7 Quiz solutions
+
+> When a user makes changes to the settings of a Windows system, where are these changes stored?
+> 
+> * Registry
+
+> For security reasons a network administrator needs to ensure that local computers cannot ping each other. Which settings can accomplish this task?
+> 
+> * firewall settings
+
+> Which user account should be used only to perform system management and not as the account for regular use?
+> 
+> * administrator
+
+> What technology was created to replace the BIOS program on modern personal computer motherboards?
+> 
+> * UEFI
+
+> What term is used to describe a logical drive that can be formatted to store data?
+> 
+> * Partition
+
+> What utility is used to show the system resources consumed by each user?
+> 
+> * Task Manager
+
+> Which command is used to manually query a DNS server to resolve a specific host name?
+> 
+> * nslookup
+
+> Which **net** command is used on a Windows PC to establish a connection to a shared directory on a remote server?
+> 
+> * net use
+
+> What would be displayed if the **netstat -abno** command was entered on a Windows PC?
+> 
+> * all active TCP and UDP connections, their current state, and their associated process ID (PID)
+
+> What is the purpose of the **cd∖** command?
+> 
+> * changes directory to the root directory
+
+> Which Windows version was the first to introduce a 64-bit Windows operating system?
+> 
+> * Windows XP
+
+> How much RAM is addressable by a 32-bit version of Windows?
+> 
+> * 4 GB
+
+> A security incident has been filed and an employee believes that someone has been on the computer since the employee left last night. The employee states that the computer was turned off before the employee left for the evening. The computer is running slowly and applications are acting strangely. Which Microsoft Windows tool would be used by the security analyst to determine if and when someone logged on to the computer after working hours?
+> 
+> * Event Viewer
+
+---
+
+---
