@@ -1500,3 +1500,117 @@ It is a feature that allows a switch to make **duplicate copies of traffic** pas
 ---
 
 ## Syslog Servers
+
+Many networking devices support syslog, including routers, switches, application servers, firewalls, and other network appliances. The syslog protocol allows networking devices to send their system messages across the network to syslog servers. These messages can be either non-critical or significant.
+
+Syslog logging service provide:
+
+* the ability to gather logging information for monitoring and troubleshooting
+
+* the ability to select the type of logging information that is captured
+
+* the ability to specify the destination of captured syslog messages
+
+---
+
+## Network Time Protocol [NTP]
+
+This protocol allows routers on the to synchronize their time settings with an NTP server. A group of NTP clients that obtain time and date information from a single source have more consistent time settings. When NTP is implemented in the network, it can be set up to synchronize to a private primary clock or it can synchronize to a publicly available NTP server on the internet.
+
+NTP networks use a hierarchical system of time sources. Each level in this hierarchical system is called a **stratum**. The stratum level is defined as the number of hop counts from the authoritative source.
+
+NTP servers are arranged in three levels known as strata:
+
+* **Stratum 0** = Authoritative time servers
+  
+  High-precision timekeeping devices assumed to be accurate and with little or no delay associated with them
+
+* **Stratum 1** = devices directly connected to the authoritative time sources
+  
+  They act as the primary network time standard
+
+* **Stratum 2 and lower strata** = NTP clients
+  
+  They use NTP packets to synchronize their time from stratum 1 servers, they could also act as servers from stratum 3 devices
+
+---
+
+## AAA Servers
+
+Are servers that respect **Authentication** (centralized control access to the network), **Authorization** (which resources can an authenticated user access) and **Accounting** (records what the user does).
+
+**Terminal Access Controller Access-Control System Plus [TACACS+]** and RADIUS are both authentication protocols that are used to communicate with AAA servers.
+
+|                 | TACACS+                                                                                     | RADIUS                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Transport       | TCP                                                                                         | UDP                                                                                        |
+| Protocol CHAP   | Bidirectional challenge and response as used in Challenge Handshake Authentication Protocol | Unidirectional challenge and response from the RADIUS security server to the RADIUS client |
+| Confidentiality | Entire packet encrypted                                                                     | Password encrypted                                                                         |
+
+---
+
+## Virtual Private Network [VPN]
+
+A VPN is a communications environment in which access is strictly controlled to permit peer connections within a defined community of interest. Confidentiality is achieved by encrypting the traffic within the VPN. *"See tunneling to better understand how it works"*
+
+---
+
+---
+
+# Module 6 Quiz solutions
+
+> What is the purpose of a personal firewall on a computer?
+> 
+> * to filter the traffic that is moving in and out of the PC
+
+> What is the main difference between the implementation of IDS and IPS devices?
+> 
+> * An IDS would allow malicious traffic to pass before it is addressed, whereas an IPS stops it immediately.
+
+> Which protocol provides authentication, integrity, and confidentiality services and is a type of VPN?
+> 
+> * IPsec
+
+> What is a feature of the TACACS+ protocol?
+> 
+> * It encrypts the entire body of the packet for more secure communications.
+
+> Which firewall feature is used to ensure that packets coming into a network are legitimate responses to requests initiated from internal hosts?
+> 
+> * stateful packet inspection
+
+> Refer to the exhibit. The network "A" contains multiple corporate servers that are accessed by hosts from the Internet for information about the corporation. What term is used to describe the network marked as "A"?
+> 
+> * DMZ
+
+> Which statement describes the Cisco Cloud Web Security?
+> 
+> * It is a cloud-based security service to scan traffic for malware and policy enforcement.
+
+> Which two statements are true about NTP servers in an enterprise network? (Choose two.)
+> 
+> * NTP servers ensure an accurate time stamp on logging and debugging information., NTP servers at stratum 1 are directly connected to an authoritative time source.
+
+> How is a source IP address used in a standard ACL?
+> 
+> * It is the criterion that is used to filter traffic.
+
+> Which network service allows administrators to monitor and manage network devices?
+> 
+> * SNMP
+
+> What is a function of a proxy firewall?
+> 
+> * connects to remote servers on behalf of clients
+
+> What network monitoring technology enables a switch to copy and forward traffic sent and received on multiple interfaces out another interface toward a network analysis device?
+> 
+> * port mirroring
+
+---
+
+---
+
+# Windows Operating System
+
+![](windows.png)
