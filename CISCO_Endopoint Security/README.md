@@ -1614,3 +1614,135 @@ A VPN is a communications environment in which access is strictly controlled to 
 # Windows Operating System
 
 ![](windows.png)
+
+A **hardware abstraction layer [HAL]** is software that handles all of the communication between the hardware and the kernel. The kernel is the core of the operating system and has control over the entire computer. It handles all of the input and output requests, memory, and all of the peripherals connected to the computer.
+
+The upper part of the image describes the *user mode*.
+
+Installed applications run in user mode, and operating system code runs in kernel mode. Code executing in kernel mode has unrestricted access to the underlying hardware and is capable of executing CPU instruction. 
+
+When user mode code runs, it is granted its own restricted address space by the kernel.
+
+The bottom part of the image describes the *kernel mode*.
+
+All of the code that runs in kernel mode uses the same address space. Kernel-mode drivers have no isolation from the operating system. If an error occurs with the driver running in kernel mode, and it writes to the wrong address space, the operating system or another kernel-mode driver could be adversely affected.
+
+## File System
+
+* **exFAT**
+  
+  FAT has limitations to the number of partitions, partition size, and file sizes that can address, so it is not usually used for hard drivers [HDs] or solid-state drivers [SSDs] anymore. Both FAT16 and FAT32 are available to use, with FAT32 being the most common because it has many fewer restrictions that FAT16
+
+* **Hierarchical File System Plus [HTF+]**
+  
+  This is the file system used on MAC OS X computers and allows much longer filenames, file sizes, and partitions sizes than previous file systems. It is not supported by Windows, but it is still able to read from them.
+
+* **Extended File System [EXT]**
+  
+  File system used on Linux-based computers. Windows can still read from them.
+
+* **New Technology File System [NTFS]**
+  
+  It is the most used, all versions of Linux and Windows support this. Mac-OS X can read from them and can also write on them using special drivers.
+  
+  It supports very large files and partitions and it is very compatible with other operating systems. It is very reliable and supports recovery features. It also supports many security features, data access control is achieved through security descriptors. **Security descriptors** contain file ownership and permissions all the way down to the file level. It also tracks many time stamps to track file activity (**timestamps Modify, Access, Create, and Entry Modified [MACE]**).
+  
+  A hard drive must be formatted with a file system, it is divided in partitions. Each partition in a logical storage unit that can be formatted to store information, such as data files or applications.
+  
+  NTFS formatting creates :
+  
+  * `partition boot sector` - first 16 sectors of the drive, that contains the location of the Master File Table [MFT]; the last 16 sectors contain a copy of the boot sector
+  
+  * `master file table [MFT]` - table that contains the locations of all the files and directories on the partition, including file attributes such as security information and timestamps
+  
+  * `system files` - hidden files that store information about other volumes and file attributes
+  
+  * `file area` - main area of the partition where files and directories are stored
+  
+  We can also connect to NTFS an **Alternate Data Stream [ADSs]** to the files that can store additional information about the file. Example: file.txt:ADS using `more file.txt:ADS` we can read the additional information.
+  
+  *"ADS can be used to store malicious code!"*
+
+## Windows Boot Process
+
+![](windowsboot.png)
+
+Two types of computer firmware exist:
+
+* **Basic Input-Output System [BIOS]**
+  
+  The process begins with the BIOS initialization phase. This is when hardware devices are initialized and power on self-test [POST] is performed to make sure all of these devices are communicating. When the file system is discovered, the POST ends (after looking for the master boot record [MBR]).
+  
+  The **master boot record [MBR]** contains a small program that is responsible for locating and loading the OS.
+
+* **Unified Extensible Firmware Interface [UEFI]**
+  
+  The UEFI firmware has a lot of visibility into the boot process, UEFI boots by loading EFI program files, stored as `.efi` files in a special disk partition, known as the EFI System partition [ESP]. Boot code is stored in the firmware in order to increase the security.
+
+After a valid Windows installation is located, the **Bootmgr.exe** is run. This file switches the system from real mode to protected mode so that all of the system memory can be used. This file reads the **Boot Configuration Database [BCD]** that contains any additional code needed to start the computer, along with an indicator of whether the computer is coming out of hibernation, or it is a cold start.
+
+* From hibernation it will run `Winresume.exe` that reads the `Hiberfil.sys` which contains the state of the computer when it was put into hibernation
+
+* From cold start it will run the `Winload.exe` that creates a record of the hardware configuration in the registry. The registry is a record of all of the setting, options, hardware, and software the computer has. Winload.exe also uses kernel mode Code Signing [KMCS] to make sure that all drivers are digitally signed. After all of that it runs `Ntoskrnl.exe` which starts Windows kernel and sets up the HAL, the Session Manager Subsystem [SMSS] reads the registry create the user environment, start the Winlogon service, and prepare each user's desktop as they log on.
+
+## Windows startup
+
+There are two important registry items that are used to automatically start applications and services:
+
+* `HKEY_LOCAL_MACHINE` many information, including services that start with each boot
+
+* `HKEY_CURRENT_USER` information about the logged user, including services that start only when the user logs on the computer
+
+We can change all of the start-up options for the computer, using `Msconfig.exe`
+
+## Windows shutdown
+
+The computer will close user mode applications first, followed by kernel mode processes. User mode applications can be forced but kernel mode processes can block the shutdown process (hanging the process) and it must be turn off using the power button.
+
+## Processes, Threads, and Services
+
+One application can have one or many processes dedicated to it. Each process that runs is made up of at least one thread.
+
+All the threads dedicated to a process are contained within the same address space.
+
+Some of the processes that Windows runs are services. These are programs that run in the background to support the operating system and applications. Services provide long-running functionality.
+
+## Memory Allocation and Handles
+
+Instructions are stored in RAM until the CPU processes them. The virtual address space for a process is the set of virtual addresses that the process can use. The virtual address is an entry in a page table that is used to translate the virtual address into the physical address.
+
+* 32-bit Windows computer have a virtual address space up to 4 gigabytes
+
+* 64-bit Windows computer have a virtual address space up to 8 terabytes
+
+When the user space process needs to access kernel resources, it must use a process handle.
+
+## Windows Registry
+
+Windows stores all of the information about hw, applications, users, and system settings in a large database known as the registry. The registry is a hierarchical database where:
+
+* Hive
+  
+  * Keys
+    
+    * SubKeys
+      
+      * Values = `REG_BINARY` numbers and boolean values | `REG_DWORD` numbers > 32 bit and raw data| `REG_SZ` strings
+
+Windows have many hives, here are presented the most important:
+
+* `HKEY_CURRENT_USER [HKCU]`
+
+* `HKEY_USERS [HKU]`, information about all the users on the host
+
+* `HKEY_CLASSES_ROOT [HKCR]`, information about object linking and embedding [OLE] registrations, that allow users to embed objects from other applications into a single document
+
+* `HKEY_LOCAL_MACHINE [HKLM]`
+
+* `HKEY_CURRENT_CONFIG [HKCC]`, information about the current hardware profile
+
+New hives cannot be created. Registry keys and values can be created, modified, or deleted by a user with administrative privileges. Using `regedit.exe` we can change values and keys.
+
+---
+
+## Windows Management Instrumentation
