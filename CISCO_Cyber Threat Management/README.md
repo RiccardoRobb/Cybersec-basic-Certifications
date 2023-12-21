@@ -2,7 +2,9 @@
 
 # CISCO Cyber Threat Management
 
-## "This file should be seen as a simple summary of concepts and useful solutions for the various modules."
+> [!NOTE]
+> 
+> This file should be seen as a simple summary of concepts and useful solutions for the various modules.
 
 Install **Packet Tracer** from [here](https://skillsforall.com/resources/lab-downloads?courseLang=en-US)
 
