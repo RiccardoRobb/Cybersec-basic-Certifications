@@ -1,3 +1,5 @@
+![](badge.png)
+
 # CISCO Endpoint Security
 
 ## "This file should be seen as a simple summary of concepts and useful solutions for the various modules."
