@@ -2252,3 +2252,349 @@ Cybersecuirty professional must test the patch before deploying it throughout th
 It is also important to update third-party applications such as Adobe Acrobat, Java and Chrome to address vulnerabilities that could be exploited.
 
 ## Endpoint Security
+
+A host-based solution is a software application that runs on a local device to protect it.
+
+* **host-based firewall** runs on a device to restrict incoming and outgoing network activity; it can allow or deny traffic between the device and the network. You can control the type of data sent to and from the device by opening or blocking ports. You can setup **inbound rules** to configure the types of traffic that are allowed to pass through to the system.
+
+* **host intrusion detection system [HIDS]** is installed on device or server to monitor suspicious activity. It monitors sys calls, file system and configuration information about the device in the system registry.
+
+* **host intrusion prevention system [HIPS]** is software that monitors a device for known attacks and anomalies, or finds red flags by addressing the actual protocols in packets. It uses signatures, it it detects malicious activity, the tool can send an alarm, log the malicious activity, reset the connection and/or drop the packets.
+
+* **endpoint detection and response [EDR]** is an integrated security solution that continuously monitors and collects data from an endpoint device. It the analyze the data and responds to any threats it detects.
+
+* **data loss prevention [DLP]** tools provide a centralized way to ensure that sensitive data is not lost, misused or accessed by unauthorized users.
+
+* **next-gen firewall [NGFW]** is a network security device that combines a traditional firewall with other network-device-filtering functions. For example, an application firewall using in-line **deep packet inspection [DPI]** on an intrusion protection system [IPS].
+
+## Host Encryption
+
+The **Windows Encrypting File System [EFS]** feature allows users to encrypt files, folders or an entire hard drive. **Full Disk Encryption [FDE]** encrypts the entire contents of a drive (including temporary files and memory).
+
+Windows uses **BitLocker** for FDE; in order to active it you need to enable **Trusted Platform Module [TPM]** in the BIOS. The TPM is a specialized chip on the motherboard that stores information about host system, such as encryption keys, digital certificates and passwords.
+
+For removable media you can use **BitLoker To Go**.
+
+## Boot Integrity
+
+It endures that the system can be trusted and has not been altered while the operating system loads. **Secure Boot** is a security standard to ensure that a device boots using trusted software. When a computer system boots, the firmware checks the signature of each piece of boot software, including UEFI firmware drivers, UEFI applications, and operating system. **Measured Boot** provides stronger validation than Secure Boot; it measures each component starting with the firmware through to the boot start drivers, and stores the measurements in the TPM chip to create a log. This log can be tested remotely to verify the boot state of the client.
+
+## Apple System Security Features
+
+Apple provides system hw and macOS security features:
+
+* The hw platform has enhanced security features such as special CPU boot, and a dedicated AES encryption engine. These features are included in a special system on a chip called **Secure Enclave**.
+
+* **Apple Data Protection** and **FileVault** data storage encryption are supported by the hardware-based AES encryption engine. So that encryption and decryption of files as they are written or read without exposing encryption keys.
+
+* To Boot ROM protects low-level hw and only allows genuine and unaltered Apple OS sw to run: **Secure Boot**.
+
+* Secure biometric data is processed in the security hw system.
+
+* **Find My Mac** helps find lost or stolen macOS devices through its location tracking function. It also enables remote device locking and storage erasing.
+
+* **XProtect** antimalware technology prevents the execution of malware through signature-based malware detection.
+
+* The **Malware Removal Tool [MRT]** detects and removes existing malware infections when detection rules are automatically updated by Apple. It also monitors for malware infections at system restart and user login.
+
+* **Gatekeeper** ensures that only authentic, digitally-signed software that has been created by Apple is permitted.
+
+## Network-based Malware Protection
+
+![](netprotection.png)
+
+* **Advanced Malware Protection [AMP]**, provides endpoint protection from viruses and malware
+
+* **Email Security Appliance [ESA]**, provides filtering of spam and potentially malicious emails before they reach the endpoint
+
+* **Web Security Appliance [WSA]**, provides filtering of websites and blocklisting to prevent hosts from reaching dangerous locations on the web
+
+* **Network Admission Control [NAC]**, permits only authorized and compliant systems to connect to the network
+
+These technologies work in concert with each other to give more protection than host-based suites can provide.
+
+---
+
+# Host-Based Intrusion Prevention
+
+## Host-based Firewalls
+
+These are standalone software programs that control traffic entering or leaving a computer. Host-based firewalls may use a set of predefined policies, or profiles, to control packets entering and leaving a computer. They can also have rules that can be directly modified or created to control access based on addresses, protocols, and ports. They can also issue alerts to users if suspicious behavior is detected.
+
+Logging is still possible and can log info about data-time of the event, whether the connection was allowed or denied, information about the source or destination IP addresses of packets, and the source and destination ports of the encapsulated segments.
+
+**Distributed firewalls** combine features of host-based firewalls with centralized management. The management function pushes rules to the host and may also accept log files from the hosts.
+
+Examples of host-based firewalls:
+
+* **Windows Defender Firewall** uses a profile-based approach to firewall functionality (public profile to access public network and private profile if the computer is isolated from the internet by other services such as home router with firewall functionality). There is also a Domain profile for connections to a trusted network.
+
+* **iptables** used by Linux system administrators to configure network access rules that are part of the Linux kernel Netfilter modules.
+
+* **nftables** is the successor of iptables; it is an application that uses a simple virtual machine in the Linux kernel. Code is executed within the virtual machine that inspects network packets and implements decision rules regarding packet acceptance and forwarding.
+
+* **TCP Wrappers** is a rule-based access control and logging system for Linux. Packet filtering is based on IP addresses and network services.
+
+## Host-based Intrusion Detection [HIDS]
+
+It is designed to protect hosts against known and unknown malware. It can perform detailed monitoring and reporting on the system configuration and application activity. It can provide log analysis, event correlation, integrity checking, policy enforcement, rootkit detection, and alerting.
+
+This approach needs a management server endpoint.
+
+It can prevent intrusion because it uses signatures to detect known malware and prevent it from infecting system but it only works for known threats.
+
+Strategies:
+
+* **Anomaly-based**
+  
+  Host system behavior is compared to a learned baseline model of normal behavior. If an intrusion is detected, the HIDS can log details of the intrusion, send alerts to security management systems, and take action to prevent the attack.
+  
+  [+false positive, a team is needed to avoid false alarms]
+
+* **Policy-based**
+  
+  Normal system behavior is described by rules, or the violation of rules, that are predefined. Violation of these policies will result in action by the HIDS.
+
+There are many HIDS product for example: Cisco AMP, AlienVault USM, Tripwire, and Open Source HIDS SECurity [OSSEC]
+
+---
+
+## Attack Surface
+
+An attack surface is the total sum of the vulnerabilities in a given system that is accessible to an attacker. It can consist of open ports, sw that runs on internet-facing servers, wireless network protocols, and even users.
+
+The attack surface is continuing to expand, consider Internet of Things [IoT] or Bring Your Own Device [BYOD].
+
+Principal components of an attack surface:
+
+* **Network attack surface**
+  
+  The attack exploits the network, this can include wired and wireless network protocols; they can also exploit vulnerabilities at the network and transport layer
+
+* **Software attack surface**
+  
+  The attack is delivered through exploitation of vulnerabilities in web, cloud, or host-based software applications
+
+* **Human attack surface**
+  
+  The attack exploits weaknesses in user behavior (social engineering, malicious behavior by trusted insiders, and user error)
+
+## Application Block list and Allow list
+
+It is used to limit access to potential threats by creating lists of prohibited applications. These **blocklists** can dictate which user applications are not permitted to run on a computer. **allowlists** can specify which program are allowed to run.
+
+## System-based Sandboxing
+
+It is a technique that allows suspicious files to be executed and analyzed in a safe environment. Automated malware analysis sandboxes offer tools that analyze malware behavior. These tools observe the effects of running unknown malware so that features of malware behavior ca be determined and then used to create defenses against it.
+
+Polymorphic malware changes frequently and new malware appears regularly. Malware will enter the network despite the most robust perimeter and host-based security system.
+
+Example of sandboxes: Cisco threat Grid Glovebox, Cucko Sandbox, VirusTotal, Joe Sandbox, and CrowdStrike Falcon Sandbox.
+
+An interesting online tool is **ANY.RUN** where we can upload a malware for analysis; it offers a very rich interactive reporting functionality that is full of details regarding the malware sample.
+
+---
+
+---
+
+# Module 9 Quiz solutions
+
+> Which antimalware software approach can recognize various characteristics of known malware files to detect a threat?
+> 
+> * signature-based
+
+> Which device in a LAN infrastructure is susceptible to MAC address-table-overflow and spoofing attacks?
+> 
+> * switch
+
+> In most host-based security suites, which function provides robust logging of security-related events and sends logs to a central location?
+> 
+> * telemetry
+
+> Which technology might increase the security challenge to the implementation of IoT in an enterprise environment?
+> 
+> * cloud computing
+
+> Which statement describes agentless antivirus protection?
+> 
+> * Antivirus scans are performed on hosts from a centralized system.
+
+> Which HIDS is an open-source based product?
+> 
+> * OSSEC
+
+> In Windows Firewall, when is the Domain profile applied?
+> 
+> * when the host is connected to a trusted network such as an internal business network
+
+> What is a host-based intrusion detection system (HIDS)?
+> 
+> * It combines the functionalities of antimalware applications with firewall protection.
+
+> As described by the SANS Institute, which attack surface includes the exploitation of vulnerabilities in wired and wireless protocols used by IoT devices?
+> 
+> * network attack surface
+
+> Which statement describes the term attack surface?
+> 
+> * It is the total sum of vulnerabilities in a system that is accessible to an attacker.
+
+> As described by the SANS Institute, which attack surface includes the use of social engineering?
+> 
+> * human attack surface
+
+> Which security endpoint setting would be used by a security analyst to determine if a computer has been configured to prevent a particular application from running?
+> 
+> * blacklisting
+
+> What can you do to ensure that network operating software remains secure?
+> 
+> * Install patches and updates regularly; Develop a policy to address application software and operating system updates; Conduct software testing prior to launch
+
+> Which type of technology can prevent malicious software from displaying unwanted popup ads on a device?
+> 
+> * Adware protection
+
+> What type of lock is recommended to secure an office door?
+> 
+> * Cipher lock
+
+---
+
+---
+
+# Cybersecurity fundamentals
+
+## Cybersecurity Cube
+
+![](cube.png)
+
+1. **Security Principles**
+   
+   The first dimension of the cube identifies the **goals** to protect cyberspace
+   
+   * Data **confidentiality** prevents the disclosure of information to unauthorized people, resources, or processes
+     
+     To accomplish it without using encryption, we can use the **tokenization**.
+     
+     So that outside the system a token (random numerical value) has no value and is meaningless; they can preserve the data format; are used for db and card payment processing
+     
+     Example of famous confidentiality rights management:
+     
+     * **digital right management [DRM]** for media copyright
+     
+     * **information rights management [IRM]** for documents and emails of an organization; members of the organization can control and manage access to them
+   
+   * Data **integrity** refers to the accuracy, consistency, and trustworthiness of data
+     
+     The more the critical level of the info, the more the critical level of need of accurate, validated and tested info.
+   
+   * Data **availability** ensures that information is accessible by authorized users when needed
+     
+     Must be always ensured, using redundancy and other techniques.
+     
+     We must be prepared in case of equipment maintenance, updates and patches, backup, and disasters.
+   
+   **CIA Triad**
+
+![](/home/robb/Scrivania/CERT/CISCO_Endopoint%20Security/cube1.png)
+
+2. **Data States**
+   
+   The second dimension of the cube identifies the three possible **data states**
+   
+   * Data at **rest / storage**
+     
+     Data can be stored in many different ways:
+     
+     * Direct-attached storage [DAS], for example the USBs
+     
+     * Redundant array of independent disks [RAID], used by organizations to improve performance and fault tolerance
+     
+     * Network attached storage [NAS], device connected to a network can store and retrieve data from a centralized location in order to improve flexibility and scalability of the system
+     
+     * Storage Area Network [SAN], network-based storage system
+     
+     * Cloud Storage
+   
+   * Data in **transit / transmission**
+     
+     Data can be transmitted in many different ways:
+     
+     * Sneaker net, using removable media; organizations will never be able to fully eliminate the use of a sneaker net
+     
+     * Wired networks
+     
+     * Wireless networks
+     
+     It is vital to protect data in transit! *"CIA Triad"*
+   
+   * Data in **process / processing**
+     
+     We must protect data during input processes, elaboration processes and during the output processes
+
+![](cube2.png)
+
+3. **Safeguards**
+   
+   The third dimension of the cube defines the pillars on which we need to base our cybersecurity defenses
+
+-
+
+Packet Tracer exercise: [here](data_integrity.pka) and [here](data-encryption.pka)
+
+---
+
+---
+
+# Module 10 Quiz solutions
+
+> What is identified by the first dimension of the cybersecurity cube?
+> 
+> * goals
+
+> What type of cybersecurity laws protect you from an organization that might want to share your sensitive data?
+> 
+> * privacy
+
+> Which two methods help to ensure data integrity? (Choose two.)
+> 
+> * data consistency checks; hashing
+
+> What name is given to a storage device connected to a network?
+> 
+> * NAS
+
+> What is a method of sending information from one device to another using removable media?
+> 
+> * sneaker net
+
+> Which data state is maintained in NAS and SAN services?
+> 
+> * stored data
+
+> Which type of networks poses increasing challenges to cybersecurity specialists due to the growth of BYOD on campus?
+> 
+> * wireless networks
+
+> An organization allows employees to work from home two days a week. Which technology should be implemented to ensure data confidentiality as data is transmitted?
+> 
+> * VPN
+
+> Which of the following are types of sensitive information?
+> 
+> * Business, Personal, Classified
+
+> Which of the following are foundational principles of the cybersecurity domain?
+> 
+> * Confidentiality, Availability, Integrity
+
+> What tasks are accomplished by a comprehensive security policy?
+> 
+> * It defines legal consequences of violations, It sets rules for expected behavior, It gives security staff the backing of management
+
+---
+
+---
+
+@Author: [RiccardoRobb (Robb) · GitHub](https://github.com/RiccardoRobb)
