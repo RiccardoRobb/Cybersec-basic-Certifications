@@ -1,4 +1,4 @@
-![](/home/robb/Scrivania/CERT/EC-Council_NDE/badge.png)
+![](badge.png)
 
 # Network defense Essentials (NDE)
 
